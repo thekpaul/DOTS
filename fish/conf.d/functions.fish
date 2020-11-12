@@ -6,7 +6,7 @@ function mkcd
 end
 
 function lsa
-    ls -a $argv
+    ls -AH $argv
 end
 
 function lscd
