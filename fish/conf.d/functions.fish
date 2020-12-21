@@ -13,3 +13,7 @@ function lscd
     lsa $argv
     cd $argv
 end
+
+function sumatra
+    SumatraPDF.exe $argv
+end
