@@ -6,7 +6,7 @@ function mkcd
 end
 
 function lsa
-    ls -AH $argv
+    ls -AH --group-directories-first $argv
 end
 
 function lscd
