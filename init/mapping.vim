@@ -3,15 +3,15 @@ nnoremap <silent> <C-j> /<++><CR>:let @/ = ""<CR>4"_xi
 inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 
 " Set Mappings for Vimscript and Vanilla Vim Management
-nnoremap <F1> :cd $XDG_CONFIG_HOME/nvim<CR>:e init.vim<CR>
+nnoremap <F1> :cd $HOME/.config/nvim<CR>:e init.vim<CR>
     "Press F1 to Open User init.vim
 nnoremap <C-F1> :cd $VIM<CR>:e sysinit.vim<CR>
     "Press Ctrl+F1 to Open System sysinit.vim
-nnoremap <S-F1> :cd $XDG_CONFIG_HOME/nvim<CR>:split init.vim<CR>
+nnoremap <S-F1> :cd $HOME/.config/nvim<CR>:split init.vim<CR>
     "Press Shift+F1 to Split-Open User init.vim
-nnoremap v<S-F1> :cd $XDG_CONFIG_HOME/nvim<CR>:vsplit init.vim<CR>
+nnoremap v<S-F1> :cd $HOME/.config/nvim<CR>:vsplit init.vim<CR>
     "Press V and Shift+F1 to VSplit-Open User init.vim
-nnoremap <F2> :tabe $XDG_CONFIG_HOME/nvim/init.vim<CR>:cd %:p:h<CR>
+nnoremap <F2> :tabe $HOME/.config/nvim/init.vim<CR>:cd %:p:h<CR>
     "Press F2 to Open User init.vim in New Tab
 nnoremap <C-F2> :tabe $VIM/sysinit.vim<CR>:cd %:p:h<CR>
     "Press Ctrl+F2 to Open System sysinit.vim in New Tab
@@ -35,11 +35,11 @@ nnoremap <F9> :tabe<CR>:terminal<CR>a
     "Press F9 to OPEN NEW TAB to TERMINAL
 nnoremap <C-F9> :terminal<CR>a
     "Press Ctrl+F9 to change CURRENT buffer to TERMINAL
-nnoremap <F10> :up<CR>:source $XDG_CONFIG_HOME/nvim/init.vim<CR>
+nnoremap <F10> :up<CR>:source $HOME/.config/nvim/init.vim<CR>
     "Press F10 to Save and Reload User NVIMRC
-nnoremap <C-F10> :up<CR>:execute "so $XDG_CONFIG_HOME/nvim/ftplugin/".&ft.".vim"<CR>
+nnoremap <C-F10> :up<CR>:execute "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
     "Press Ctrl+F10 to Save and Reload User FT_NVIMRC
-nnoremap <C-S-F10> :up<CR>:tabe "so $XDG_CONFIG_HOME/nvim/ftplugin/".&ft.".vim"<CR>
+nnoremap <C-S-F10> :up<CR>:tabe "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
     "Press Ctrl+Shift+F10 to Save and Open User FT_NVIMRC in New Tab
 
 " AutoClose
