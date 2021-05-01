@@ -18,7 +18,7 @@ nnoremap <C-z> u
 nnoremap <C-y> <C-r>
 inoremap <C-z> <Esc>ui
 inoremap <C-y> <Esc><C-r>i
-
+"
 " Save Like Windows
 inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
 nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
