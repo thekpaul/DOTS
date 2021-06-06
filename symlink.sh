@@ -1,4 +1,4 @@
-# SYMLINKS.SH: Use for Creation and Organisation of Dotfile Symlinks
+# SYMLINKS_SH: Use for Creation and Organisation of Dotfile Symlinks
 
 #!/usr/bin/env bash
 
