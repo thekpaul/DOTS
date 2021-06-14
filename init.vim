@@ -19,7 +19,7 @@ nnoremap <C-y> <C-r>
 inoremap <C-z> <Esc>ui
 inoremap <C-y> <Esc><C-r>i
 "
-" Save Like Windows
+" Save Like Windows (Erase all Whitespace)
 inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
 nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
 
@@ -34,7 +34,6 @@ set noundofile | "No Undo Files
 filetype off
 filetype plugin indent on | "Set plugin loading according to filetype
 
-set guifont=D2Coding:h10
 set encoding=utf8 | "Set File Encoding as UTF-8
 language en
 let $LANG = 'en_US'
@@ -46,7 +45,6 @@ set fileencodings=utf8 | "Set NEW File Encoding to UTF-8
         set fileencodings=utf8
     endif | "Set ALL File Encoding to UTF-8
 set number | "Line Numbering
-set linespace=3 | "Set Line Spacing to 3 units
 set expandtab | set shiftwidth=4 | set tabstop=4
 set softtabstop=4 | set smarttab | "Set Tab Spacing
 set cursorline
@@ -77,13 +75,13 @@ call plug#end()
 
 " Additional Settings for each External Plugin
 
-" Additional Settings for the Vim-Plug Plugin
-nnoremap <F12> :PlugInstall<CR>
-    " Press F12 to Install new Plugins
-nnoremap <C-F12> :PlugClean<CR>
-    " Press Ctrl+F12 to Delete Plugins
-nnoremap <S-F12> :PlugUpdate<CR>
-    " Press Shift+F12 to Update new Plugins
+" " Additional Settings for the Vim-Plug Plugin
+" nnoremap <F12> :PlugInstall<CR>
+"     " Press F12 to Install new Plugins
+" nnoremap <C-F12> :PlugClean<CR>
+"     " Press Ctrl+F12 to Delete Plugins
+" nnoremap <S-F12> :PlugUpdate<CR>
+"     " Press Shift+F12 to Update new Plugins
 
 " Additional Settings for the Seoul256 Plugin
 let g:seoul256_background = 235
@@ -92,10 +90,10 @@ highlight EndOfBuffer guifg=bg | "Hide Tildes in Empty Buffer Space for GUI
 highlight EndOfBuffer ctermfg=bg | "Hide Tildes for Terminal
 
 " Additional Settings for the Startify Plugin
-nnoremap <F11> :Startify<CR>
-    " Press F11 to Startify current buffer
-nnoremap <C-F11> :tabe<CR>:Startify<CR>
-    " Press Ctrl+F11 to Startify new tab
+" nnoremap <F11> :Startify<CR>
+"     " Press F11 to Startify current buffer
+" nnoremap <C-F11> :tabe<CR>:Startify<CR>
+"     " Press Ctrl+F11 to Startify new tab
 let g:startify_custom_header = [
 \ '                                              __ __                        ',
 \ '                            __               /\ \\ \                       ',
@@ -135,44 +133,44 @@ nnoremap <silent> <C-j> /<++><CR>:let @/ = ""<CR>4"_xi
 inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 
 " Set Mappings for Vimscript and Vanilla Vim Management
-nnoremap <F1> :cd $HOME/.config/nvim<CR>:e init.vim<CR>
-    "Press F1 to Open User init.vim
-nnoremap <C-F1> :cd $VIM<CR>:e sysinit.vim<CR>
-    "Press Ctrl+F1 to Open System sysinit.vim
-nnoremap <S-F1> :cd $HOME/.config/nvim<CR>:split init.vim<CR>
-    "Press Shift+F1 to Split-Open User init.vim
-nnoremap v<S-F1> :cd $HOME/.config/nvim<CR>:vsplit init.vim<CR>
-    "Press V and Shift+F1 to VSplit-Open User init.vim
-nnoremap <F2> :tabe $HOME/.config/nvim/init.vim<CR>:cd %:p:h<CR>
-    "Press F2 to Open User init.vim in New Tab
-nnoremap <C-F2> :tabe $VIM/sysinit.vim<CR>:cd %:p:h<CR>
-    "Press Ctrl+F2 to Open System sysinit.vim in New Tab
-nnoremap <F3> :cd %:p:h<CR>
-    "Press F3 to Change Working Directory to Current File
-nnoremap <C-F3> :tcd %:p:h<CR>
-    "Press Ctrl+F3 to Change Working Directory to Current File for Current Tab
-nnoremap <S-F3> :cd ..<CR>
-    "Press Shift+F3 to Change Working Directory to One Level Up
-nnoremap <F4> :call delete(expand('%'))<CR>
-    "Press F4 to delete Current File
-nnoremap <S-F4> :call delete(expand('%<').'.log')<CR>
-    "Press Shift+F4 to delete Current File
-nnoremap <C-F4> :call delete(expand('%'))<CR>:bdelete!<CR>
-    "Press Ctrl+F4 to delete Current File and quit buffer
-"F5 is universally reserved for Compiling and Executing Various Code
-"F6 is universally reserved for Auxiliary Tasks related to Compilation
-"F7 is not (yet) assigned for a mapping.
-"F8 is not (yet) assigned for a mapping.
-nnoremap <F9> :tabe<CR>:terminal<CR>a
-    "Press F9 to OPEN NEW TAB to TERMINAL
-nnoremap <C-F9> :terminal<CR>a
-    "Press Ctrl+F9 to change CURRENT buffer to TERMINAL
-nnoremap <F10> :up<CR>:source $HOME/.config/nvim/init.vim<CR>
-    "Press F10 to Save and Reload User NVIMRC
-nnoremap <C-F10> :up<CR>:execute "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
-    "Press Ctrl+F10 to Save and Reload User FT_NVIMRC
-nnoremap <C-S-F10> :up<CR>:tabe "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
-    "Press Ctrl+Shift+F10 to Save and Open User FT_NVIMRC in New Tab
+" nnoremap <F1> :cd $HOME/.config/nvim<CR>:e init.vim<CR>
+"     "Press F1 to Open User init.vim
+" nnoremap <C-F1> :cd $VIM<CR>:e sysinit.vim<CR>
+"     "Press Ctrl+F1 to Open System sysinit.vim
+" nnoremap <S-F1> :cd $HOME/.config/nvim<CR>:split init.vim<CR>
+"     "Press Shift+F1 to Split-Open User init.vim
+" nnoremap v<S-F1> :cd $HOME/.config/nvim<CR>:vsplit init.vim<CR>
+"     "Press V and Shift+F1 to VSplit-Open User init.vim
+" nnoremap <F2> :tabe $HOME/.config/nvim/init.vim<CR>:cd %:p:h<CR>
+"     "Press F2 to Open User init.vim in New Tab
+" nnoremap <C-F2> :tabe $VIM/sysinit.vim<CR>:cd %:p:h<CR>
+"     "Press Ctrl+F2 to Open System sysinit.vim in New Tab
+" nnoremap <F3> :cd %:p:h<CR>
+"     "Press F3 to Change Working Directory to Current File
+" nnoremap <C-F3> :tcd %:p:h<CR>
+"     "Press Ctrl+F3 to Change Working Directory to Current File for Current Tab
+" nnoremap <S-F3> :cd ..<CR>
+"     "Press Shift+F3 to Change Working Directory to One Level Up
+" nnoremap <F4> :call delete(expand('%'))<CR>
+"     "Press F4 to delete Current File
+" nnoremap <S-F4> :call delete(expand('%<').'.log')<CR>
+"     "Press Shift+F4 to delete Current File
+" nnoremap <C-F4> :call delete(expand('%'))<CR>:bdelete!<CR>
+"     "Press Ctrl+F4 to delete Current File and quit buffer
+" "F5 is universally reserved for Compiling and Executing Various Code
+" "F6 is universally reserved for Auxiliary Tasks related to Compilation
+" "F7 is not (yet) assigned for a mapping.
+" "F8 is not (yet) assigned for a mapping.
+" nnoremap <F9> :tabe<CR>:terminal<CR>a
+"     "Press F9 to OPEN NEW TAB to TERMINAL
+" nnoremap <C-F9> :terminal<CR>a
+"     "Press Ctrl+F9 to change CURRENT buffer to TERMINAL
+" nnoremap <F10> :up<CR>:source $HOME/.config/nvim/init.vim<CR>
+"     "Press F10 to Save and Reload User NVIMRC
+" nnoremap <C-F10> :up<CR>:execute "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
+"     "Press Ctrl+F10 to Save and Reload User FT_NVIMRC
+" nnoremap <C-S-F10> :up<CR>:tabe "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
+"     "Press Ctrl+Shift+F10 to Save and Open User FT_NVIMRC in New Tab
 
 " AutoClose
 inoremap ( ()<lt>++><Esc>5ha
