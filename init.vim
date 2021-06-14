@@ -35,7 +35,6 @@ filetype off
 filetype plugin indent on | "Set plugin loading according to filetype
 
 set encoding=utf8 | "Set File Encoding as UTF-8
-language en
 let $LANG = 'en_US'
 runtime delmenu.vim
 runtime menu.vim
