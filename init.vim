@@ -71,6 +71,7 @@ call plug#begin('/home/thekpaul/.config/nvim/plugged')
         " Installed vim-indent-guides, a visual indentation guide
     Plug 'plasticboy/vim-markdown' | "Installed vim-markdown
     Plug 'tpope/vim-surround' | "Installed vim-surround
+    Plug 'wakatime/vim-wakatime' | "Installed wim-wakatie
 call plug#end()
 
 " Additional Settings for each External Plugin
