@@ -19,8 +19,13 @@
 #      - Packages Dictionary: <++>
 #      - Directories Dictionary: <++>
 #      - Options Dictionary: <++>
-# 4. Load Package Installation Configs Screen
-# 5. Load Library Installation Configs Screen
+# 4. Load Collection Installation Configs Screen
+#    - git -> github cli
+#    - fish -> omf
+#    - nvim -> plug.vim
+#    - tex -> curl texlive & pre-built profile
+# 5. Load Package Installation Configs Screen
+#    - aptitude
 # 6. Load Directory Installation Configs Screen
 #    - $HOME directory
 #    - DOTS Repo Directory
@@ -264,7 +269,6 @@ Actions:
 """
 
 ###   >>>>>>    Body Matter for Each Page Object    <<<<<<   ###
-for line in homepage: home.body.append(line) # Append lines in HOMEPAGE to body
 for line in binspage: bins.body.append(line) # Append lines in BINSPAGE to body
 for line in colspage: cols.body.append(line) # Append lines in COLSPAGE to body
 for line in pacspage: pacs.body.append(line) # Append lines in PACSPAGE to body
