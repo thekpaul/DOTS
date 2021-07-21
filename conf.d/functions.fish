@@ -10,8 +10,8 @@ function lsa
 end
 
 function lscd
-    lsa $argv
     cd $argv
+    lsa
 end
 
 function sumatra
