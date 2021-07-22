@@ -5,6 +5,8 @@ endif
 
 " Suppress Vim-LaTeX
 let b:suppress_latex_suite = 1
+setlocal shiftwidth=2 | setlocal tabstop=2
+setlocal softtabstop=2 | setlocal smarttab | "Set Tab Spacing to 2
 
 set iskeyword+=\
 
