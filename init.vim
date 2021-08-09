@@ -62,7 +62,7 @@ set foldmethod=manual | "Fold Manually
 " Vim-Plug as Plugin Manager
 call plug#begin('/home/thekpaul/.config/nvim/plugged')
     Plug 'mhinz/vim-startify' | " Installed Vim-Startify
-    Plug 'scrooloose/nerdtree' | " Installed NERDTree
+    Plug 'preservim/nerdtree' | " Installed NERDTree
     Plug 'tpope/vim-fugitive' | "Installed vim-fugitive, a Git wrapper
     Plug 'vim-airline/vim-airline' | " Installed Vim-Airline
     Plug 'junegunn/seoul256.vim' | " Installed Seoul256 Theme
