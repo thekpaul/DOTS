@@ -58,6 +58,7 @@ let g:tex_flavor = "latex"
 set colorcolumn=80
 set splitbelow | set splitright | "Split below and right of current buffer
 set foldmethod=manual | "Fold Manually
+set nowrap | set sidescroll=8 | "Disable Line Wrapping to Buffer
 
 " Vim-Plug as Plugin Manager
 call plug#begin('/home/thekpaul/.config/nvim/plugged')
@@ -95,27 +96,27 @@ highlight EndOfBuffer ctermfg=bg | "Hide Tildes for Terminal
 " nnoremap <C-F11> :tabe<CR>:Startify<CR>
 "     " Press Ctrl+F11 to Startify new tab
 let g:startify_custom_header = [
-\ '                                              __ __                        ',
-\ '                            __               /\ \\ \                       ',
-\ '                   __   __ /\_\    ___ ___   \ \ \\ \                      ',
-\ '                  /\ \ /\ \\/\ \ /` __` __`\  \ \ \\ \                     ',
-\ '                  \ \ \_/ / \ \ \/\ \/\ \/\ \  \ \_\\_\                    ',
-\ '                   \ \___/   \ \_\ \_\ \_\ \_\  \/\_\\_\                   ',
-\ '                    \/__/     \/_/\/_/\/_/\/_/   \/_//_/                   ',
-\ '                                                                           ',
-\ '                                                                           ',
-\ '                     ___                         ___                       ',
-\ '                        \      / \  \   /\      /                          ',
-\ '                         \    ㅣ       / ㅣ    /                           ',
-\ '                          \___ \    __/  / ___/                            ',
-\ '                                                                           ',
-\ '                                                                           ']
+\ '                                              __ __                       ',
+\ '                            __               /\ \\ \                      ',
+\ '                   __   __ /\_\    ___ ___   \ \ \\ \                     ',
+\ '                  /\ \ /\ \\/\ \ /` __` __`\  \ \ \\ \                    ',
+\ '                  \ \ \_/ / \ \ \/\ \/\ \/\ \  \ \_\\_\                   ',
+\ '                   \ \___/   \ \_\ \_\ \_\ \_\  \/\_\\_\                  ',
+\ '                    \/__/     \/_/\/_/\/_/\/_/   \/_//_/                  ',
+\ '                                                                          ',
+\ '                                                                          ',
+\ '                     ___                         ___                      ',
+\ '                        \      / \  \   /\      /                         ',
+\ '                         \    ㅣ       / ㅣ    /                          ',
+\ '                          \___ \    __/  / ___/                           ',
+\ '                                                                          ',
+\ '                                                                          ']
 set sessionoptions=blank,curdir,folds,help,tabpages,winpos
     " Startify respects Preset Values of the Preceding Options
 
 " Additional Settings for the NERDTree Plugin
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize = 25
+let g:NERDTreeWinSize = 20
 autocmd VimEnter * NERDTree $HOME | wincmd l
 autocmd BufEnter * if (!exists("t:NERDTreeBufName") ) | silent NERDTreeMirror | wincmd l | endif
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
