@@ -59,6 +59,8 @@ set colorcolumn=80
 set splitbelow | set splitright | "Split below and right of current buffer
 set foldmethod=manual | "Fold Manually
 set nowrap | set sidescroll=8 | "Disable Line Wrapping to Buffer
+set list
+set lcs=trail:X
 
 " Vim-Plug as Plugin Manager
 call plug#begin('/home/thekpaul/.config/nvim/plugged')
