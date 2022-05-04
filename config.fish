@@ -1,4 +1,4 @@
-set -Ux fish_greeting "Welcome! Let's get Started..."
+set -Ux fish_greeting "Something on Your Mind?"
 cd
 rvm default
 set -gx PATH /usr/local/texlive/2022/bin/x86_64-linux \
