@@ -34,6 +34,7 @@ set noundofile | "No Undo Files
 filetype off
 filetype plugin indent on | "Set plugin loading according to filetype
 
+set termguicolors " Apply True Coloring in Terminal
 set encoding=utf8 | "Set File Encoding as UTF-8
 let $LANG = 'en_US'
 runtime delmenu.vim
@@ -64,16 +65,16 @@ set lcs=trail:X
 
 " Vim-Plug as Plugin Manager
 call plug#begin('/home/thekpaul/.config/nvim/plugged')
-    Plug 'mhinz/vim-startify' | " Installed Vim-Startify
-    Plug 'preservim/nerdtree' | " Installed NERDTree
-    Plug 'tpope/vim-fugitive' | "Installed vim-fugitive, a Git wrapper
-    Plug 'vim-airline/vim-airline' | " Installed Vim-Airline
-    Plug 'junegunn/seoul256.vim' | " Installed Seoul256 Theme
+    Plug 'mhinz/vim-startify', { 'on':  'Startify' } " Vim-Startify
+    Plug 'kyazdani42/nvim-web-devicons' | " Devicons for NeoVim
+    Plug 'romgrk/barbar.nvim' " Tabline Plugin
+    Plug 'tpope/vim-fugitive' " Git Wrapper
+    Plug 'vim-airline/vim-airline' " Light Statusline
+    Plug 'junegunn/seoul256.vim' " Seoul256 Theme
     Plug 'nathanaelkane/vim-indent-guides'
-        " Installed vim-indent-guides, a visual indentation guide
-    Plug 'plasticboy/vim-markdown' | "Installed vim-markdown
-    Plug 'tpope/vim-surround' | "Installed vim-surround
-    Plug 'wakatime/vim-wakatime' | "Installed wim-wakatie
+        " Visual Indentation Guide
+    Plug 'tpope/vim-surround' " Surrounder Plugin
+    Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
 call plug#end()
 
 " Additional Settings for each External Plugin
@@ -87,7 +88,7 @@ call plug#end()
 "     " Press Shift+F12 to Update new Plugins
 
 " Additional Settings for the Seoul256 Plugin
-let g:seoul256_background = 235
+let g:seoul256_background = 234
 colo seoul256
 highlight EndOfBuffer guifg=bg | "Hide Tildes in Empty Buffer Space for GUI
 highlight EndOfBuffer ctermfg=bg | "Hide Tildes for Terminal
@@ -116,12 +117,12 @@ let g:startify_custom_header = [
 set sessionoptions=blank,curdir,folds,help,tabpages,winpos
     " Startify respects Preset Values of the Preceding Options
 
-" Additional Settings for the NERDTree Plugin
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize = 20
-autocmd VimEnter * NERDTree $HOME | wincmd l
-autocmd BufEnter * if (!exists("t:NERDTreeBufName") ) | silent NERDTreeMirror | wincmd l | endif
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" " Additional Settings for the NERDTree Plugin
+" let g:NERDTreeMinimalUI = 1
+" let g:NERDTreeWinSize = 20
+" autocmd VimEnter * NERDTree $HOME | wincmd l
+" autocmd BufEnter * if (!exists("t:NERDTreeBufName") ) | silent NERDTreeMirror | wincmd l | endif
+" autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Additional Settings for the vim-indent-guides Plugin
 let g:indent_guides_enable_on_vim_startup = 1
