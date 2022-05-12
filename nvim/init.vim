@@ -83,7 +83,7 @@ call plug#end()
 let bufferline = get(g:, 'bufferline', {}) " Option Dictionary Creation
 let bufferline.add_in_buffer_number_order = v:false " Buffer Adding Control
 let bufferline.animation = v:true " Enable/disable animations
-let bufferline.auto_hide = v:false " Auto-hiding tab bar with single buffer
+let bufferline.auto_hide = v:true " Auto-hiding tab bar with single buffer
 let bufferline.tabpages = v:true " Current/total tabpages indicator (top right)
 let bufferline.closable = v:true " Enable/disable close button
 let bufferline.clickable = v:true " Clicking tabs | left-click: go to buffer
