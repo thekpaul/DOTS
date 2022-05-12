@@ -79,6 +79,68 @@ call plug#end()
 
 " Additional Settings for each External Plugin
 
+" Additional Settings for the BarBar Plugin
+let bufferline = get(g:, 'bufferline', {}) " Option Dictionary Creation
+let bufferline.add_in_buffer_number_order = v:false " Buffer Adding Control
+let bufferline.animation = v:true " Enable/disable animations
+let bufferline.auto_hide = v:false " Auto-hiding tab bar with single buffer
+let bufferline.tabpages = v:true " Current/total tabpages indicator (top right)
+let bufferline.closable = v:true " Enable/disable close button
+let bufferline.clickable = v:true " Clicking tabs | left-click: go to buffer
+                                  "               | middle-click: delete buffer
+let bufferline.icons = 'both' " Icon Display Control
+let bufferline.icon_custom_colors = v:false " Icon Highlight Group
+let bufferline.maximum_padding = 2 " Maximum Padding Width at Bufferline
+let bufferline.maximum_length = 20 " Maximum Buffer Name Length.
+let bufferline.semantic_letters = v:true " Buffer-Pick Char Designation
+let bufferline.letters =
+  \ 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP'
+" New Buffer Letter Designation
+let bufferline.no_name_title = v:null " Unnamed Buffer Nomenclature
+" Bufferline icons
+let bufferline.icon_separator_active = '|'
+let bufferline.icon_separator_inactive = '|'
+let bufferline.icon_close_tab = ''
+let bufferline.icon_close_tab_modified = '●'
+let bufferline.icon_pinned = 'T'
+" Buffer Exclusion from Tabline
+let bufferline.exclude_ft = ['javascript']
+let bufferline.exclude_name = ['package.json']
+" BarBar Mapping
+" Move to previous/next
+nnoremap <silent> ,, :BufferPrevious<CR>
+nnoremap <silent> ,. :BufferNext<CR>
+" Re-order to previous/next
+nnoremap <silent> ,< :BufferMovePrevious<CR>
+nnoremap <silent> ,> :BufferMoveNext<CR>
+" Goto buffer in position...
+nnoremap <silent> ,1 :BufferGoto 1<CR>
+nnoremap <silent> ,2 :BufferGoto 2<CR>
+nnoremap <silent> ,3 :BufferGoto 3<CR>
+nnoremap <silent> ,4 :BufferGoto 4<CR>
+nnoremap <silent> ,5 :BufferGoto 5<CR>
+nnoremap <silent> ,6 :BufferGoto 6<CR>
+nnoremap <silent> ,7 :BufferGoto 7<CR>
+nnoremap <silent> ,8 :BufferGoto 8<CR>
+nnoremap <silent> ,9 :BufferLast<CR>
+" Pin/unpin buffer
+nnoremap <silent> ,p :BufferPin<CR>
+" Close buffer
+nnoremap <silent> ,c :BufferClose<CR>
+" Wipeout buffer :BufferWipeout<CR>
+" Magic buffer-picking mode :BufferPick<CR>
+" Close commands
+" - :BufferCloseAllButCurrent<CR>
+" - :BufferCloseAllButPinned<CR>
+" - :BufferCloseAllButCurrentOrPinned<CR>
+" - :BufferCloseBuffersLeft<CR>
+" - :BufferCloseBuffersRight<CR>
+" Sort automatically by...
+nnoremap <silent> ,bb :BufferOrderByBufferNumber<CR>
+nnoremap <silent> ,bd :BufferOrderByDirectory<CR>
+nnoremap <silent> ,bl :BufferOrderByLanguage<CR>
+nnoremap <silent> ,bw :BufferOrderByWindowNumber<CR>
+
 " " Additional Settings for the Vim-Plug Plugin
 " nnoremap <F12> :PlugInstall<CR>
 "     " Press F12 to Install new Plugins
