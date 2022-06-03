@@ -245,7 +245,9 @@ inoremap { {}<lt>++><Esc>5ha
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 if (&ft != 'tex')
-    inoremap ' ''<lt>++><Esc>5ha
+    if (&ft != 'verilog')
+        inoremap ' ''<lt>++><Esc>5ha
+    endif
     inoremap ` ``<lt>++><Esc>5ha
     inoremap " ""<lt>++><Esc>5ha
 endif
@@ -257,7 +259,9 @@ vmap { di{<Esc>p
 vmap {<CR> di{<CR><Esc>p
 vmap {;<CR> di{;<CR><Esc>p
 if (&ft != 'tex')
-    vmap ' di'<Esc>p
+    if (&ft != 'verilog')
+        vmap ' di'<Esc>p
+    endif
     vmap ` di`<Esc>p
     vmap " di"<Esc>p
 endif
