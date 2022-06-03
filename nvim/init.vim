@@ -75,6 +75,7 @@ call plug#begin('/home/thekpaul/.config/nvim/plugged')
         " Visual Indentation Guide
     Plug 'tpope/vim-surround' " Surrounder Plugin
     Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
+    Plug 'lervag/vimtex' " Plugin for LaTeX
 call plug#end()
 
 " Additional Settings for each External Plugin
