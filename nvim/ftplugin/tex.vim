@@ -118,8 +118,3 @@ inoremap <buffer> @vp \varpi
 inoremap <buffer> @ve \varepsilon
 inoremap <buffer> @vr \varrho
 inoremap <buffer> @vf \varphi
-
-" Invoking PDFLaTeX
-nnoremap <buffer> <F5> :up<CR>:!cd "%:p:h" \| pwd \| pdflatex %<CR>
-nnoremap <buffer> <S-F5> :up<CR>:!cd "%:p:h" \| pwd \| pdflatex -shell-escape %<CR>
-nnoremap <buffer> <C-F5> :!cd "%:p:h" \| pwd \| sumatra %<.pdf<CR>
