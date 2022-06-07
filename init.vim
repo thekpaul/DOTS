@@ -41,17 +41,17 @@ runtime delmenu.vim
 runtime menu.vim
 set langmenu=en_US.utf8 | "Set Menu Language
 set fileencodings=utf8 | "Set NEW File Encoding to UTF-8
-    if (&fileencodings != 'utf8')
-        set fileencodings=utf8
-    endif | "Set ALL File Encoding to UTF-8
+  if (&fileencodings != 'utf8')
+    set fileencodings=utf8
+  endif | "Set ALL File Encoding to UTF-8
 set number | "Line Numbering
 set expandtab | set shiftwidth=2 | set tabstop=2
 set softtabstop=2 | set smarttab | "Set Tab Spacing
 set cursorline
 augroup CursorColumn
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-    au WinLeave * setlocal nocursorcolumn
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
+  au WinLeave * setlocal nocursorcolumn
 augroup END
 set breakindent | set linebreak
 set iskeyword+=\
@@ -66,17 +66,17 @@ set scrolloff=10
 
 " Vim-Plug as Plugin Manager
 call plug#begin('/home/thekpaul/.config/nvim/plugged')
-    Plug 'mhinz/vim-startify', { 'on':  'Startify' } " Vim-Startify
-    Plug 'kyazdani42/nvim-web-devicons' | " Devicons for NeoVim
-    Plug 'romgrk/barbar.nvim' " Tabline Plugin
-    Plug 'tpope/vim-fugitive' " Git Wrapper
-    Plug 'vim-airline/vim-airline' " Light Statusline
-    Plug 'junegunn/seoul256.vim' " Seoul256 Theme
-    Plug 'nathanaelkane/vim-indent-guides'
-        " Visual Indentation Guide
-    Plug 'tpope/vim-surround' " Surrounder Plugin
-    Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
-    Plug 'lervag/vimtex' " Plugin for LaTeX
+  Plug 'mhinz/vim-startify', { 'on':  'Startify' } " Vim-Startify
+  Plug 'kyazdani42/nvim-web-devicons' | " Devicons for NeoVim
+  Plug 'romgrk/barbar.nvim' " Tabline Plugin
+  Plug 'tpope/vim-fugitive' " Git Wrapper
+  Plug 'vim-airline/vim-airline' " Light Statusline
+  Plug 'junegunn/seoul256.vim' " Seoul256 Theme
+  Plug 'nathanaelkane/vim-indent-guides'
+    " Visual Indentation Guide
+  Plug 'tpope/vim-surround' " Surrounder Plugin
+  Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
+  Plug 'lervag/vimtex' " Plugin for LaTeX
 call plug#end()
 
 " Additional Settings for each External Plugin
@@ -89,7 +89,7 @@ let bufferline.auto_hide = v:true " Auto-hiding tab bar with single buffer
 let bufferline.tabpages = v:true " Current/total tabpages indicator (top right)
 let bufferline.closable = v:true " Enable/disable close button
 let bufferline.clickable = v:true " Clicking tabs | left-click: go to buffer
-                                  "               | middle-click: delete buffer
+                  "         | middle-click: delete buffer
 let bufferline.icons = 'both' " Icon Display Control
 let bufferline.icon_custom_colors = v:false " Icon Highlight Group
 let bufferline.maximum_padding = 2 " Maximum Padding Width at Bufferline
@@ -148,11 +148,11 @@ let g:vimtex_indent_enabled=0
 
 " " Additional Settings for the Vim-Plug Plugin
 " nnoremap <F12> :PlugInstall<CR>
-"     " Press F12 to Install new Plugins
+"   " Press F12 to Install new Plugins
 " nnoremap <C-F12> :PlugClean<CR>
-"     " Press Ctrl+F12 to Delete Plugins
+"   " Press Ctrl+F12 to Delete Plugins
 " nnoremap <S-F12> :PlugUpdate<CR>
-"     " Press Shift+F12 to Update new Plugins
+"   " Press Shift+F12 to Update new Plugins
 
 " Additional Settings for the Seoul256 Plugin
 let g:seoul256_background = 234
@@ -162,27 +162,27 @@ highlight EndOfBuffer ctermfg=bg | "Hide Tildes for Terminal
 
 " Additional Settings for the Startify Plugin
 " nnoremap <F11> :Startify<CR>
-"     " Press F11 to Startify current buffer
+"   " Press F11 to Startify current buffer
 " nnoremap <C-F11> :tabe<CR>:Startify<CR>
-"     " Press Ctrl+F11 to Startify new tab
+"   " Press Ctrl+F11 to Startify new tab
 let g:startify_custom_header = [
-\ '                                              __ __                       ',
-\ '                            __               /\ \\ \                      ',
-\ '                   __   __ /\_\    ___ ___   \ \ \\ \                     ',
-\ '                  /\ \ /\ \\/\ \ /` __` __`\  \ \ \\ \                    ',
-\ '                  \ \ \_/ / \ \ \/\ \/\ \/\ \  \ \_\\_\                   ',
-\ '                   \ \___/   \ \_\ \_\ \_\ \_\  \/\_\\_\                  ',
-\ '                    \/__/     \/_/\/_/\/_/\/_/   \/_//_/                  ',
-\ '                                                                          ',
-\ '                                                                          ',
-\ '                     ___                         ___                      ',
-\ '                        \      / \  \   /\      /                         ',
-\ '                         \    ㅣ       / ㅣ    /                          ',
-\ '                          \___ \    __/  / ___/                           ',
-\ '                                                                          ',
-\ '                                                                          ']
+\ '                        __ __             ',
+\ '              __         /\ \\ \            ',
+\ '           __   __ /\_\  ___ ___   \ \ \\ \           ',
+\ '          /\ \ /\ \\/\ \ /` __` __`\  \ \ \\ \          ',
+\ '          \ \ \_/ / \ \ \/\ \/\ \/\ \  \ \_\\_\           ',
+\ '           \ \___/   \ \_\ \_\ \_\ \_\  \/\_\\_\          ',
+\ '          \/__/   \/_/\/_/\/_/\/_/   \/_//_/          ',
+\ '                                      ',
+\ '                                      ',
+\ '           ___             ___            ',
+\ '            \    / \  \   /\    /             ',
+\ '             \  ㅣ     / ㅣ  /              ',
+\ '              \___ \  __/  / ___/               ',
+\ '                                      ',
+\ '                                      ']
 set sessionoptions=blank,curdir,folds,help,tabpages,winpos
-    " Startify respects Preset Values of the Preceding Options
+  " Startify respects Preset Values of the Preceding Options
 
 " " Additional Settings for the NERDTree Plugin
 " let g:NERDTreeMinimalUI = 1
@@ -205,43 +205,43 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 
 " Set Mappings for Vimscript and Vanilla Vim Management
 " nnoremap <F1> :cd $HOME/.config/nvim<CR>:e init.vim<CR>
-"     "Press F1 to Open User init.vim
+"   "Press F1 to Open User init.vim
 " nnoremap <C-F1> :cd $VIM<CR>:e sysinit.vim<CR>
-"     "Press Ctrl+F1 to Open System sysinit.vim
+"   "Press Ctrl+F1 to Open System sysinit.vim
 " nnoremap <S-F1> :cd $HOME/.config/nvim<CR>:split init.vim<CR>
-"     "Press Shift+F1 to Split-Open User init.vim
+"   "Press Shift+F1 to Split-Open User init.vim
 " nnoremap v<S-F1> :cd $HOME/.config/nvim<CR>:vsplit init.vim<CR>
-"     "Press V and Shift+F1 to VSplit-Open User init.vim
+"   "Press V and Shift+F1 to VSplit-Open User init.vim
 " nnoremap <F2> :tabe $HOME/.config/nvim/init.vim<CR>:cd %:p:h<CR>
-"     "Press F2 to Open User init.vim in New Tab
+"   "Press F2 to Open User init.vim in New Tab
 " nnoremap <C-F2> :tabe $VIM/sysinit.vim<CR>:cd %:p:h<CR>
-"     "Press Ctrl+F2 to Open System sysinit.vim in New Tab
+"   "Press Ctrl+F2 to Open System sysinit.vim in New Tab
 " nnoremap <F3> :cd %:p:h<CR>
-"     "Press F3 to Change Working Directory to Current File
+"   "Press F3 to Change Working Directory to Current File
 " nnoremap <C-F3> :tcd %:p:h<CR>
-"     "Press Ctrl+F3 to Change Working Directory to Current File for Current Tab
+"   "Press Ctrl+F3 to Change Working Directory to Current File for Current Tab
 " nnoremap <S-F3> :cd ..<CR>
-"     "Press Shift+F3 to Change Working Directory to One Level Up
+"   "Press Shift+F3 to Change Working Directory to One Level Up
 " nnoremap <F4> :call delete(expand('%'))<CR>
-"     "Press F4 to delete Current File
+"   "Press F4 to delete Current File
 " nnoremap <S-F4> :call delete(expand('%<').'.log')<CR>
-"     "Press Shift+F4 to delete Current File
+"   "Press Shift+F4 to delete Current File
 " nnoremap <C-F4> :call delete(expand('%'))<CR>:bdelete!<CR>
-"     "Press Ctrl+F4 to delete Current File and quit buffer
+"   "Press Ctrl+F4 to delete Current File and quit buffer
 " "F5 is universally reserved for Compiling and Executing Various Code
 " "F6 is universally reserved for Auxiliary Tasks related to Compilation
 " "F7 is not (yet) assigned for a mapping.
 " "F8 is not (yet) assigned for a mapping.
 " nnoremap <F9> :tabe<CR>:terminal<CR>a
-"     "Press F9 to OPEN NEW TAB to TERMINAL
+"   "Press F9 to OPEN NEW TAB to TERMINAL
 " nnoremap <C-F9> :terminal<CR>a
-"     "Press Ctrl+F9 to change CURRENT buffer to TERMINAL
+"   "Press Ctrl+F9 to change CURRENT buffer to TERMINAL
 " nnoremap <F10> :up<CR>:source $HOME/.config/nvim/init.vim<CR>
-"     "Press F10 to Save and Reload User NVIMRC
+"   "Press F10 to Save and Reload User NVIMRC
 " nnoremap <C-F10> :up<CR>:execute "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
-"     "Press Ctrl+F10 to Save and Reload User FT_NVIMRC
+"   "Press Ctrl+F10 to Save and Reload User FT_NVIMRC
 " nnoremap <C-S-F10> :up<CR>:tabe "so $HOME/.config/nvim/ftplugin/".&ft.".vim"<CR>
-"     "Press Ctrl+Shift+F10 to Save and Open User FT_NVIMRC in New Tab
+"   "Press Ctrl+Shift+F10 to Save and Open User FT_NVIMRC in New Tab
 
 " AutoClose
 inoremap ( ()<lt>++><Esc>5ha
@@ -250,11 +250,11 @@ inoremap { {}<lt>++><Esc>5ha
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 if (&ft != 'tex')
-    if (&ft != 'verilog')
-        inoremap ' ''<lt>++><Esc>5ha
-    endif
-    inoremap ` ``<lt>++><Esc>5ha
-    inoremap " ""<lt>++><Esc>5ha
+  if (&ft != 'verilog')
+    inoremap ' ''<lt>++><Esc>5ha
+  endif
+  inoremap ` ``<lt>++><Esc>5ha
+  inoremap " ""<lt>++><Esc>5ha
 endif
 
 " AutoClose in Selection
@@ -264,9 +264,9 @@ vmap { di{<Esc>p
 vmap {<CR> di{<CR><Esc>p
 vmap {;<CR> di{;<CR><Esc>p
 if (&ft != 'tex')
-    if (&ft != 'verilog')
-        vmap ' di'<Esc>p
-    endif
-    vmap ` di`<Esc>p
-    vmap " di"<Esc>p
+  if (&ft != 'verilog')
+    vmap ' di'<Esc>p
+  endif
+  vmap ` di`<Esc>p
+  vmap " di"<Esc>p
 endif
