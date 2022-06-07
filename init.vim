@@ -143,6 +143,9 @@ nnoremap <silent> ,bd :BufferOrderByDirectory<CR>
 nnoremap <silent> ,bl :BufferOrderByLanguage<CR>
 nnoremap <silent> ,bw :BufferOrderByWindowNumber<CR>
 
+" Additional Settings for the VimTeX Plugin
+let g:vimtex_indent_enabled=0
+
 " " Additional Settings for the Vim-Plug Plugin
 " nnoremap <F12> :PlugInstall<CR>
 "     " Press F12 to Install new Plugins
