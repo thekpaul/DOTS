@@ -45,8 +45,8 @@ set fileencodings=utf8 | "Set NEW File Encoding to UTF-8
         set fileencodings=utf8
     endif | "Set ALL File Encoding to UTF-8
 set number | "Line Numbering
-set expandtab | set shiftwidth=4 | set tabstop=4
-set softtabstop=4 | set smarttab | "Set Tab Spacing
+set expandtab | set shiftwidth=2 | set tabstop=2
+set softtabstop=2 | set smarttab | "Set Tab Spacing
 set cursorline
 augroup CursorColumn
     au!
