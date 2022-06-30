@@ -1,9 +1,0 @@
-1. Show Home Screen
-
-    1) Configure Libraries (Existing Configs such as Fish, Git, NeoVim)
-
-    2) Configure Additional Packages (Install via APT or Compile by self)
-
-    3) Configure Directories (DOTS project directory, $HOME, etc.)
-
-    4) Install / Help / Quit
