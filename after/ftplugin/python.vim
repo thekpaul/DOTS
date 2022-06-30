@@ -3,6 +3,11 @@ if (&ft != 'python')
     finish
 endif
 
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set smarttab | "Set Tab Spacing to 2
+
 " Next Line Comment
 " TODO: Insert-mode Map
 
