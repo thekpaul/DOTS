@@ -11,14 +11,10 @@ import os
 import sys
 import argparse
 
-while True:
-  # Start with Printing Main Page
-  match input_char:
-    case 'c' | 'C':
-      # Collections
-    case 'p' | 'P':
-      # Packages
-    case 'o' | 'O':
-      # Options
-    case _:
-      # Unrecognisable => continue
+if __name__ == "__main__": # MAIN Function
+  while True: # Start with Printing Main Page
+    match input_char:
+      case 'c' | 'C': # Collections
+      case 'p' | 'P': # Packages
+      case 'o' | 'O': # Options
+      case _: # Unrecognisable => continue
