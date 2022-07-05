@@ -10,3 +10,15 @@ these additional installations and configurations at their own discretion.
 import os
 import sys
 import argparse
+
+while True:
+  # Start with Printing Main Page
+  match input_char:
+    case 'c' | 'C':
+      # Collections
+    case 'p' | 'P':
+      # Packages
+    case 'o' | 'O':
+      # Options
+    case _:
+      # Unrecognisable => continue
