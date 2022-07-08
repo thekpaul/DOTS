@@ -53,18 +53,19 @@ if __name__ == "__main__": # MAIN Function
     print("      [Q] Quit Installer                                        ")    # QUIT
     print("                                                                ")
 
+    # receive input_char
+
+    return_val = 0
+
     match input_char:
-      case 'c' | 'C': # Collections
-        while True:   # Start with Printing Collections Page
 
-      case 'p' | 'P': # Packages
-        while True:   # Start with Printing Packages Page
+      case 'c' | 'C': return_val = col_func() # Collections
 
-      case 'd' | 'D': # Directories
-        while True:   # Start with Printing Directories Page
+      case 'p' | 'P': return_val = pac_func() # Packages
 
-      case 'o' | 'O': # Options
-        while True:   # Start with Printing Options Page
+      case 'd' | 'D': return_val = dir_func() # Directories
+
+      case 'o' | 'O': return_val = opt_func() # Options
 
       case 'i' | 'I': # Begin Installation
         # Commence System-Level Installation
@@ -79,3 +80,120 @@ if __name__ == "__main__": # MAIN Function
 
       case _: # Unrecognisable => continue
         continue
+
+    if return_val: break
+    else: continue
+
+def col_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("# [C] Collections: x out of y specified                         ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("      [Q] Quit Installer                                        ")
+    print("                                                                ")
+
+    match input_char:
+
+      case '+':
+
+      case '-':
+
+      case 'r' | 'R':
+        return 0
+
+      case 'q' | 'Q':
+        return 1
+
+def pac_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("# [P] Packages: x out of y specified                            ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("      [Q] Quit Installer                                        ")
+    print("                                                                ")
+
+    match input_char:
+
+      case '+':
+
+      case '-':
+
+      case 'r' | 'R':
+        return 0
+
+      case 'q' | 'Q':
+        return 1
+
+def dir_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("  [D] Directories                                               ")
+    print("                                                                ")
+    print("      $HOME:                                                    ")
+    print("      SYMLINKS: x out of y specified                            ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("      [Q] Quit Installer                                        ")
+    print("                                                                ")
+
+    match input_char:
+
+      case '+':
+
+      case '-':
+
+      case 'r' | 'R':
+        return 0
+
+      case 'q' | 'Q':
+        return 1
+
+def opt_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("  [O] Options                                                   ")
+    print("                                                                ")
+    print("      ( ) Set FISH as Default Shell                             ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("      [Q] Quit Installer                                        ")
+    print("                                                                ")
+
+    match input_char:
+
+      case '+':
+
+      case '-':
+
+      case 'r' | 'R':
+        return 0
+
+      case 'q' | 'Q':
+        return 1
+
