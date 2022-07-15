@@ -21,6 +21,12 @@ if __name__ == "__main__": # MAIN Function
                               formatter_class = argparse.ArgumentDefaultsHelpFormatter)
   p.add_argument("-p", "--profile", help = "Installer Profile")
   args = p.parse_args()
+
+  col_set = 0 # Collections
+  pac_set = 0 # Packages
+  dir_set = 0 # Directories
+  opt_set = 0 # Options
+
   if args[0] != "": # Profile Location is given => Process profile
 
   # Supported Collections: FISH | GIT | NVIM | TEX
