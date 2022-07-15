@@ -14,6 +14,14 @@ import argparse
 if __name__ == "__main__": # MAIN Function
 
   # CHECK if Python is above 3.10 => Necessary for `match-case`
+  assert sys.version_info >= (3, 10)
+
+  # Parse Arguments
+  p = argparse.ArgumentParser(description = "DOTS Interactive Installer",
+                              formatter_class = argparse.ArgumentDefaultsHelpFormatter)
+  p.add_argument("-p", "--profile", help = "Installer Profile")
+  args = p.parse_args()
+  if args[0] != "": # Profile Location is given => Process profile
 
   # Supported Collections: FISH | GIT | NVIM | TEX
 
