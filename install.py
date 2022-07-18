@@ -22,10 +22,10 @@ if __name__ == "__main__": # MAIN Function
   p.add_argument("-p", "--profile", help = "Installer Profile")
   args = p.parse_args()
 
-  col_set = 0 # Collections
-  pac_set = 0 # Packages
-  dir_set = 0 # Directories
-  opt_set = 0 # Options
+  col_set = 0 # Binary Integer for Collections
+  pac_set = 0 # Binary Integer for Packages
+  dir_set = 0 # Binary Integer for Directories
+  opt_set = 0 # Binary Integer for Options
 
   if args[0] != "": # Profile Location is given => Process profile
 
@@ -43,7 +43,7 @@ if __name__ == "__main__": # MAIN Function
     print("###                DOTS INTERACTIVE INSTALLER                ###")
     print("                                                                ")
     print("     This is the DOTS Interactive Installer, a tool for         ")
-    print("     installing and configuring my dotfiles interactively.      ")
+    print("     interactively installing and configuring my dotfiles.      ")
     print("                                                                ")
     print("  [C] Collections: x out of y specified                         ")    # Collections
     print("                                                                ")
@@ -66,6 +66,8 @@ if __name__ == "__main__": # MAIN Function
     print("      [S] Save Current Settings to $HOME and Exit               ")    # SAVE
     print("      [Q] Quit Installer                                        ")    # QUIT
     print("                                                                ")
+
+    input_char = input("  Enter Action: ")
 
     # receive input_char
 
@@ -110,8 +112,9 @@ def col_func():
     print("      [+] Select All Options                                    ")
     print("      [-] Remove All Options                                    ")
     print("      [R] Return to Main Menu                                   ")
-    print("      [Q] Quit Installer                                        ")
     print("                                                                ")
+
+    input_char = input("  Enter Action: ")
 
     match input_char:
 
@@ -119,11 +122,9 @@ def col_func():
 
       case '-':
 
-      case 'r' | 'R':
-        return 0
+      case 'r' | 'R': break
 
-      case 'q' | 'Q':
-        return 1
+      case _:
 
 def pac_func():
 
@@ -137,8 +138,9 @@ def pac_func():
     print("      [+] Select All Options                                    ")
     print("      [-] Remove All Options                                    ")
     print("      [R] Return to Main Menu                                   ")
-    print("      [Q] Quit Installer                                        ")
     print("                                                                ")
+
+    input_char = input("  Enter Action: ")
 
     match input_char:
 
@@ -146,11 +148,9 @@ def pac_func():
 
       case '-':
 
-      case 'r' | 'R':
-        return 0
+      case 'r' | 'R': break
 
-      case 'q' | 'Q':
-        return 1
+      case _:
 
 def dir_func():
 
@@ -167,8 +167,9 @@ def dir_func():
     print("      [+] Select All Options                                    ")
     print("      [-] Remove All Options                                    ")
     print("      [R] Return to Main Menu                                   ")
-    print("      [Q] Quit Installer                                        ")
     print("                                                                ")
+
+    input_char = input("  Enter Action: ")
 
     match input_char:
 
@@ -176,11 +177,9 @@ def dir_func():
 
       case '-':
 
-      case 'r' | 'R':
-        return 0
+      case 'r' | 'R': break
 
-      case 'q' | 'Q':
-        return 1
+      case _:
 
 def opt_func():
 
@@ -196,8 +195,9 @@ def opt_func():
     print("      [+] Select All Options                                    ")
     print("      [-] Remove All Options                                    ")
     print("      [R] Return to Main Menu                                   ")
-    print("      [Q] Quit Installer                                        ")
     print("                                                                ")
+
+    input_char = input("  Enter Action: ")
 
     match input_char:
 
@@ -205,9 +205,7 @@ def opt_func():
 
       case '-':
 
-      case 'r' | 'R':
-        return 0
+      case 'r' | 'R': break
 
-      case 'q' | 'Q':
-        return 1
+      case _:
 
