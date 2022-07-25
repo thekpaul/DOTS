@@ -11,12 +11,60 @@ import os
 import sys
 import argparse
 
-def col_func():
+class Page:
+
+  def __init__(self, name, char, opts):
+    self.name = name
+    self.char = char
+    self.pick = 0
+    self.opts = {}
+    if len(opts) > 0:
+      for i in range(len(opts)):
+        self.opts.update(chr(i + 97), opts[i])
+    self.size = len(self.opts)
+
+  def print(self):
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("                                                                ")
+    print("# {" + self.char + "} " + self.name + ": " + self.pick +
+          " out of " + self.size + " specified ")
+    print("                                                                ")
+    print("  ( ) [c] git                                                   ")
+    for item in self..items():
+      print("  (" + "V" + ") [" + item[0] + "] " + item[1])
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("                                                                ")
+
+  def exec(self):
+    while True:
+      self.print()
+      input_char = input("  Enter Action: ")
+      match input_char:
+        case '+':
+          continue
+        case '-':
+          continue
+        case 'r' | 'R': break
+        case _:
+          print("Unacceptable Input; Please Retry")
+          continue
+
+def col_func(val, lim):
 
   while True:
 
           #1234567890123456789012345678901234567890123456789012345678901234#
-    print("# [C] Collections: x out of y specified                         ")
+    print("                                                                ")
+    print("# {C} Collections: x out of y specified                         ")
+    print("                                                                ")
+    print("  ( ) [a] fish                                                  ")
+    print("  ( ) [b] nvim                                                  ")
+    print("  ( ) [c] git                                                   ")
     print("                                                                ")
     print("  Actions                                                       ")
     print("                                                                ")
@@ -30,23 +78,30 @@ def col_func():
     match input_char:
 
       case '+':
+        val = lim
         continue
 
       case '-':
+        val = 0
         continue
 
-      case 'r' | 'R': break
+      case 'r' | 'R': return val
 
       case _:
         print("Unacceptable Input; Please Retry")
         continue
 
-def pac_func():
+def pac_func(val, lim):
 
   while True:
 
           #1234567890123456789012345678901234567890123456789012345678901234#
-    print("# [P] Packages: x out of y specified                            ")
+    print("                                                                ")
+    print("# {P} Packages: x out of y specified                            ")
+    print("                                                                ")
+    print("  ( ) [a] fish                                                  ")
+    print("  ( ) [b] nvim                                                  ")
+    print("  ( ) [c] git                                                   ")
     print("                                                                ")
     print("  Actions                                                       ")
     print("                                                                ")
@@ -60,26 +115,32 @@ def pac_func():
     match input_char:
 
       case '+':
+        val = lim
         continue
 
       case '-':
+        val = 0
         continue
 
-      case 'r' | 'R': break
+      case 'r' | 'R': return val
 
       case _:
         print("Unacceptable Input; Please Retry")
         continue
 
-def dir_func():
+def dir_func(val, lim):
 
   while True:
 
           #1234567890123456789012345678901234567890123456789012345678901234#
-    print("  [D] Directories                                               ")
     print("                                                                ")
-    print("      $HOME:                                                    ")
-    print("      SYMLINKS: x out of y specified                            ")
+    print("# {D} Directories                                               ")
+    print("                                                                ")
+    print("  [H] $HOME:                                                    ")
+    print("      LINKS: x out of y specified                               ")
+    print("      [a] fish:                                                 ")
+    print("      [b] nvim:                                                 ")
+    print("      [c] git :                                                 ")
     print("                                                                ")
     print("  Actions                                                       ")
     print("                                                                ")
@@ -93,25 +154,29 @@ def dir_func():
     match input_char:
 
       case '+':
+        val = lim
         continue
 
       case '-':
+        val = 0
         continue
 
-      case 'r' | 'R': break
+      case 'r' | 'R': return val
 
       case _:
         print("Unacceptable Input; Please Retry")
         continue
 
-def opt_func():
+def opt_func(val, lim):
 
   while True:
 
           #1234567890123456789012345678901234567890123456789012345678901234#
-    print("  [O] Options                                                   ")
     print("                                                                ")
-    print("      ( ) Set FISH as Default Shell                             ")
+    print("# {O} Options                                                   ")
+    print("                                                                ")
+    print("  ( ) [1] Set FISH as Default Shell                             ")
+    print("  ( ) [2] Use SYMLINKS instead of Hard Copying                  ")
     print("                                                                ")
     print("  Actions                                                       ")
     print("                                                                ")
@@ -125,12 +190,14 @@ def opt_func():
     match input_char:
 
       case '+':
+        val = lim
         continue
 
       case '-':
+        val = 0
         continue
 
-      case 'r' | 'R': break
+      case 'r' | 'R': return val
 
       case _:
         print("Unacceptable Input; Please Retry")
@@ -166,6 +233,7 @@ if __name__ == "__main__": # MAIN Function
   while True: # Start with Printing Main Page
 
           #1234567890123456789012345678901234567890123456789012345678901234#
+    print("                                                                ")
     print("###                DOTS INTERACTIVE INSTALLER                ###")
     print("                                                                ")
     print("     This is the DOTS Interactive Installer, a tool for         ")
@@ -180,11 +248,12 @@ if __name__ == "__main__": # MAIN Function
     print("  [D] Directories                                               ")    # Directories
     print("                                                                ")
     print("      $HOME:                                                    ")    # $HOME
-    print("      SYMLINKS: x out of y specified                            ")    # `x/n symlinks specified`
+    print("      LINKS: x out of y specified                               ")    # `x/n symlinks specified`
     print("                                                                ")
     print("  [O] Options                                                   ")    # Options
     print("                                                                ")
     print("      ( ) Set FISH as Default Shell                             ")
+    print("      ( ) Use SYMLINKS instead of Hard Copying                  ")
     print("                                                                ")
     print("  Actions                                                       ")    # Interactions
     print("                                                                ")
@@ -201,13 +270,13 @@ if __name__ == "__main__": # MAIN Function
 
     match input_char:
 
-      case 'c' | 'C': return_val = col_func() # Collections
+      case 'c' | 'C': col_set = col_func(col_set, 2 ** 3 - 1) # Collections
 
-      case 'p' | 'P': return_val = pac_func() # Packages
+      case 'p' | 'P': pac_set = pac_func(pac_set, 2 ** 3 - 1) # Packages
 
-      case 'd' | 'D': return_val = dir_func() # Directories
+      case 'd' | 'D': dir_set = dir_func(dir_set, 2 ** 3 - 1) # Directories
 
-      case 'o' | 'O': return_val = opt_func() # Options
+      case 'o' | 'O': opt_set = opt_func(opt_set, 2 ** 3 - 1) # Options
 
       case 'i' | 'I': # Begin Installation
         # Commence System-Level Installation
