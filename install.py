@@ -11,6 +11,132 @@ import os
 import sys
 import argparse
 
+def col_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("# [C] Collections: x out of y specified                         ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("                                                                ")
+
+    input_char = input("  Enter Action: ")
+
+    match input_char:
+
+      case '+':
+        continue
+
+      case '-':
+        continue
+
+      case 'r' | 'R': break
+
+      case _:
+        print("Unacceptable Input; Please Retry")
+        continue
+
+def pac_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("# [P] Packages: x out of y specified                            ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("                                                                ")
+
+    input_char = input("  Enter Action: ")
+
+    match input_char:
+
+      case '+':
+        continue
+
+      case '-':
+        continue
+
+      case 'r' | 'R': break
+
+      case _:
+        print("Unacceptable Input; Please Retry")
+        continue
+
+def dir_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("  [D] Directories                                               ")
+    print("                                                                ")
+    print("      $HOME:                                                    ")
+    print("      SYMLINKS: x out of y specified                            ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("                                                                ")
+
+    input_char = input("  Enter Action: ")
+
+    match input_char:
+
+      case '+':
+        continue
+
+      case '-':
+        continue
+
+      case 'r' | 'R': break
+
+      case _:
+        print("Unacceptable Input; Please Retry")
+        continue
+
+def opt_func():
+
+  while True:
+
+          #1234567890123456789012345678901234567890123456789012345678901234#
+    print("  [O] Options                                                   ")
+    print("                                                                ")
+    print("      ( ) Set FISH as Default Shell                             ")
+    print("                                                                ")
+    print("  Actions                                                       ")
+    print("                                                                ")
+    print("      [+] Select All Options                                    ")
+    print("      [-] Remove All Options                                    ")
+    print("      [R] Return to Main Menu                                   ")
+    print("                                                                ")
+
+    input_char = input("  Enter Action: ")
+
+    match input_char:
+
+      case '+':
+        continue
+
+      case '-':
+        continue
+
+      case 'r' | 'R': break
+
+      case _:
+        print("Unacceptable Input; Please Retry")
+        continue
+
+
 if __name__ == "__main__": # MAIN Function
 
   # CHECK if Python is above 3.10 => Necessary for `match-case`
@@ -27,7 +153,7 @@ if __name__ == "__main__": # MAIN Function
   dir_set = 0 # Binary Integer for Directories
   opt_set = 0 # Binary Integer for Options
 
-  if args[0] != "": # Profile Location is given => Process profile
+# if args[0] != "": # Profile Location is given => Process profile
 
   # Supported Collections: FISH | GIT | NVIM | TEX
 
@@ -99,113 +225,3 @@ if __name__ == "__main__": # MAIN Function
 
     if return_val: break
     else: continue
-
-def col_func():
-
-  while True:
-
-          #1234567890123456789012345678901234567890123456789012345678901234#
-    print("# [C] Collections: x out of y specified                         ")
-    print("                                                                ")
-    print("  Actions                                                       ")
-    print("                                                                ")
-    print("      [+] Select All Options                                    ")
-    print("      [-] Remove All Options                                    ")
-    print("      [R] Return to Main Menu                                   ")
-    print("                                                                ")
-
-    input_char = input("  Enter Action: ")
-
-    match input_char:
-
-      case '+':
-
-      case '-':
-
-      case 'r' | 'R': break
-
-      case _:
-
-def pac_func():
-
-  while True:
-
-          #1234567890123456789012345678901234567890123456789012345678901234#
-    print("# [P] Packages: x out of y specified                            ")
-    print("                                                                ")
-    print("  Actions                                                       ")
-    print("                                                                ")
-    print("      [+] Select All Options                                    ")
-    print("      [-] Remove All Options                                    ")
-    print("      [R] Return to Main Menu                                   ")
-    print("                                                                ")
-
-    input_char = input("  Enter Action: ")
-
-    match input_char:
-
-      case '+':
-
-      case '-':
-
-      case 'r' | 'R': break
-
-      case _:
-
-def dir_func():
-
-  while True:
-
-          #1234567890123456789012345678901234567890123456789012345678901234#
-    print("  [D] Directories                                               ")
-    print("                                                                ")
-    print("      $HOME:                                                    ")
-    print("      SYMLINKS: x out of y specified                            ")
-    print("                                                                ")
-    print("  Actions                                                       ")
-    print("                                                                ")
-    print("      [+] Select All Options                                    ")
-    print("      [-] Remove All Options                                    ")
-    print("      [R] Return to Main Menu                                   ")
-    print("                                                                ")
-
-    input_char = input("  Enter Action: ")
-
-    match input_char:
-
-      case '+':
-
-      case '-':
-
-      case 'r' | 'R': break
-
-      case _:
-
-def opt_func():
-
-  while True:
-
-          #1234567890123456789012345678901234567890123456789012345678901234#
-    print("  [O] Options                                                   ")
-    print("                                                                ")
-    print("      ( ) Set FISH as Default Shell                             ")
-    print("                                                                ")
-    print("  Actions                                                       ")
-    print("                                                                ")
-    print("      [+] Select All Options                                    ")
-    print("      [-] Remove All Options                                    ")
-    print("      [R] Return to Main Menu                                   ")
-    print("                                                                ")
-
-    input_char = input("  Enter Action: ")
-
-    match input_char:
-
-      case '+':
-
-      case '-':
-
-      case 'r' | 'R': break
-
-      case _:
-
