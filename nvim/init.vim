@@ -111,11 +111,11 @@
     Plug 'tpope/vim-fugitive' " Git Wrapper
     Plug 'vim-airline/vim-airline' " Light Statusline
     Plug 'junegunn/seoul256.vim' " Seoul256 Theme
-    Plug 'nathanaelkane/vim-indent-guides'
-      " Visual Indentation Guide
+    Plug 'nathanaelkane/vim-indent-guides' " Visual Indentation Guide
     Plug 'tpope/vim-surround' " Surrounder Plugin
     Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
     Plug 'lervag/vimtex' " Plugin for LaTeX
+    Plug 'SirVer/ultisnips' " Snippet Enging Plugin
   call plug#end()
 
 " }
@@ -200,7 +200,7 @@
 
   " VimTeX {
 
-    let g:vimtex_indent_enabled=0
+    let g:vimtex_indent_enabled = 0
 
   " }
 
@@ -247,6 +247,15 @@
   " Vim-Markdown {
 
     let g:vim_markdown_folding_disabled = 1
+
+  " }
+
+  " UltiSnips {
+
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+    let g:UltiSnipsSnippetDirectories = [$HOME."/.config/nvim/UltiSnips"]
 
   " }
 
