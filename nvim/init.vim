@@ -65,6 +65,7 @@
   set list
   set lcs=trail:X
   set scrolloff=10
+  let g:loaded_perl_provider = 0 | "Disable Perl Provision for Neovim
 
   " Jump Mechanism
   nnoremap <silent> <C-j> /<++><CR>:let @/ = ""<CR>4"_xi
