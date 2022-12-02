@@ -28,6 +28,9 @@ inoreabb <silent> <buffer> \begin \begin{}<Esc>o\end{<++>}<Esc>khi<C-R>
 inoremap <buffer> <C-b> \textbf{}<++><Esc>4hi
 inoremap <buffer> <C-t> \textit{}<++><Esc>4hi
 
+" Latex-Specific Text Abbreviations
+inoreabb <silent> <buffer> \-> \textrightarrow{}
+
 " LaTeX-Specific AutoClose
 inoremap <buffer> ` `'<++><Esc>4hi
 inoremap <buffer> `` ``''<++><Esc>5hi
@@ -47,7 +50,7 @@ vmap <buffer> \[ di\[<Esc>p
 vmap <buffer> [[ di[[<Esc>p
 vmap <buffer> {{ di{{<Esc>p
 vmap <buffer> (( di((<Esc>p
-vmap <buffer> $$ di$<Esc>p
+vmap <buffer> \$ di$<Esc>p
 vmap <buffer> <C-b> di<C-b><Esc>p
 vmap <buffer> <C-t> di<C-t><Esc>p
 
