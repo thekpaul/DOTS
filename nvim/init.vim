@@ -121,7 +121,8 @@
     Plug 'tpope/vim-surround' " Surrounder Plugin
     Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
     Plug 'lervag/vimtex' " Plugin for LaTeX
-    Plug 'SirVer/ultisnips' " Snippet Enging Plugin
+    Plug 'SirVer/ultisnips' " Snippet Engine Plugin
+    Plug 'dag/vim-fish' " Plugin for `fish`
   call plug#end()
 
 " }
