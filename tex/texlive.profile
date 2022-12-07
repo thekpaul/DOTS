@@ -1,17 +1,16 @@
-# texlive.profile written on Wed Aug  4 13:59:59 2021 UTC
+# texlive.profile written on Wed Dec  7 02:06:40 2022 UTC
 # It will NOT be updated and reflects only the
 # installation profile at installation time.
 selected_scheme scheme-custom
-TEXDIR /usr/local/texlive/2021
-TEXMFCONFIG ~/.texlive2021/texmf-config
+TEXDIR /home/thekpaul/texlive/2022
+TEXMFCONFIG ~/.texlive2022/texmf-config
 TEXMFHOME ~/texmf
-TEXMFLOCAL /usr/local/texlive/texmf-local
-TEXMFSYSCONFIG /usr/local/texlive/2021/texmf-config
-TEXMFSYSVAR /usr/local/texlive/2021/texmf-var
-TEXMFVAR ~/.texlive2021/texmf-var
+TEXMFLOCAL /home/thekpaul/texlive/texmf-local
+TEXMFSYSCONFIG /home/thekpaul/texlive/2022/texmf-config
+TEXMFSYSVAR /home/thekpaul/texlive/2022/texmf-var
+TEXMFVAR ~/.texlive2022/texmf-var
 binary_x86_64-linux 1
 collection-basic 1
-collection-bibtexextra 1
 collection-binextra 1
 collection-fontsextra 1
 collection-fontsrecommended 1
@@ -22,13 +21,12 @@ collection-langenglish 1
 collection-langkorean 1
 collection-latex 1
 collection-latexextra 1
-collection-latexrecommended 1
 collection-luatex 1
 collection-mathscience 1
 collection-metapost 1
 collection-pictures 1
 collection-plaingeneric 1
-collection-publishers 1
+collection-xetex 1
 instopt_adjustpath 0
 instopt_adjustrepo 1
 instopt_letter 0
