@@ -208,6 +208,11 @@
   " VimTeX {
 
     let g:vimtex_indent_enabled = 0
+    let g:vimtex_view_general_viewer = '.local/bin/sumatrapdf.sh'
+    let g:vimtex_view_general_options
+        \ = '-reuse-instance -forward-search @tex @line @pdf'
+    let g:vimtex_compiler_method = 'generic'
+    let g:vimtex_compiler_generic = { 'command' : 'make' }
 
   " }
 
