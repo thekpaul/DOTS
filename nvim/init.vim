@@ -2,10 +2,10 @@
 
 " GLOBAL BEHAVIOURAL CHANGES {
 
-  " Use `bash` as a POSIX-compatible alternative if the login shell is `fish`.
-  if &shell =~# 'fish$'
-    set shell=bash
-  endif
+" " Use `bash` as a POSIX-compatible alternative if the login shell is `fish`.
+" if &shell =~# 'fish$'
+"   set shell=bash
+" endif
 
   " Allow mouse usage in all environments
   set mouse=a
