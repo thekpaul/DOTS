@@ -4,6 +4,7 @@ if (&ft != 'verilog')
 endif
 
 inoremap <buffer> /* /**/<left><left>
+inoremap <buffer> ' '
 
 setlocal shiftwidth=2 | setlocal tabstop=2
 setlocal softtabstop=2 | setlocal smarttab | "Set Tab Spacing to 2
