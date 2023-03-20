@@ -7,6 +7,10 @@
 "   set shell=bash
 " endif
 
+  " Use Local `.vimrc`s and Set a Security Option
+  set exrc
+  set secure
+
   " Allow mouse usage in all environments
   set mouse=a
 
@@ -68,7 +72,7 @@
   set foldmethod=manual | "Fold Manually
   set nowrap | set sidescroll=8 | "Disable Line Wrapping to Buffer
   set list
-  set lcs=trail:X
+  set lcs=tab:*\ ,trail:X
   set scrolloff=10
   let g:loaded_perl_provider = 0 | "Disable Perl Provision for Neovim
 
@@ -117,7 +121,8 @@
     Plug 'tpope/vim-fugitive' " Git Wrapper
     Plug 'vim-airline/vim-airline' " Light Statusline
     Plug 'junegunn/seoul256.vim' " Seoul256 Theme
-    Plug 'nathanaelkane/vim-indent-guides' " Visual Indentation Guide
+    Plug 'preservim/vim-indent-guides' " Visual Indentation Guide
+  " Plug 'yuntan/neovim-indent-guides' " Visual Indentation Guide (Updated)
     Plug 'tpope/vim-surround' " Surrounder Plugin
     Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
     Plug 'lervag/vimtex' " Plugin for LaTeX
