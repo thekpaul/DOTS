@@ -45,6 +45,8 @@
   filetype off
   filetype plugin indent on | "Set plugin loading according to filetype
 
+  au! BufRead,BufNewFile *.h setfiletype c
+
   set termguicolors " Apply True Coloring in Terminal
   set encoding=utf8 | "Set File Encoding as UTF-8
   let $LANG = 'en_US'
