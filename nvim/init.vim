@@ -74,7 +74,7 @@
   set foldmethod=manual | "Fold Manually
   set nowrap | set sidescroll=8 | "Disable Line Wrapping to Buffer
   set list
-  set lcs=tab:*\ ,trail:X
+  set lcs=tab:I->,trail:X
   set scrolloff=10
   let g:loaded_perl_provider = 0 | "Disable Perl Provision for Neovim
 
