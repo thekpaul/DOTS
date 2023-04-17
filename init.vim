@@ -129,7 +129,7 @@
     Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
     Plug 'lervag/vimtex' " Plugin for LaTeX
     Plug 'SirVer/ultisnips' " Snippet Engine Plugin
-    Plug 'dag/vim-fish' " Plugin for `fish`
+  " Plug 'dag/vim-fish' " Plugin for `fish`
   call plug#end()
 
 " }
