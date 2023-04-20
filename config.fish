@@ -11,5 +11,5 @@ eval /home/thekpaul/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 
 if status --is-login
   and test -s $TMUX;
-  tmux new -s "main";
+  tmux;
 end
