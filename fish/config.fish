@@ -8,3 +8,8 @@ set -gx LC_ALL en_US.UTF-8
 # !! Contents within this block are managed by 'conda init' !!
 eval /home/thekpaul/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
+
+if status --is-login
+  and test -s $TMUX;
+  tmux new -s "main";
+end
