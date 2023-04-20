@@ -21,3 +21,14 @@ end
 function tmux
   command tmux -2 $argv
 end
+
+function vim
+  if status --is-login
+    and test $TMUX;
+    set -l PANE_CNT (tmux list-panes | wc -l);
+    if test \( $PANE_CNT -eq 1 \);
+      command tmux split-window -vp 25;
+    end;
+  end;
+  command nvim $argv;
+end
