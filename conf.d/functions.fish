@@ -27,7 +27,11 @@ function vim
     and test $TMUX;
     set -l PANE_CNT (tmux list-panes | wc -l);
     if test \( $PANE_CNT -eq 1 \);
-      command tmux split-window -vp 25;
+      if test (tput cols) -lt (math 2.5 x (tput lines));
+        command tmux split-window -vp 25;
+      else;
+        command tmux split-window -hp 25;
+      end;
     end;
   end;
   command nvim $argv;
