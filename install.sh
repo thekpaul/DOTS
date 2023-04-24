@@ -35,5 +35,9 @@ ln -sf $HOME/Projects/DOTS/nvim ~/.config/nvim
 ln -sf $HOME/Projects/DOTS/tmux ~/.config/tmux
 ln -sf $HOME/Projects/DOTS/fish ~/.config/fish
 
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # Add Plugin Manager for NVim
+gh repo clone tmux-plugins/tpm ~/.config/tmux/plugins/tpm             # Add Plugin Manager for TMUX
+
 # 3. Setup Fish as Default Shell and add Toolchains
 sudo usermod -s /usr/bin/fish $USER
