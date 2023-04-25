@@ -14,6 +14,11 @@ intended for an interactive setup that supports thorough personalisation, while
 the Bash script is intended for an automatic, full-scale installation based on
 default settings.
 
+The Shell script installer can be downloaded to your CWD with:
+```sh
+wget https://raw.githubusercontent.com/thekpaul/DOTS/main/install.sh
+```
+
 ## Manual Install
 
 DOTS can be cloned to a local Git repository:
