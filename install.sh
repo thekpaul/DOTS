@@ -2,10 +2,16 @@
 
 # 1. Install Necessary Packages, Add PPAs and *Clone This Repo!*
 ## Adding PPAs
-sudo apt-add-repository https://packages.microsoft.com/ubuntu/22.04/prod # Microsoft WSL PPA for Ubuntu 22.04
-sudo apt-add-repository ppa:git-core/ppa                                 # Git Core PPA
-sudo apt-add-repository https://cli.github.com/packages                  # Github CLI PPA for `gh`
-sudo apt-add-repository ppa:fish-shell/release-3                         # Fish Shell v3.X PPA
+sudo apt-add-repository -y ppa:git-core/ppa                                 # Git Core PPA
+sudo apt-add-repository -y ppa:fish-shell/release-3                         # Fish Shell v3.X PPA
+
+## Install Github CLI
+type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | \
+  sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | \
+  sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 
 ## Update/Upgrading All Pre-installed Packages
 sudo apt-get update && sudo apt-get upgrade -y
@@ -22,8 +28,8 @@ sudo apt install -y ./nvim-linux64.deb
 
 # 2. Setup Dotfiles and Symlink to `XDG_CONFIG_HOME` (~/.config/)
 ## Prerequisite: Setup Github CLI (`gh`)
-if [ ! -d ~/Projects ];
-  mkdir ~/Projects;
+if [ ! -d ~/Projects ]; then
+  mkdir ~/Projects
 fi
 gh auth login # Github CLI Login -> Interactive
 
@@ -34,7 +40,7 @@ ln -sf $HOME/Projects/DOTS/nvim ~/.config/nvim
 ln -sf $HOME/Projects/DOTS/tmux ~/.config/tmux
 ln -sf $HOME/Projects/DOTS/fish ~/.config/fish
 
-curl -fLo ~/.config/nvim/autoload --create-dirs \
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # Add Plugin Manager for NVim
 gh repo clone tmux-plugins/tpm ~/.config/tmux/plugins/tpm             # Add Plugin Manager for TMUX
 
@@ -57,10 +63,9 @@ fi
 
 # 4. Setup (Latest -> 2023) TeXLive
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-
 ## Only Execute Installation IF Able to Download Installer Tarball
 if [ $? -eq 0 ]; then
-  cd ~ && tar -xzf install-tl-unx.tar.gz
+  cd $HOME && tar -xzf install-tl-unx.tar.gz
   cd install-tl-* # Move to Latest Unzip
   perl install-tl --profile="~/Projects/DOTS/tex/texlive.profile" # Auto Install with Profile
   rm -rf install-tl-* # Clean Installer and Tarball afterwards
