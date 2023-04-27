@@ -29,19 +29,13 @@ sudo apt-get install -y \
 wget https://github.com/neovim/neovim/releases/download/v0.8.3/nvim-linux64.deb
 sudo apt install -y ./nvim-linux64.deb
 
-# 2. Setup Dotfiles and Symlink to `XDG_CONFIG_HOME` (~/.config/)
+# 2. Setup Dotfiles in XDG_CONFIG_HOME with Possible Symlinks
 ## Prerequisite: Setup Github CLI (`gh`)
-if [ ! -d ~/Projects ]; then
-  mkdir ~/Projects
-fi
 gh auth login # Github CLI Login -> Interactive
 
 ## Clone Repo and Make Symlinks
-gh repo clone thekpaul/DOTS ~/Projects/DOTS -- --origin=github # Clone Repo
-ln -sf $HOME/Projects/DOTS/git/config .gitconfig # Git Global Configs go $HOME
-ln -sf $HOME/Projects/DOTS/nvim ~/.config/nvim
-ln -sf $HOME/Projects/DOTS/tmux ~/.config/tmux
-ln -sf $HOME/Projects/DOTS/fish ~/.config/fish
+gh repo clone thekpaul/DOTS ~/.config -- --origin=github # Clone Repo
+### ln -sf $HOME/.config/git/config .gitconfig # Git Global Configs go $HOME
 
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # Add Plugin Manager for NVim
