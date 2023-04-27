@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+# 0. Set Current Directory to $HOME
+cd $HOME
+
 # 1. Install Necessary Packages, Add PPAs and *Clone This Repo!*
 ## Adding PPAs
 sudo apt-add-repository -y ppa:git-core/ppa                                 # Git Core PPA
@@ -63,6 +66,7 @@ fi
 
 # 4. Setup (Latest -> 2023) TeXLive
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+
 ## Only Execute Installation IF Able to Download Installer Tarball
 if [ $? -eq 0 ]; then
   tar -xzf install-tl-unx.tar.gz
@@ -72,7 +76,7 @@ if [ $? -eq 0 ]; then
     cd install-tl-$(date -d '-1 day' +%Y%m%d) # Move to Latest Unzip
   fi
   perl install-tl --profile="~/Projects/DOTS/tex/texlive.profile" # Auto Install with Profile
-  rm -rf install-tl-* # Clean Installer and Tarball afterwards
+  cd ../ && rm -rf install-tl-* # Clean Installer and Tarball afterwards
 else
   echo "Error in Installing TeXLive!"
 fi
@@ -81,8 +85,8 @@ fi
 wget -O Miniconda.sh \
   https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda.sh
-if [ $? -eq 0 ]; then
-  conda init fish # Initialise in Fish shell
-else
-  echo "Error in Installing Miniconda!"
-fi
+### if [ $? -eq 0 ]; then
+###   conda init fish # Initialise in Fish shell
+### else
+###   echo "Error in Installing Miniconda!"
+### fi
