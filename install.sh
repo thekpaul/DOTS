@@ -65,15 +65,19 @@ fi
 wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 ## Only Execute Installation IF Able to Download Installer Tarball
 if [ $? -eq 0 ]; then
-  cd $HOME && tar -xzf install-tl-unx.tar.gz
-  cd install-tl-* # Move to Latest Unzip
+  tar -xzf install-tl-unx.tar.gz
+  if [ -d install-tl-$(date +%Y%m%d) ]; then # Installed as today's date
+    cd install-tl-$(date +%Y%m%d) # Move to Latest Unzip
+  elif [ -d install-tl-$(date -d '-1 day' +%Y%m%d) ]; then # Installed as yesterday's date
+    cd install-tl-$(date -d '-1 day' +%Y%m%d) # Move to Latest Unzip
+  fi
   perl install-tl --profile="~/Projects/DOTS/tex/texlive.profile" # Auto Install with Profile
   rm -rf install-tl-* # Clean Installer and Tarball afterwards
 else
   echo "Error in Installing TeXLive!"
 fi
 
-# Setup Python in Conda with Miniconda and Add Minimal Packages
+# 5. Setup Python in Conda with Miniconda and Add Minimal Packages
 wget -O Miniconda.sh \
   https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda.sh
