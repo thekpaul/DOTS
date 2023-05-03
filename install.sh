@@ -48,6 +48,11 @@ sudo apt install -y ./nvim-linux64.deb
 ## Prerequisite: Setup Github CLI (`gh`)
 gh auth login # Github CLI Login -> Interactive
 
+## Check if `~/.config` Exists: If it does, REMOVE it! (Default Behaviour)
+if [ -d "~/.config" ]; then
+  rm -rf ~/.config
+fi
+
 ## Clone Repo and Make Symlinks
 gh repo clone thekpaul/DOTS ~/.config -- --origin=github # Clone Repo
 ### ln -sf $HOME/.config/git/config .gitconfig # Git Global Configs go $HOME
