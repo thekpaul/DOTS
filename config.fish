@@ -9,7 +9,10 @@ set -gx LC_ALL en_US.UTF-8
 eval /home/thekpaul/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
+# kill the right prompt __conda_add_prompt 😠
+function __conda_add_prompt; end
+
 if status --is-login
   and test -s $TMUX;
-  tmux;
+  tmux -2;
 end
