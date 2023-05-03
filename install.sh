@@ -1,7 +1,17 @@
 #! /usr/bin/env bash
 
-# 0. Set Current Directory to $HOME
+# 0. Set Current Directory to $HOME and add Utility Function
 cd $HOME
+
+## Check if Current Machine uses WSL
+is_wsl() {
+  version=$(2> /dev/null cat /proc/version)
+  if [[ "$version" == *"Microsoft"* || "$version" == *"microsoft"* ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
 
 # 1. Install Necessary Packages, Add PPAs and *Clone This Repo!*
 ## Adding PPAs
@@ -24,6 +34,11 @@ sudo apt-get install -y \
   git fish gh zlib1g zlib1g-dev openssh-server net-tools build-essential \
   ccache gcc-aarch64-linux-gnu obs-build pv flex bison libssl-dev bc     \
   dosfstools kmod iverilog gtkwave zip inkscape openssl cowsay ninja-build
+
+## IF WSL: Install
+if is_wsl; then
+  sudo apt-get install -y wslu
+fi
 
 ## Install Neovim 0.8.3 via `.deb` Directly from Repo on Github
 wget https://github.com/neovim/neovim/releases/download/v0.8.3/nvim-linux64.deb
