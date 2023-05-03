@@ -49,6 +49,9 @@ rm nvim-linux64.deb
 ## Prerequisite: Setup Github CLI (`gh`)
 gh auth login # Github CLI Login -> Interactive
 
+## Add Variable for Path to Dotfiles Repo
+dotspath= # Set as empty for now
+
 ## Remove `~/.config` for Fresh Dotfiles Installation
 if [ -d ~/.config ]; then
   rm -rf ~/.config
@@ -57,12 +60,14 @@ fi
 ## Clone Repo and Make Symlinks
 if [ ! -d ~/.config ]; then
   git clone git@github.com:thekpaul/DOTS.git $HOME/.config --origin=github
+  dotspath=~/.config
 ### ln -sf $HOME/.config/git/config .gitconfig # Git Global Configs go $HOME
 else
 ### NOTE: If `.config` should not be removed at this time, use `Projects/DOTS`
   if [ ! -d $HOME/Projects/ ]; then
     mkdir $HOME/Projects
     gh repo clone thekpaul/DOTS $HOME/Projects/DOTS -- --origin=github # Clone Repo
+    dotspath=~/Projects/DOTS
     ln -sf $HOME/Projects/DOTS/git/config .gitconfig # Git Global Configs go $HOME
     ln -sf $HOME/Projects/DOTS/nvim ~/.config/nvim # Git Global Configs go $HOME
     ln -sf $HOME/Projects/DOTS/fish ~/.config/fish # Git Global Configs go $HOME
@@ -88,9 +93,7 @@ gpg --keyserver keyserver.ubuntu.com \
   --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
               7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 curl -sSL https://get.rvm.io | bash -s stable --ruby
-if [ $? -eq 0 ]; then
-  rvm install ruby
-else
+if [ $? -ne 0 ]; then
   echo "Error in Installing RVM!"
 fi
 
@@ -105,7 +108,7 @@ if [ $? -eq 0 ]; then
   elif [ -d install-tl-$(date -d '-1 day' +%Y%m%d) ]; then # Installed as yesterday's date
     cd install-tl-$(date -d '-1 day' +%Y%m%d) # Move to Latest Unzip
   fi
-  perl install-tl --profile="~/Projects/DOTS/tex/texlive.profile" # Auto Install with Profile
+  perl install-tl --profile="$dotspath"/tex/texlive.profile # Auto Install with Profile
   cd ../ && rm -rf install-tl-* # Clean Installer and Tarball afterwards
 else
   echo "Error in Installing TeXLive!"
@@ -114,8 +117,12 @@ fi
 # 5. Setup Python in Conda with Miniconda and Add Minimal Packages
 wget -O Miniconda.sh \
   https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda.sh
-rm Miniconda.sh
+if [ $? -eq 0 ]; then
+  bash Miniconda.sh
+  rm Miniconda.sh
+else
+  echo "Error in Installing MiniConda!"
+fi
 ### if [ $? -eq 0 ]; then
 ###   conda init fish # Initialise in Fish shell
 ### else
