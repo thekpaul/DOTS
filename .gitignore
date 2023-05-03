@@ -1,4 +1,14 @@
+# NeoVim Plugins and Plugin Manager (in `autoload`)
 nvim/autoload/**
 nvim/plugged/**
+
+# TMux Plugins (including TPM as a plugin manager)
 tmux/plugins/**
+
+# Auxiliary Toolchain
+gh/**
+omf/**
+wslu/**
+
+# Auxiliary Files
 **/.netrwhist
