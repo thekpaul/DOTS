@@ -43,18 +43,19 @@ fi
 ## Install Neovim 0.8.3 via `.deb` Directly from Repo on Github
 wget https://github.com/neovim/neovim/releases/download/v0.8.3/nvim-linux64.deb
 sudo apt install -y ./nvim-linux64.deb
+rm nvim-linux64.deb
 
 # 2. Setup Dotfiles in XDG_CONFIG_HOME with Possible Symlinks
 ## Prerequisite: Setup Github CLI (`gh`)
 gh auth login # Github CLI Login -> Interactive
 
-## Check if `~/.config` Exists: If it does, REMOVE it! (Default Behaviour)
-if [ -d "~/.config" ]; then
+## Remove `~/.config` for Fresh Dotfiles Installation
+if [ -d ~/.config ]; then
   rm -rf ~/.config
 fi
 
 ## Clone Repo and Make Symlinks
-if [ ! -d "~/.config" ]; then
+if [ ! -d ~/.config ]; then
   git clone git@github.com:thekpaul/DOTS.git $HOME/.config --origin=github
 ### ln -sf $HOME/.config/git/config .gitconfig # Git Global Configs go $HOME
 else
@@ -114,6 +115,7 @@ fi
 wget -O Miniconda.sh \
   https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda.sh
+rm Miniconda.sh
 ### if [ $? -eq 0 ]; then
 ###   conda init fish # Initialise in Fish shell
 ### else
