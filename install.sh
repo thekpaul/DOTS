@@ -54,8 +54,23 @@ if [ -d "~/.config" ]; then
 fi
 
 ## Clone Repo and Make Symlinks
-gh repo clone thekpaul/DOTS ~/.config -- --origin=github # Clone Repo
+if [ ! -d "~/.config" ]; then
+  git clone git@github.com:thekpaul/DOTS.git $HOME/.config --origin=github
 ### ln -sf $HOME/.config/git/config .gitconfig # Git Global Configs go $HOME
+else
+### NOTE: If `.config` should not be removed at this time, use `Projects/DOTS`
+  if [ ! -d $HOME/Projects/ ]; then
+    mkdir $HOME/Projects
+    gh repo clone thekpaul/DOTS $HOME/Projects/DOTS -- --origin=github # Clone Repo
+    ln -sf $HOME/Projects/DOTS/git/config .gitconfig # Git Global Configs go $HOME
+    ln -sf $HOME/Projects/DOTS/nvim ~/.config/nvim # Git Global Configs go $HOME
+    ln -sf $HOME/Projects/DOTS/fish ~/.config/fish # Git Global Configs go $HOME
+    ln -sf $HOME/Projects/DOTS/tmux ~/.config/tmux # Git Global Configs go $HOME
+  else
+    echo "Cannot Clone Dotfiles from Github: No Empty Directories Available."
+    exit -1
+  fi
+fi
 
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # Add Plugin Manager for NVim
