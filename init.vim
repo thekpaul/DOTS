@@ -118,7 +118,7 @@
 
   call plug#begin('/home/thekpaul/.config/nvim/plugged')
     Plug 'mhinz/vim-startify', { 'on':  'Startify' } " Vim-Startify
-    Plug 'kyazdani42/nvim-web-devicons' | " Devicons for NeoVim
+    Plug 'vlada-dudr/nvim-web-devicons' | " Devicons for NeoVim
     Plug 'romgrk/barbar.nvim' " Tabline Plugin
     Plug 'tpope/vim-fugitive' " Git Wrapper
     Plug 'vim-airline/vim-airline' " Light Statusline
