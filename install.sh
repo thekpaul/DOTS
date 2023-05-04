@@ -15,8 +15,8 @@ is_wsl() {
 
 # 1. Install Necessary Packages, Add PPAs and *Clone This Repo!*
 ## Adding PPAs
-sudo apt-add-repository -y ppa:git-core/ppa                                 # Git Core PPA
-sudo apt-add-repository -y ppa:fish-shell/release-3                         # Fish Shell v3.X PPA
+sudo apt-add-repository -y ppa:git-core/ppa         # Git Core PPA
+sudo apt-add-repository -y ppa:fish-shell/release-3 # Fish Shell v3.X PPA
 
 ## Install Github CLI
 type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
