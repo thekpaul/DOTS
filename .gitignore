@@ -9,6 +9,7 @@ tmux/plugins/**
 gh/**
 omf/**
 wslu/**
+inkscape/**
 
 # Auxiliary Files
 **/.netrwhist
