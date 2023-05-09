@@ -261,6 +261,16 @@
     let g:indent_guides_guide_size = 1
     let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
 
+    " Manually Set Foreground Colors matching `lcs` Tabs in Indent Guides {
+
+      let g:indent_guides_auto_colors = 0
+      autocmd VimEnter,Colorscheme *
+        \ :hi IndentGuidesOdd  ctermfg=59 guifg=#727272
+      autocmd VimEnter,Colorscheme *
+        \ :hi IndentGuidesEven ctermfg=59 guifg=#727272
+
+    " }
+
   " }
 
   " Vim-Markdown {
