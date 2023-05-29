@@ -149,33 +149,18 @@
 
   " BarBar {
 
-    let bufline = get(g:, 'bufferline', {}) " Option Dictionary Creation
-    let bufline.add_in_buffer_number_order = v:false " Buffer Adding Control
-    let bufline.animation = v:true " Enable/disable animations
-    let bufline.auto_hide = v:true " Auto-hiding tab bar with single buffer
-    let bufline.tabpages = v:true " Current/total tabpages indicator
-    let bufline.closable = v:true " Enable/disable close button
-    let bufline.clickable = v:true " Clicking tabs | left-click: go to buffer
-                      "         | middle-click: delete buffer
-    let bufline.icons = 'both' " Icon Display Control
-    let bufline.icon_custom_colors = v:false " Icon Highlight Group
-    let bufline.maximum_padding = 2 " Maximum Padding Width at Bufferline
-    let bufline.maximum_length = 20 " Maximum Buffer Name Length.
-    let bufline.semantic_letters = v:true " Buffer-Pick Char Designation
-    let bufline.letters =
-      \ 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP'
-      " New Buffer Letter Designation
-    let bufline.no_name_title = v:null " Unnamed Buffer Nomenclature
-    " Bufferline icons
-    let bufline.icon_separator_active = '|'
-    let bufline.icon_separator_inactive = '|'
-    let bufline.icon_close_tab = ''
-    let bufline.icon_close_tab_modified = '●'
-    let bufline.icon_pinned = 'T'
-    " Buffer Exclusion from Tabline
-    let bufline.exclude_ft = ['javascript']
-    let bufline.exclude_name = ['package.json']
-    " BarBar Mapping
+    " Source `lua/my_barbar.lua` for Setup
+    lua require('my_barbar')
+
+    " Temporary custom highlight groups
+    autocmd VimEnter,Colorscheme *
+      \ :hi BufferTabpageFill guibg=#565656
+    autocmd VimEnter,Colorscheme *
+      \ :hi BufferTabpages    guibg=#565656 guifg=#ffffff
+    autocmd VimEnter,Colorscheme *
+      \ :hi BufferTabpagesSep guibg=#565656 guifg=#ffffff
+
+    " BarBar Mappings
     " Move to previous/next
     nnoremap <silent> ,, :BufferPrevious<CR>
     nnoremap <silent> ,. :BufferNext<CR>
@@ -215,11 +200,11 @@
   " VimTeX {
 
     let g:vimtex_indent_enabled = 0
-    let g:vimtex_view_general_viewer = '.local/bin/sumatrapdf.sh'
-    let g:vimtex_view_general_options
-        \ = '-reuse-instance -forward-search @tex @line @pdf'
-    let g:vimtex_compiler_method = 'generic'
-    let g:vimtex_compiler_generic = { 'command' : 'make' }
+  " let g:vimtex_view_general_viewer = '.local/bin/sumatrapdf.sh'
+  " let g:vimtex_view_general_options
+  "     \ = '-reuse-instance -forward-search @tex @line @pdf'
+  " let g:vimtex_compiler_method = 'generic'
+  " let g:vimtex_compiler_generic = { 'command' : 'make' }
 
   " }
 
