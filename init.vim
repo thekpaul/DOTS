@@ -150,7 +150,7 @@
   " BarBar {
 
     " Source `lua/my_barbar.lua` for Setup
-    lua require('my_barbar')
+    lua require('plugins.barbar')
 
     " Temporary custom highlight groups
     autocmd VimEnter,Colorscheme *

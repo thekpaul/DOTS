@@ -28,7 +28,7 @@ require'barbar'.setup { -- Copied from BarBar README and slightly modified
 
   -- Hide inactive buffers and file extensions.
   -- Other options are `alternate`, `current`, and `visible`.
-  hide = {extensions = visible, inactive = false},
+  hide = {extensions = false, inactive = false},
 
   -- Disable highlighting alternate buffers
   highlight_alternate = false,
