@@ -3,50 +3,102 @@
 		Ported and extended from original configurations in legacy vimscript.
 ]=]
 
--- Legacy Vimscript Configurations from `init.vim`
+-- Use Local `.vimrc`s and Set a Security Option
+vim.opt.exrc = true
+vim.opt.secure = true
 
+-- Behaviour changes to `mswin`
+vim.cmd [[ behave mswin ]]
+
+-- Virtual Edits
+vim.opt.virtualedit = 'onemore' -- For Consistency in Selective AutoClosing
+
+-- Mouse usage
+vim.o.mouse = 'a'
+
+-- Select-mode Windows-like clipboard
 vim.cmd [[
-" Use Local `.vimrc`s and Set a Security Option
-set exrc
-set secure
-
-" Allow mouse usage in all environments
-set mouse=a
-
-" Partial Behaviour Changes
-behave mswin
-set virtualedit=onemore "For Consistency in Selective AutoClosing
-
-" Windows like clipboard
-vnoremap <c-x> "+x
-vnoremap <c-c> "+y
-cnoremap <c-v> <c-r>+
+vnoremap <C-x> "+x
+vnoremap <C-c> "+y
+cnoremap <C-v> <C-r>+
 exe 'ino <script> <C-V>' paste#paste_cmd['i']
+]]
 
-" Un/Redo Like Windows
+-- Windows-like un/redo
+vim.cmd [[
 nnoremap <C-z> u
 nnoremap <C-y> <C-r>
 inoremap <C-z> <Esc>ui
 inoremap <C-y> <Esc><C-r>i
+]]
 
-" Save Like Windows (Erase all Whitespace)
+-- Saving without whitespaces | TODO: Fix reset of `/` register
+vim.cmd [[
 inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
 nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
+]]
 
-" delete, yank, select a document
+-- Delete, yank, select a document
+vim.cmd [[
 nnoremap dad ggVGd
 nnoremap yad %y
 nnoremap vad ggVG
+]]
 
-set noundofile | "No Undo Files
+-- Undo files
+vim.opt.undofile = false
 
-" Source Plugin Vimscript
+-- Set plugin loading according to filetype
+vim.cmd [[
 filetype off
-filetype plugin indent on | "Set plugin loading according to filetype
+filetype plugin indent on
+]]
 
+-- Line numbers
+vim.opt.number = true
+
+-- Default tab behaviour
+vim.opt.tabstop     = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth  = 2
+vim.opt.expandtab   = true
+vim.opt.smarttab    = true
+vim.opt.autoindent  = true
+
+-- Line wrapping
+vim.opt.wrap = false
+vim.opt.sidescroll = 8
+
+-- Search case-sensitivity
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Current cursor line/column highlighting
+vim.opt.cursorline   = true
+vim.opt.cursorcolumn = true
+
+-- Respect 24-bit RGB colors in TUI (favours `gui` values over `cterm`)
+vim.opt.termguicolors = true
+
+-- Show sign column so that text doesn't shift
+-- vim.opt.signcolumn = "yes"
+
+-- Coloring columns
+vim.opt.colorcolumn = "80,120"
+
+-- Special characters
+vim.opt.listchars = {
+	tab   = "I->",
+	trail = "X",
+ --	nbsp  = "␣",
+ --	eol   = "↲",
+}
+
+-- Legacy Vimscript Configurations from `init.vim`
+
+vim.cmd [[
 au! BufRead,BufNewFile *.h setfiletype c
 
-set termguicolors " Apply True Coloring in Terminal
 set encoding=utf8 | "Set File Encoding as UTF-8
 let $LANG = 'en_US'
 runtime delmenu.vim
@@ -56,22 +108,11 @@ set fileencodings=utf8 | "Set NEW File Encoding to UTF-8
     if (&fileencodings != 'utf8')
         set fileencodings=utf8
     endif | "Set ALL File Encoding to UTF-8
-set number | "Line Numbering
-set expandtab | set shiftwidth=2 | set tabstop=2
-set softtabstop=2 | set smarttab | "Set Tab Spacing
-set cursorline
-augroup CursorColumn
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorcolumn
-    au WinLeave * setlocal nocursorcolumn
-augroup END
 set breakindent | set linebreak
 set iskeyword+=\
 let g:tex_flavor = "latex"
-set colorcolumn=80
 set splitbelow | set splitright | "Split below and right of current buffer
 set foldmethod=manual | "Fold Manually
-set nowrap | set sidescroll=8 | "Disable Line Wrapping to Buffer
 set list
 set lcs=tab:I->,trail:X
 set scrolloff=10
