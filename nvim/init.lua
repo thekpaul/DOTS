@@ -154,7 +154,8 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 
 " PLUGINS with Vim-Plug as Plugin Manager {
 
-    call plug#begin('/home/thekpaul/.config/nvim/plugged')
+    let plugged = stdpath('config') . '/plugged'
+    call plug#begin(plugged)
         Plug 'mhinz/vim-startify', { 'on':  'Startify' } " Vim-Startify
         Plug 'nvim-tree/nvim-web-devicons' | " Devicons for NeoVim
         Plug 'romgrk/barbar.nvim' " Tabline Plugin
