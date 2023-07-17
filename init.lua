@@ -18,31 +18,31 @@ vim.o.mouse = 'a'
 
 -- Select-mode Windows-like clipboard
 vim.cmd [[
-vnoremap <C-x> "+x
-vnoremap <C-c> "+y
-cnoremap <C-v> <C-r>+
-exe 'ino <script> <C-V>' paste#paste_cmd['i']
+    vnoremap <C-x> "+x
+    vnoremap <C-c> "+y
+    cnoremap <C-v> <C-r>+
+    exe 'ino <script> <C-V>' paste#paste_cmd['i']
 ]]
 
 -- Windows-like un/redo
 vim.cmd [[
-nnoremap <C-z> u
-nnoremap <C-y> <C-r>
-inoremap <C-z> <Esc>ui
-inoremap <C-y> <Esc><C-r>i
+    nnoremap <C-z> u
+    nnoremap <C-y> <C-r>
+    inoremap <C-z> <Esc>ui
+    inoremap <C-y> <Esc><C-r>i
 ]]
 
 -- Saving without whitespaces | TODO: Fix reset of `/` register
 vim.cmd [[
-inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
-nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
+    inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
+    nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
 ]]
 
 -- Delete, yank, select a document
 vim.cmd [[
-nnoremap dad ggVGd
-nnoremap yad %y
-nnoremap vad ggVG
+    nnoremap dad ggVGd
+    nnoremap yad %y
+    nnoremap vad ggVG
 ]]
 
 -- Undo files
@@ -50,8 +50,8 @@ vim.opt.undofile = false
 
 -- Set plugin loading according to filetype
 vim.cmd [[
-filetype off
-filetype plugin indent on
+    filetype off
+    filetype plugin indent on
 ]]
 
 -- Line numbers
@@ -84,39 +84,66 @@ vim.opt.termguicolors = true
 -- vim.opt.signcolumn = "yes"
 
 -- Coloring columns
-vim.opt.colorcolumn = "80,120"
+vim.opt.colorcolumn = { "80", "120" }
 
 -- Special characters
 vim.opt.listchars = {
-	tab   = "I->",
-	trail = "X",
+    tab   = "I->",
+    trail = "X",
  --	nbsp  = "␣",
  --	eol   = "↲",
 }
+
+-- Encoding and Language Settings
+vim.opt.encoding = "utf8"
+vim.opt.fileencodings = "utf8"
+
+vim.api.nvim_create_autocmd( "UIEnter",
+    {
+        once = true,
+        callback = function()
+            vim.cmd [[
+                runtime delmenu.vim
+                set langmenu=en_US.utf8
+                let $LANG = 'en_US'
+                runtime menu.vim
+            ]]
+         -- require "ginit" -- Load GUI settings from separate file
+        end
+    }
+)
+
+-- Indentation and Line Breaks
+vim.opt.breakindent = true
+vim.opt.linebreak = true
+
+-- Add Backslash to Keyword List
+vim.opt.iskeyword:append { '\\' }
+
+-- Split new panes to right & below
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Fold Method
+vim.opt.foldmethod = "manual"
+
+-- List and List Characters
+vim.opt.list = true
+vim.opt.lcs = { tab = "I->", trail = "X" }
+
+-- Scroll Off
+vim.opt.scrolloff = 10
+
+-- Providers
+vim.g.loaded_perl_provider = 0
+
+-- Default LaTeX Flavor
+vim.g.tex_flavor = "latex"
 
 -- Legacy Vimscript Configurations from `init.vim`
 
 vim.cmd [[
 au! BufRead,BufNewFile *.h setfiletype c
-
-set encoding=utf8 | "Set File Encoding as UTF-8
-let $LANG = 'en_US'
-runtime delmenu.vim
-runtime menu.vim
-set langmenu=en_US.utf8 | "Set Menu Language
-set fileencodings=utf8 | "Set NEW File Encoding to UTF-8
-    if (&fileencodings != 'utf8')
-        set fileencodings=utf8
-    endif | "Set ALL File Encoding to UTF-8
-set breakindent | set linebreak
-set iskeyword+=\
-let g:tex_flavor = "latex"
-set splitbelow | set splitright | "Split below and right of current buffer
-set foldmethod=manual | "Fold Manually
-set list
-set lcs=tab:I->,trail:X
-set scrolloff=10
-let g:loaded_perl_provider = 0 | "Disable Perl Provision for Neovim
 
 " Jump Mechanism
 nnoremap <silent> <C-j> /<++><CR>:let @/ = ""<CR>4"_xi
