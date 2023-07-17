@@ -1,7 +1,7 @@
 --[=[
 	PLUGINS_ULTISNIPS.lua:
 	Configurations for the `SirVer/ultisnips` Plugin.
-    Ported and extended from original configurations in legacy vimscript.
+	Ported and extended from original configurations in legacy vimscript.
 ]=]
 
 vim.g.UltiSnipsExpandTrigger = "<tab>"

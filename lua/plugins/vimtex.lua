@@ -1,7 +1,7 @@
 --[=[
 	PLUGINS_VIMTEX.lua:
 	Configurations for the `lervag/vimtex` Plugin.
-    Ported and extended from original configurations in legacy vimscript.
+	Ported and extended from original configurations in legacy vimscript.
 ]=]
 
 vim.g.vimtex_indent_enabled = false

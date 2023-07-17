@@ -1,7 +1,7 @@
 --[=[
 	PLUGINS_SEOUL256.lua:
 	Configurations for the `junegunn/seoul256.vim` Plugin.
-    Ported and extended from original configurations in legacy vimscript.
+	Ported and extended from original configurations in legacy vimscript.
 ]=]
 
 vim.g.seoul256_background = 234

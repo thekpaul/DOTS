@@ -1,7 +1,7 @@
 --[=[
 	PLUGINS_STARTIFY.lua:
 	Configurations for the `mhinz/vim-startify` Plugin.
-    Ported and extended from original configurations in legacy vimscript.
+	Ported and extended from original configurations in legacy vimscript.
 ]=]
 
 vim.cmd [[

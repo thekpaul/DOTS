@@ -1,6 +1,6 @@
 --[=[
-		INIT.lua: Initialising Configurations for NeoVim in Lua.
-		Ported and extended from original configurations in legacy vimscript.
+	INIT.lua: Initialising Configurations for NeoVim in Lua.
+	Ported and extended from original configurations in legacy vimscript.
 ]=]
 
 -- Use Local `.vimrc`s and Set a Security Option
@@ -18,31 +18,31 @@ vim.o.mouse = 'a'
 
 -- Select-mode Windows-like clipboard
 vim.cmd [[
-    vnoremap <C-x> "+x
-    vnoremap <C-c> "+y
-    cnoremap <C-v> <C-r>+
-    exe 'ino <script> <C-V>' paste#paste_cmd['i']
+	vnoremap <C-x> "+x
+	vnoremap <C-c> "+y
+	cnoremap <C-v> <C-r>+
+	exe 'ino <script> <C-V>' paste#paste_cmd['i']
 ]]
 
 -- Windows-like un/redo
 vim.cmd [[
-    nnoremap <C-z> u
-    nnoremap <C-y> <C-r>
-    inoremap <C-z> <Esc>ui
-    inoremap <C-y> <Esc><C-r>i
+	nnoremap <C-z> u
+	nnoremap <C-y> <C-r>
+	inoremap <C-z> <Esc>ui
+	inoremap <C-y> <Esc><C-r>i
 ]]
 
 -- Saving without whitespaces | TODO: Fix reset of `/` register
 vim.cmd [[
-    inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
-    nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
+	inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
+	nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
 ]]
 
 -- Delete, yank, select a document
 vim.cmd [[
-    nnoremap dad ggVGd
-    nnoremap yad %y
-    nnoremap vad ggVG
+	nnoremap dad ggVGd
+	nnoremap yad %y
+	nnoremap vad ggVG
 ]]
 
 -- Undo files
@@ -50,8 +50,8 @@ vim.opt.undofile = false
 
 -- Set plugin loading according to filetype
 vim.cmd [[
-    filetype off
-    filetype plugin indent on
+	filetype off
+	filetype plugin indent on
 ]]
 
 -- Line numbers
@@ -107,8 +107,8 @@ vim.opt.foldmethod = "manual"
 -- List and List Characters
 vim.opt.list = true
 vim.opt.listchars = {
-    tab   = "I->",
-    trail = "X",
+	tab   = "I->",
+	trail = "X",
  --	nbsp  = "␣",
  --	eol   = "↲",
 }
@@ -133,49 +133,49 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 
 " AutoClose {
 
-    inoremap ( ()<lt>++><Esc>5ha
-    inoremap [ []<lt>++><Esc>5ha
-    inoremap { {}<lt>++><Esc>5ha
-    inoremap {<CR> {<CR>}<ESC>O
-    inoremap {;<CR> {<CR>};<ESC>O
-    if (&ft != 'tex')
-        if (&ft != 'verilog')
-            inoremap ' ''<lt>++><Esc>5ha
-        endif
-        inoremap ` ``<lt>++><Esc>5ha
-        inoremap " ""<lt>++><Esc>5ha
-    endif
+	inoremap ( ()<lt>++><Esc>5ha
+	inoremap [ []<lt>++><Esc>5ha
+	inoremap { {}<lt>++><Esc>5ha
+	inoremap {<CR> {<CR>}<ESC>O
+	inoremap {;<CR> {<CR>};<ESC>O
+	if (&ft != 'tex')
+		if (&ft != 'verilog')
+			inoremap ' ''<lt>++><Esc>5ha
+		endif
+		inoremap ` ``<lt>++><Esc>5ha
+		inoremap " ""<lt>++><Esc>5ha
+	endif
 
-    vmap ( di(<Esc>p
-    vmap [ di[<Esc>p
-    vmap { di{<Esc>p
-    vmap {<CR> di{<CR><Esc>p
-    vmap {;<CR> di{;<CR><Esc>p
-    if (&ft != 'tex')
-        if (&ft != 'verilog')
-            vmap ' di'<Esc>p
-        endif
-        vmap ` di`<Esc>p
-        vmap " di"<Esc>p
-    endif
+	vmap ( di(<Esc>p
+	vmap [ di[<Esc>p
+	vmap { di{<Esc>p
+	vmap {<CR> di{<CR><Esc>p
+	vmap {;<CR> di{;<CR><Esc>p
+	if (&ft != 'tex')
+		if (&ft != 'verilog')
+			vmap ' di'<Esc>p
+		endif
+		vmap ` di`<Esc>p
+		vmap " di"<Esc>p
+	endif
 
 " }
 
 " PLUGINS with Vim-Plug as Plugin Manager {
 
-    call plug#begin(stdpath('config') . '/plugged')
-        Plug 'mhinz/vim-startify', { 'on':  'Startify' }
-        Plug 'nvim-tree/nvim-web-devicons'
-        Plug 'romgrk/barbar.nvim'
-        Plug 'tpope/vim-fugitive'
-        Plug 'vim-airline/vim-airline'
-        Plug 'junegunn/seoul256.vim'
-        Plug 'preservim/vim-indent-guides'
-        Plug 'tpope/vim-surround'
-        Plug 'wakatime/vim-wakatime'
-        Plug 'lervag/vimtex'
-        Plug 'SirVer/ultisnips'
-    call plug#end()
+	call plug#begin(stdpath('config') . '/plugged')
+		Plug 'mhinz/vim-startify', { 'on':  'Startify' }
+		Plug 'nvim-tree/nvim-web-devicons'
+		Plug 'romgrk/barbar.nvim'
+		Plug 'tpope/vim-fugitive'
+		Plug 'vim-airline/vim-airline'
+		Plug 'junegunn/seoul256.vim'
+		Plug 'preservim/vim-indent-guides'
+		Plug 'tpope/vim-surround'
+		Plug 'wakatime/vim-wakatime'
+		Plug 'lervag/vimtex'
+		Plug 'SirVer/ultisnips'
+	call plug#end()
 
 " }
 
