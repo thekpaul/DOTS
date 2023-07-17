@@ -86,14 +86,6 @@ vim.opt.termguicolors = true
 -- Coloring columns
 vim.opt.colorcolumn = { "80", "120" }
 
--- Special characters
-vim.opt.listchars = {
-    tab   = "I->",
-    trail = "X",
- --	nbsp  = "␣",
- --	eol   = "↲",
-}
-
 -- Encoding and Language Settings
 vim.opt.encoding = "utf8"
 vim.opt.fileencodings = "utf8"
@@ -129,7 +121,12 @@ vim.opt.foldmethod = "manual"
 
 -- List and List Characters
 vim.opt.list = true
-vim.opt.lcs = { tab = "I->", trail = "X" }
+vim.opt.listchars = {
+    tab   = "I->",
+    trail = "X",
+ --	nbsp  = "␣",
+ --	eol   = "↲",
+}
 
 -- Scroll Off
 vim.opt.scrolloff = 10
