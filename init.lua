@@ -164,152 +164,41 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 " PLUGINS with Vim-Plug as Plugin Manager {
 
     call plug#begin(stdpath('config') . '/plugged')
-        Plug 'mhinz/vim-startify', { 'on':  'Startify' } " Vim-Startify
-        Plug 'nvim-tree/nvim-web-devicons' | " Devicons for NeoVim
-        Plug 'romgrk/barbar.nvim' " Tabline Plugin
-        Plug 'tpope/vim-fugitive' " Git Wrapper
-        Plug 'vim-airline/vim-airline' " Light Statusline
-        Plug 'junegunn/seoul256.vim' " Seoul256 Theme
-        Plug 'preservim/vim-indent-guides' " Visual Indentation Guide
-        Plug 'tpope/vim-surround' " Surrounder Plugin
-        Plug 'wakatime/vim-wakatime' " Official WakaTime Plugin
-        Plug 'lervag/vimtex' " Plugin for LaTeX
-        Plug 'SirVer/ultisnips' " Snippet Engine Plugin
+        Plug 'mhinz/vim-startify', { 'on':  'Startify' }
+        Plug 'nvim-tree/nvim-web-devicons'
+        Plug 'romgrk/barbar.nvim'
+        Plug 'tpope/vim-fugitive'
+        Plug 'vim-airline/vim-airline'
+        Plug 'junegunn/seoul256.vim'
+        Plug 'preservim/vim-indent-guides'
+        Plug 'tpope/vim-surround'
+        Plug 'wakatime/vim-wakatime'
+        Plug 'lervag/vimtex'
+        Plug 'SirVer/ultisnips'
     call plug#end()
 
 " }
 
-" ADDITIONAL SETTINGS for each External Plugin {
-
-  " Vim-Plug {
-
-      " nnoremap <F12> :PlugInstall<CR>
-      "   " Press F12 to Install new Plugins
-      " nnoremap <C-F12> :PlugClean<CR>
-      "   " Press Ctrl+F12 to Delete Plugins
-      " nnoremap <S-F12> :PlugUpdate<CR>
-      "   " Press Shift+F12 to Update new Plugins
-
-  " }
-
-  " BarBar {
-
-      " Source `lua/my_barbar.lua` for Setup
-        lua require('plugins.barbar')
-
-      " Temporary custom highlight groups
-        autocmd VimEnter,Colorscheme *
-            \ :hi BufferTabpageFill guibg=#565656
-        autocmd VimEnter,Colorscheme *
-            \ :hi BufferTabpages    guibg=#565656 guifg=#ffffff
-        autocmd VimEnter,Colorscheme *
-            \ :hi BufferTabpagesSep guibg=#565656 guifg=#ffffff
-
-      " BarBar Mappings
-      " Move to previous/next
-        nnoremap <silent> ,, :BufferPrevious<CR>
-        nnoremap <silent> ,. :BufferNext<CR>
-      " Re-order to previous/next
-        nnoremap <silent> ,< :BufferMovePrevious<CR>
-        nnoremap <silent> ,> :BufferMoveNext<CR>
-      " Goto buffer in position...
-        nnoremap <silent> ,1 :BufferGoto 1<CR>
-        nnoremap <silent> ,2 :BufferGoto 2<CR>
-        nnoremap <silent> ,3 :BufferGoto 3<CR>
-        nnoremap <silent> ,4 :BufferGoto 4<CR>
-        nnoremap <silent> ,5 :BufferGoto 5<CR>
-        nnoremap <silent> ,6 :BufferGoto 6<CR>
-        nnoremap <silent> ,7 :BufferGoto 7<CR>
-        nnoremap <silent> ,8 :BufferGoto 8<CR>
-        nnoremap <silent> ,9 :BufferLast<CR>
-      " Pin/unpin buffer
-        nnoremap <silent> ,p :BufferPin<CR>
-      " Close buffer
-        nnoremap <silent> ,c :BufferClose<CR>
-      " Wipeout buffer :BufferWipeout<CR>
-      " Magic buffer-picking mode :BufferPick<CR>
-      " Close commands
-      " - :BufferCloseAllButCurrent<CR>
-      " - :BufferCloseAllButPinned<CR>
-      " - :BufferCloseAllButCurrentOrPinned<CR>
-      " - :BufferCloseBuffersLeft<CR>
-      " - :BufferCloseBuffersRight<CR>
-      " Sort automatically by...
-        nnoremap <silent> ,bb :BufferOrderByBufferNumber<CR>
-        nnoremap <silent> ,bd :BufferOrderByDirectory<CR>
-        nnoremap <silent> ,bl :BufferOrderByLanguage<CR>
-        nnoremap <silent> ,bw :BufferOrderByWindowNumber<CR>
-
-  " }
-
-  " VimTeX {
-
-        let g:vimtex_indent_enabled = 0
-      " let g:vimtex_view_general_viewer = '.local/bin/sumatrapdf.sh'
-      " let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
-      " let g:vimtex_compiler_method = 'generic'
-      " let g:vimtex_compiler_generic = { 'command' : 'make' }
-
-  " }
-
-  " Seoul256 {
-
-        let g:seoul256_background = 234
-        colo seoul256
-        highlight EndOfBuffer guifg=bg | "Hide Tildes in Empty Buffer Space for GUI
-        highlight EndOfBuffer ctermfg=bg | "Hide Tildes for Terminal
-
-  " }
-
-  " Startify {
-
-        let g:startify_custom_header = [
-        \ '                                         __ __                  ',
-        \ '                       __               /\ \\ \                 ',
-        \ '              __   __ /\_\    ___ ___   \ \ \\ \                ',
-        \ '             /\ \ /\ \\/\ \ /` __` __`\  \ \ \\ \               ',
-        \ '             \ \ \_/ / \ \ \/\ \/\ \/\ \  \ \_\\_\              ',
-        \ '              \ \___/   \ \_\ \_\ \_\ \_\  \/\_\\_\             ',
-        \ '               \/__/     \/_/\/_/\/_/\/_/   \/_//_/             ',
-        \ '                                                                ']
-        set sessionoptions=blank,curdir,folds,help,tabpages,winpos
-          " Startify respects Preset Values of the Preceding Options
-
-  " }
-
-  " Vim-indent-guides {
-
-        let g:indent_guides_enable_on_vim_startup = 1
-        let g:indent_guides_guide_size = 1
-        let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'startify']
-
-      " Manually Set Foreground Colors matching `lcs` Tabs in Indent Guides {
-
-            let g:indent_guides_auto_colors = 0
-            autocmd VimEnter,Colorscheme *
-                \ :hi IndentGuidesOdd  ctermfg=59 guifg=#727272
-            autocmd VimEnter,Colorscheme *
-                \ :hi IndentGuidesEven ctermfg=59 guifg=#727272
-
-      " }
-
-  " }
-
-  " Vim-Markdown {
-
-        let g:vim_markdown_folding_disabled = 1
-
-  " }
-
-  " UltiSnips {
-
-        let g:UltiSnipsExpandTrigger = "<tab>"
-        let g:UltiSnipsJumpForwardTrigger = "<tab>"
-        let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-        let g:UltiSnipsSnippetDirectories = [stdpath('config') . "/UltiSnips"]
-
-  " }
-
-" }
-
 ]]
+
+-- Vim-Plug Custom Mappings
+require('mapping.plug')
+
+-- BarBar: Buffer/Tabline
+require('plugins.barbar')
+require('mapping.barbar')
+
+-- Seoul256: Colorscheme
+require('plugins.seoul256')
+
+-- VimTeX: LaTeX with (Neo)Vim
+require('plugins.vimtex')
+
+-- Startify: Startup Screen
+require('plugins.startify')
+
+-- Vim-Indent-Guides: Vertical Indent Guide ColorColumns
+require('plugins.vim-indent-guides')
+
+-- UltiSnips: Snippets Engine
+require('plugins.ultisnips')

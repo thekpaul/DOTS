@@ -136,3 +136,9 @@ vim.api.nvim_set_hl(0, 'BufferTabpageFill', {bg = '#565656'})
 vim.api.nvim_set_hl(0, 'BufferTabpages',    {bg = '#565656', fg = '#ffffff'})
 vim.api.nvim_set_hl(0, 'BufferTabpagesSep', {bg = '#565656', fg = '#ffffff'})
 --]]
+
+vim.cmd [[ " Temporary custom highlight groups
+	autocmd VimEnter,Colorscheme * :hi BufferTabpageFill guibg=#565656
+	autocmd VimEnter,Colorscheme * :hi BufferTabpages    guibg=#565656 guifg=#ffffff
+	autocmd VimEnter,Colorscheme * :hi BufferTabpagesSep guibg=#565656 guifg=#ffffff
+]]
