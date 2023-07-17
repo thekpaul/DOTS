@@ -329,7 +329,7 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
         let g:UltiSnipsExpandTrigger = "<tab>"
         let g:UltiSnipsJumpForwardTrigger = "<tab>"
         let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-        let g:UltiSnipsSnippetDirectories = [$HOME."/.config/nvim/UltiSnips"]
+        let g:UltiSnipsSnippetDirectories = [stdpath('config') . "/UltiSnips"]
 
   " }
 
