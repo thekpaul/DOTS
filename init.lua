@@ -140,6 +140,7 @@ vim.g.tex_flavor = "latex"
 -- Legacy Vimscript Configurations from `init.vim`
 
 vim.cmd [[
+autocmd VimEnter,Colorscheme * :hi Comment gui=italic
 au! BufRead,BufNewFile *.h setfiletype c
 
 " Jump Mechanism
