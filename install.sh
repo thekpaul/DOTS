@@ -46,9 +46,6 @@ sudo apt install -y ./nvim-linux64.deb
 rm nvim-linux64.deb
 
 # 2. Setup Dotfiles in XDG_CONFIG_HOME with Possible Symlinks
-## Prerequisite: Setup Github CLI (`gh`)
-gh auth login # Github CLI Login -> Interactive
-
 ## Add Variable for Path to Dotfiles Repo
 dotspath= # Set as empty for now
 
@@ -81,6 +78,9 @@ fi
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # Add Plugin Manager for NVim
 gh repo clone tmux-plugins/tpm ~/.config/tmux/plugins/tpm             # Add Plugin Manager for TMUX
+
+## Prerequisite: Setup Github CLI (`gh`)
+gh auth login # Github CLI Login -> Interactive
 
 # 3. Setup Fish as Default Shell and add Toolchains
 sudo usermod -s /usr/bin/fish $USER
