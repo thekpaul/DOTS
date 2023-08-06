@@ -1,12 +1,6 @@
 function fish_prompt
-  if not set -q VIRTUAL_ENV_DISABLE_PROMPT
-    set -g VIRTUAL_ENV_DISABLE_PROMPT true
-  end
-
-  echo
-
   set_color cyan
-  printf '%s' $USER
+  printf '\n%s' $USER
   set_color normal
   printf ' at '
 
@@ -14,7 +8,7 @@ function fish_prompt
   echo -n (prompt_hostname)
 
   set_color $fish_color_cwd
-  printf '  %s' (prompt_pwd)
+  printf '   %s' (prompt_pwd)
 
   # Show GIT BRANCH
   set_color brblack
