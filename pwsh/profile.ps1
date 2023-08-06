@@ -11,7 +11,7 @@ If (Test-Path "C:\Users\thekp\miniconda3\Scripts\conda.exe") {
 #endregion
 
 function prompt {
-    Write-Host ("$Env:UserName at $Env:UserDomain ") -NoNewline -ForegroundColor Cyan
+    Write-Host ("`n$Env:UserName at $Env:UserDomain ") -NoNewline -ForegroundColor Cyan
     Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") -NoNewline `
         -ForegroundColor Magenta
     if ($Env:CONDA_PROMPT_MODIFIER) {
