@@ -5,6 +5,9 @@ nvim/plugged/**
 # TMux Plugins (including TPM as a plugin manager)
 tmux/plugins/**
 
+# PowerShell Modules
+pwsh/Modules/**
+
 # Auxiliary Toolchain
 gh/**
 omf/**
