@@ -20,3 +20,13 @@ function prompt {
     Write-Host (" ↪$('>' * ($nestedPromptLevel))") -NoNewline -ForegroundColor Yellow
     return " "
 }
+
+# PSReadLine module import & Prefixed history search
+if ($host.Name -eq 'ConsoleHost')
+{
+    Import-Module PSReadLine # Module is installed in current directory
+
+    # Binding for moving through history by prefix
+    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+}
