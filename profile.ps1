@@ -24,9 +24,24 @@ function prompt {
 # PSReadLine module import & Prefixed history search
 if ($host.Name -eq 'ConsoleHost')
 {
-    Import-Module PSReadLine # Module is installed in current directory
+    if (Get-Module -ListAvailable -Name PSReadLine)
+    {
+        Import-Module PSReadLine # Module is installed in current directory
 
-    # Binding for moving through history by prefix
-    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+        # Binding for moving through history by prefix
+        Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+        Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+    }
+
+    if (Get-Module -ListAvailable -Name PSFzf)
+    {
+        Import-Module PSFzf
+
+        # Override PSReadLine's history search
+        Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' `
+                        -PSReadlineChordReverseHistory 'Ctrl+r'
+        
+        # Override default tab completion
+        Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+    }
 }
