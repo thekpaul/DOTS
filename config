@@ -19,3 +19,5 @@
 	default = simple
 [help]
 	autocorrect = 10
+[alias]
+	fix-commit = commit --edit --file=.git/COMMIT_EDITMSG
