@@ -13,6 +13,19 @@ gh/**
 omf/**
 wslu/**
 inkscape/**
+.gsd-keyboard.settings-ported
+Code/**
+dconf/**
+evolution/**
+gnome-control-center/**
+gnome-initial-setup-done
+goa-1.0/**
+gtk-3.0/**
+ibus/**
+mimeapps.list
+pulse/**
+user-dirs.dirs
+user-dirs.locale
 
 # Auxiliary Files
 **/.netrwhist
