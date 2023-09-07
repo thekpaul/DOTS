@@ -189,6 +189,9 @@ require('mapping.plug')
 require('plugins.barbar')
 require('mapping.barbar')
 
+-- Vim-Airline: Lightweight Statusline
+require('plugins.vim-airline')
+
 -- Seoul256: Colorscheme
 require('plugins.seoul256')
 
