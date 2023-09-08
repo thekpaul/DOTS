@@ -27,6 +27,7 @@ mimeapps.list
 pulse/**
 user-dirs.dirs
 user-dirs.locale
+systemd/**
 
 # Auxiliary Files
 **/.netrwhist
