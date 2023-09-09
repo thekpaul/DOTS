@@ -10,7 +10,9 @@ end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /home/thekpaul/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+if test -f /home/thekpaul/miniconda3/bin/conda
+    eval /home/thekpaul/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
 # <<< conda initialize <<<
 
 # kill the right prompt __conda_add_prompt 😠
