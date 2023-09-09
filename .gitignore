@@ -28,6 +28,7 @@ pulse/**
 user-dirs.dirs
 user-dirs.locale
 systemd/**
+google-chrome/**
 
 # Auxiliary Files
 **/.netrwhist
