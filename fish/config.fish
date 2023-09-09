@@ -18,6 +18,8 @@ end
 # kill the right prompt __conda_add_prompt 😠
 function __conda_add_prompt; end
 
+set -x PATH $HOME/.local/bin $PATH
+
 if status --is-login
   and test -s $TMUX;
   tmux -2;
