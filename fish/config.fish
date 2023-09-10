@@ -1,4 +1,3 @@
-set -Ux fish_greeting "Something on Your Mind?"
 set -gx GPG_TTY (tty)
 rvm default
 set -gx LC_CTYPE en_US.UTF-8
