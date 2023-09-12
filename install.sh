@@ -51,7 +51,7 @@ dotspath= # Set as empty for now
 
 ## Remove `~/.config` for Fresh Dotfiles Installation
 if [ -d ~/.config ]; then
-  rm -rf ~/.config
+  mv ~/.config_temp
 fi
 
 ## Clone Repo and Make Symlinks
@@ -81,6 +81,20 @@ gh repo clone tmux-plugins/tpm ~/.config/tmux/plugins/tpm             # Add Plug
 
 ## Prerequisite: Setup Github CLI (`gh`)
 gh auth login # Github CLI Login -> Interactive
+
+## Move back all previous items in `.config_temp`
+if [ -d ~/.config_temp]; then
+  for i in $(ls -A ~/.config_temp)
+  do
+    mv ~/.config_temp/$i ~/.config/$i
+  done
+
+  ### If `.config_temp` is not empty for some reason, keep `.config_temp`
+  if    ls -A1q ~/.config_temp/ | grep -q .
+  then  ! echo somedir is not empty
+  else  rm -rf ~/.config_temp
+  fi
+fi
 
 # 3. Setup Fish as Default Shell and add Toolchains
 sudo usermod -s /usr/bin/fish $USER
