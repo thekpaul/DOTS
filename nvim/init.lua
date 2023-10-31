@@ -8,7 +8,10 @@ vim.opt.exrc = true
 vim.opt.secure = true
 
 -- Behaviour changes to `mswin`
-vim.cmd [[ behave mswin ]]
+vim.opt.selection  = 'exclusive'
+vim.opt.selectmode = { 'mouse', 'key' }
+vim.opt.mousemodel = 'popup'
+vim.opt.keymodel   = { 'startsel', 'stopsel' }
 
 -- Virtual Edits
 vim.opt.virtualedit = 'onemore' -- For Consistency in Selective AutoClosing
