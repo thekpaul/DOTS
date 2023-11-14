@@ -194,6 +194,7 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 		Plug 'wakatime/vim-wakatime'
 		Plug 'lervag/vimtex'
 		Plug 'SirVer/ultisnips'
+		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	call plug#end()
 
 " }
@@ -224,3 +225,6 @@ require('plugins.vim-indent-guides')
 
 -- UltiSnips: Snippets Engine
 require('plugins.ultisnips')
+
+-- NVim-Treesitter: Parsing Library
+require('plugins.treesitter')

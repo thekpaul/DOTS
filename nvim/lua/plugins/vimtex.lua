@@ -1,6 +1,6 @@
 --[=[
 	PLUGINS_VIMTEX.lua:
-	Configurations for the `SirVer/ultisnips` Plugin.
+	Configurations for the `lervag/vimtex` Plugin.
 	Ported and extended from original configurations in legacy vimscript.
 ]=]
 
