@@ -29,6 +29,8 @@ user-dirs.dirs
 user-dirs.locale
 systemd/**
 google-chrome/**
+bashtop/**
+neofetch/**
 
 # Auxiliary Files
 **/.netrwhist
