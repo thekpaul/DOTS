@@ -180,6 +180,11 @@ inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
 		Plug 'lervag/vimtex'
 		Plug 'SirVer/ultisnips'
 		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+		if has('nvim') || has('patch-8.0.902')
+			Plug 'mhinz/vim-signify'
+		else
+			Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+		endif
 	call plug#end()
 
 " }
@@ -213,3 +218,6 @@ require('plugins.ultisnips')
 
 -- NVim-Treesitter: Parsing Library
 require('plugins.treesitter')
+
+-- Signify: VCS Indicators in (N)Vim Line-number Sidebar
+require('plugins.signify')
