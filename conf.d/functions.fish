@@ -6,7 +6,13 @@ function mkcd
 end
 
 function lsa
-  ls -AH --group-directories-first $argv
+  if [ (uname) = "Darwin" ]
+    gls -AH --group-directories-first $argv
+  else if [ (uname) = "Linux" ]
+    ls -AH --group-directories-first $argv
+  else
+    echo "Unsupported Operating System: Please report to upstream!"
+  end
 end
 
 function lscd
