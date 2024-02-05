@@ -1,6 +1,6 @@
 function fish_greeting
-  uptime -p >/dev/null 2>&1 # Flush any possible error messages
-  if test $status -eq 0
+# uptime -p >/dev/null 2>&1 # Flush any possible error messages
+  if uptime -p >/dev/null 2>&1
     # Supported on most Linux distros, returns uptime duration only
     # when the machine is up for less than '0' minutes then
     # 'uptime -p' returns ONLY 'up', so we need to set a default value
