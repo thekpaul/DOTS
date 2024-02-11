@@ -20,14 +20,6 @@ function lscd
   lsa
 end
 
-function sumatra
-  SumatraPDF.exe $argv
-end
-
-function tmux
-  command tmux -2 $argv
-end
-
 function vim
   if status --is-login
     and test $TMUX;
