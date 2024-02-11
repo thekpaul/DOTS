@@ -37,3 +37,8 @@ if status --is-login
   and test -s $TMUX;
   tmux -2;
 end
+
+if [ (uname) = "Darwin" ]
+  test -e {$HOME}/.iterm2_shell_integration.fish ;
+    and source {$HOME}/.iterm2_shell_integration.fish
+end
