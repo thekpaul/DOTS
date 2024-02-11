@@ -19,6 +19,8 @@ if [ (uname) = "Darwin" ]
 else if [ (uname) = "Linux" ]
   if test -f /home/thekpaul/miniconda3/bin/conda
     eval /home/thekpaul/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+  else if test -f /usr/bin/miniconda3/bin/conda
+    eval /usr/bin/miniconda3/bin/conda "shell.fish" "hook" $argv | source
   end
 else
   echo "Unsupported Operating System: Please report to upstream!"
