@@ -47,6 +47,7 @@ function Pwsh-Greeting () {
 
 function prompt {
     $oc = $host.ui.RawUI.ForegroundColor # Save text color
+    $culture = [cultureinfo]::CurrentUICulture # Save session locale settings
 
     # First List: Username, host machine, Git branch name (if applicable)
     Write-Host ("`n$Env:UserName at $Env:UserDomain ") `
@@ -60,7 +61,8 @@ function prompt {
         -NoNewline -ForegroundColor Yellow
 
     # Right-flushed prompt cursor setup
-    $curr_time = "$(date '+%H:%M [%d %^h (%a)]')"
+    [cultureinfo]::CurrentUICulture = 'en-US'
+    $curr_time = "$(Get-Date -UFormat '+%H:%M [%d %h (%a)]')"
     $startposx = $Host.UI.RawUI.windowsize.width - $curr_time.length
     $startposy = $Host.UI.RawUI.CursorPosition.Y
     if ($Env:CONDA_PROMPT_MODIFIER) {
@@ -77,7 +79,8 @@ function prompt {
     $Host.UI.Write($curr_time)
 
     # Reset prompt conditions for commandline entry
-    $host.UI.RawUI.ForegroundColor = $oc # Reset text color
+    $host.UI.RawUI.ForegroundColor = $oc # Restore text color
+    [cultureinfo]::CurrentUICulture = $culture # Restore sesstion locale settings
     $startposx = " ↪$('>' * ($nestedPromptLevel))".length # Compute correct coordinates for commandline entry
     $Host.UI.RawUI.CursorPosition = New-Object System.Management.Automation.Host.Coordinates $startposx,$startposy
 
