@@ -10,11 +10,26 @@ If (Test-Path "C:\Users\thekp\miniconda3\Scripts\conda.exe") {
 }
 #endregion
 
+function Get-GitBranch () {
+    $branch = git rev-parse --abbrev-ref HEAD
+
+    if ($?) { # Inside Git repo -> `$branch` is populated
+        if ($branch -eq "HEAD") {
+            # Print short-form commit SHA if in detached HEAD state
+            $branch = git rev-parse --short HEAD
+        }
+        return "[  $branch ] "
+    } else {
+        return ""
+    }
+}
+
 function prompt {
     Write-Host ("`n$Env:UserName at $Env:UserDomain ") `
         -NoNewline -ForegroundColor Cyan
     Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") `
         -NoNewline -ForegroundColor Magenta
+    Write-Host ("$(Get-GitBranch)") -NoNewline -ForegroundColor DarkGray
     if ($Env:CONDA_PROMPT_MODIFIER) {
         $Env:CONDA_PROMPT_MODIFIER | Write-Host -ForegroundColor Green
     }
@@ -42,7 +57,7 @@ if ($host.Name -eq 'ConsoleHost')
         # Override PSReadLine's history search
         Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' `
                         -PSReadlineChordReverseHistory 'Ctrl+r'
-        
+
         # Override default tab completion
         Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
     }
