@@ -28,6 +28,12 @@ function fish_right_prompt
     printf " %s" (set_color green; basename $CONDA_PROMPT_MODIFIER)
   end
   set_color brblack
-  printf "%s" (date '+%H:%M [%d %^h (%a)]')
+  if [ (uname) = "Darwin" ]
+    printf "%s" (gdate '+%H:%M [%d %^h (%a)]')
+  else if [ (uname) = "Linux" ]
+    printf "%s" (date '+%H:%M [%d %^h (%a)]')
+  else
+    echo "Unsupported OS: Report to upstream!"
+  end
   set_color normal
 end
