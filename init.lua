@@ -28,14 +28,6 @@ if not vim.g.vscode then
 	-- Mouse usage
 	vim.o.mouse = 'a'
 
-	-- Select-mode Windows-like clipboard
-	vim.cmd [[
-		vnoremap <C-x> "+x
-		vnoremap <C-c> "+y
-		cnoremap <C-v> <C-r>+
-		exe 'ino <script> <C-V>' paste#paste_cmd['i']
-	]]
-
 	-- Saving without whitespaces | TODO: Fix reset of `/` register
 	vim.cmd [[
 		inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
