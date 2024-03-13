@@ -14,17 +14,17 @@ vim.opt.secure = true
 	This will be sorted in future commits to replicate the current Neovim
 	setup in VS Code as well.
 ]=]
+
+-- Behaviour changes to `mswin`
+vim.opt.selection  = 'exclusive'
+vim.opt.selectmode = { 'mouse', 'key' }
+vim.opt.mousemodel = 'popup'
+vim.opt.keymodel   = { 'startsel', 'stopsel' }
+
+-- Virtual Edits
+vim.opt.virtualedit = 'onemore' -- For Consistency in Selective AutoClosing
+
 if not vim.g.vscode then
-
-	-- Behaviour changes to `mswin`
-	vim.opt.selection  = 'exclusive'
-	vim.opt.selectmode = { 'mouse', 'key' }
-	vim.opt.mousemodel = 'popup'
-	vim.opt.keymodel   = { 'startsel', 'stopsel' }
-
-	-- Virtual Edits
-	vim.opt.virtualedit = 'onemore' -- For Consistency in Selective AutoClosing
-
 	-- Mouse usage
 	vim.o.mouse = 'a'
 
