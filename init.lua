@@ -186,6 +186,7 @@ if not vim.g.vscode then
 		else
 			Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
 		endif
+		Plug 'https://tpope.io/vim/abolish.git'
 	call plug#end()
 
 	" }
