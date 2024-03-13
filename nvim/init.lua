@@ -36,25 +36,10 @@ if not vim.g.vscode then
 		exe 'ino <script> <C-V>' paste#paste_cmd['i']
 	]]
 
-	-- Windows-like un/redo
-	vim.cmd [[
-		nnoremap <C-z> u
-		nnoremap <C-y> <C-r>
-		inoremap <C-z> <Esc>ui
-		inoremap <C-y> <Esc><C-r>i
-	]]
-
 	-- Saving without whitespaces | TODO: Fix reset of `/` register
 	vim.cmd [[
 		inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
 		nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
-	]]
-
-	-- Delete, yank, select a document
-	vim.cmd [[
-		nnoremap dad ggVGd
-		nnoremap yad %y
-		nnoremap vad ggVG
 	]]
 
 	-- Undo files
