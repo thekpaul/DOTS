@@ -3,4 +3,7 @@
 	Configurations for the `mhinz/signify.vim` Plugin.
 ]=]
 
-vim.opt.updatetime = 100
+return {
+	'mhinz/vim-signify',
+	config = function() vim.opt.updatetime = 100 end
+}
