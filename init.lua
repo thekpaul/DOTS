@@ -185,6 +185,11 @@ if not vim.g.vscode then
 	vim.opt.rtp:prepend(lazypath)
 
 	-- Plugin configuration modules are in the `lua/plugins` subdirectory
-	require("lazy").setup("plugins")
+	require("lazy").setup("plugins", {
+		-- LAZY.nvim options
+		change_detection = {
+			notify = false, -- Don't notify when plugin configurations change
+		},
+	})
 
 end
