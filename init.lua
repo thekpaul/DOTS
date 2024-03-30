@@ -193,12 +193,8 @@ if not vim.g.vscode then
 
 	]]
 
-	-- Vim-Plug Custom Mappings
-	require('mapping.plug')
-
 	-- BarBar: Buffer/Tabline
 	require('plugins.barbar')
-	require('mapping.barbar')
 
 	-- Vim-Airline: Lightweight Statusline
 	require('plugins.vim-airline')
