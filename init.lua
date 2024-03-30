@@ -166,58 +166,28 @@ if not vim.g.vscode then
 
 	" }
 
-	" PLUGINS with Vim-Plug as Plugin Manager {
-
-	call plug#begin(stdpath('config') . '/plugged')
-		Plug 'mhinz/vim-startify', { 'on':  'Startify' }
-		Plug 'nvim-tree/nvim-web-devicons'
-		Plug 'romgrk/barbar.nvim'
-		Plug 'tpope/vim-fugitive'
-		Plug 'vim-airline/vim-airline'
-		Plug 'junegunn/seoul256.vim'
-		Plug 'preservim/vim-indent-guides'
-		Plug 'tpope/vim-surround'
-		Plug 'wakatime/vim-wakatime'
-		Plug 'lervag/vimtex'
-		Plug 'SirVer/ultisnips'
-		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-		if has('nvim') || has('patch-8.0.902')
-			Plug 'mhinz/vim-signify'
-		else
-			Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
-		endif
-		Plug 'https://tpope.io/vim/abolish.git'
-	call plug#end()
-
-	" }
-
 	]]
 
-	-- BarBar: Buffer/Tabline
-	require('plugins.barbar')
+	-- Bootstrap LAZY.nvim as a native Lua plugin manager
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not (vim.uv or vim.loop).fs_stat(lazypath) then
+		vim.fn.system({
+			"git",
+			"clone",
+			"--filter=blob:none",
+			"https://github.com/folke/lazy.nvim.git",
+			"--branch=stable", -- latest stable release
+			lazypath,
+		})
+	end
+	vim.opt.rtp:prepend(lazypath)
 
-	-- Vim-Airline: Lightweight Statusline
-	require('plugins.vim-airline')
-
-	-- Seoul256: Colorscheme
-	require('plugins.seoul256')
-
-	-- VimTeX: LaTeX with (Neo)Vim
-	require('plugins.vimtex')
-
-	-- Startify: Startup Screen
-	require('plugins.startify')
-
-	-- Vim-Indent-Guides: Vertical Indent Guide ColorColumns
-	require('plugins.vim-indent-guides')
-
-	-- UltiSnips: Snippets Engine
-	require('plugins.ultisnips')
-
-	-- NVim-Treesitter: Parsing Library
-	require('plugins.treesitter')
-
-	-- Signify: VCS Indicators in (N)Vim Line-number Sidebar
-	require('plugins.signify')
+	-- Plugin configuration modules are in the `lua/plugins` subdirectory
+	require("lazy").setup("plugins", {
+		-- LAZY.nvim options
+		change_detection = {
+			notify = false, -- Don't notify when plugin configurations change
+		},
+	})
 
 end
