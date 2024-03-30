@@ -1,14 +1,14 @@
-# texlive.profile written on Wed Dec  7 02:06:40 2022 UTC
+# texlive.profile written on Sat Mar 30 16:12:57 2024 UTC
 # It will NOT be updated and reflects only the
 # installation profile at installation time.
 selected_scheme scheme-custom
-TEXDIR /home/thekpaul/texlive/2023
-TEXMFCONFIG ~/.texlive2023/texmf-config
+TEXDIR /home/thekpaul/texlive/2024
+TEXMFCONFIG ~/.texlive2024/texmf-config
 TEXMFHOME ~/texmf
 TEXMFLOCAL /home/thekpaul/texlive/texmf-local
-TEXMFSYSCONFIG /home/thekpaul/texlive/2023/texmf-config
-TEXMFSYSVAR /home/thekpaul/texlive/2023/texmf-var
-TEXMFVAR ~/.texlive2023/texmf-var
+TEXMFSYSCONFIG /home/thekpaul/texlive/2024/texmf-config
+TEXMFSYSVAR /home/thekpaul/texlive/2024/texmf-var
+TEXMFVAR ~/.texlive2024/texmf-var
 binary_x86_64-linux 1
 collection-basic 1
 collection-binextra 1
