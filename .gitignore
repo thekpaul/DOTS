@@ -1,6 +1,5 @@
-# NeoVim Plugins and Plugin Manager (in `autoload`)
-nvim/autoload/**
-nvim/plugged/**
+# NeoVim Plugin-related external tools
+nvim/lazy-lock.json
 
 # TMux Plugins (including TPM as a plugin manager)
 tmux/plugins/**

@@ -126,6 +126,8 @@ if not vim.g.vscode then
 	-- Default LaTeX Flavor
 	vim.g.tex_flavor = "latex"
 
+	-- TODO: Function/Mapping to change LEADING (SPACES <=> TABS)
+
 	-- Legacy Vimscript Configurations from `init.vim`
 
 	vim.cmd [[
@@ -166,32 +168,77 @@ if not vim.g.vscode then
 
 	" }
 
-	" PLUGINS with Vim-Plug as Plugin Manager {
-
-	call plug#begin(stdpath('config') . '/plugged')
-		Plug 'mhinz/vim-startify', { 'on':  'Startify' }
-		Plug 'nvim-tree/nvim-web-devicons'
-		Plug 'romgrk/barbar.nvim'
-		Plug 'tpope/vim-fugitive'
-		Plug 'vim-airline/vim-airline'
-		Plug 'junegunn/seoul256.vim'
-		Plug 'preservim/vim-indent-guides'
-		Plug 'tpope/vim-surround'
-		Plug 'wakatime/vim-wakatime'
-		Plug 'lervag/vimtex'
-		Plug 'SirVer/ultisnips'
-		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-		if has('nvim') || has('patch-8.0.902')
-			Plug 'mhinz/vim-signify'
-		else
-			Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
-		endif
-		Plug 'https://tpope.io/vim/abolish.git'
-	call plug#end()
-
-	" }
-
 	]]
+
+	-- Bootstrap LAZY.nvim as a native Lua plugin manager
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not (vim.uv or vim.loop).fs_stat(lazypath) then
+		vim.fn.system({
+			"git",
+			"clone",
+			"--filter=blob:none",
+			"https://github.com/folke/lazy.nvim.git",
+			"--branch=stable", -- latest stable release
+			lazypath,
+		})
+	end
+	vim.opt.rtp:prepend(lazypath)
+
+	-- Plugins and options go HERE:
+	require("lazy").setup({
+		{
+			'junegunn/seoul256.vim',
+			lazy = false,
+			priority = 1000
+		},
+		{
+			'mhinz/vim-startify',
+			cmd = "Startify"
+		},
+		{
+			'nvim-tree/nvim-web-devicons',
+			lazy = true -- API plugin!
+		},
+		{
+			'romgrk/barbar.nvim',
+			dependencies = {
+				'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+				'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+			},
+			init = function() vim.g.barbar_auto_setup = false end,
+		},
+		'tpope/vim-fugitive',
+		'vim-airline/vim-airline',
+		{
+			'preservim/vim-indent-guides',
+			init = function() vim.g.indent_guides_enable_on_vim_startup = true end,
+		},
+		'tpope/vim-surround',
+		'wakatime/vim-wakatime',
+		{
+			'lervag/vimtex',
+			ft = "tex"
+		},
+		{
+			'SirVer/ultisnips',
+			ft = "tex" -- Snippets are currently only impelemted for TeX files
+		},
+		{
+			'nvim-treesitter/nvim-treesitter',
+			build = ":TSUpdate",
+			commit = "25ed904c7522b34ea2d1d01e598067b6fd4d037e", -- Before breaking change for latex
+		 --	config = function ()
+		 --		require("nvim-treesitter.configs").setup({
+		 --			ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+		 --			sync_install = false,
+		 --			highlight = { enable = true },
+		 --			indent = { enable = true },
+		 --		})
+		 --	end
+		},
+		'mhinz/vim-signify',
+		{ url = 'https://tpope.io/vim/abolish.git'},
+	})
 
 	-- BarBar: Buffer/Tabline
 	require('plugins.barbar')
