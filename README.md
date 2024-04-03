@@ -4,6 +4,11 @@
 
 ![](header.png)
 
+# Branch README
+
+This branch tests the [indent-blankline.nvim][ibl-nvim] plugin for Neovim,
+with the objective to replace [vim-indent-guides][vig].
+
 # Installation
 
 ## Installation Script
@@ -29,3 +34,6 @@ DOTS can be cloned to a local Git repository:
 Paul Kim – [@thekpaul](https://thekpaul.dev)
 
 Distributed under the MIT license. See ``LICENCE.md`` for more information.
+
+[ibl-nvim]: https://github.com/lukas-reineke/indent-blankline.nvim
+[vig]: https://github.com/preservim/vim-indent-guides
