@@ -13,13 +13,11 @@ return {
 		vim.cmd.colorscheme 'seoul256'
 
 		-- Hide buffer end tildes
-		-- Source: https://www.reddit.com/r/neovim/comments/yexeil/comment/iu0lbgt/?snippet=1_48_242
-		local DefNormal = vim.api.nvim_get_hl(0, { name = "Normal" }) -- `Normal` highlight group
-		local HideTilde = vim.tbl_extend('force', -- Overwrite from right-most table
-			{}, -- Baseline empty table to fill necessary key-value pairs
-			DefNormal, -- Get all pairs from `Normal` (keep backgrounds)
-			{ fg = DefNormal.bg, ctermfg = DefNormal.ctermbg } -- Overwrite foregrounds
-		)
-		vim.api.nvim_set_hl(0, "EndOfBuffer", HideTilde)
+		local DefNormal = vim.api.nvim_get_hl(0, { name = "Normal" })
+		vim.api.nvim_set_hl(0, "EndOfBuffer", {
+			-- NOTE: Only values from STARTUP are applied!
+			fg      = DefNormal.bg,     -- Hide in GUI
+			ctermfg = DefNormal.ctermbg -- Hide in TUI
+		})
 	end
 }
