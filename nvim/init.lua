@@ -117,6 +117,9 @@ if not vim.g.vscode then
 	 --	eol   = "↲",
 	}
 
+	-- Fill Characters: Set `eob` to empty character to remove EOB tildes
+	vim.opt.fillchars = { eob = " " }
+
 	-- Scroll Off
 	vim.opt.scrolloff = 10
 
