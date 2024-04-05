@@ -36,5 +36,22 @@ return {
 		 --		<++>
 		 --	}
 		})
+
+		-- Automatically enable-disable when in visual mode
+		-- Source: https://github.com/lukas-reineke/indent-blankline.nvim/issues/132#issuecomment-1893103850
+		local indent_blankline_augroup = vim.api.nvim_create_augroup("indent_blankline_augroup", {clear = true})
+		vim.api.nvim_create_autocmd("ModeChanged", {
+		    group = indent_blankline_augroup,
+		    pattern = { "[vV\x16]*:*" },
+		    command = "IBLEnable",
+		    desc = "Enable indent-blankline when exiting visual or selection mode"
+		})
+
+		vim.api.nvim_create_autocmd("ModeChanged", {
+		    group = indent_blankline_augroup,
+		    pattern = { "*:[vV\x16]*" },
+		    command = "IBLDisable",
+		    desc = "Disable indent-blankline when entering visual or selection mode"
+		})
 	end
 }
