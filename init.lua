@@ -111,7 +111,7 @@ if not vim.g.vscode then
 	-- List and List Characters
 	vim.opt.list = true
 	vim.opt.listchars = {
-		tab   = " ",
+		tab   = " ", -- Other options: , , 󰅂
 		trail = "X",
 	 --	nbsp  = "␣",
 	 --	eol   = "↲",
