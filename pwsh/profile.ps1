@@ -10,6 +10,21 @@ If (Test-Path "C:\Users\thekp\miniconda3\Scripts\conda.exe") {
 }
 #endregion
 
+# Use MSYS2 commands and binaries if available
+If (Test-Path "C:\msys64") {
+    ## `ls`: Builtin alias for `Get-ChildItem` => C:\msys64\usr\bin\ls.exe
+    If (Get-Command "ls.exe" -ErrorAction SilentlyContinue) {
+        If (Get-Alias ls -ErrorAction SilentlyContinue) {
+            Remove-Alias -Name ls -Force
+        }
+
+        function lsa {
+            C:\msys64\usr\bin\ls.exe `
+                -AH --group-directories-first --color=auto @args
+        }
+    }
+}
+
 function Get-GitBranch () {
     $branch = git rev-parse --abbrev-ref HEAD
 
