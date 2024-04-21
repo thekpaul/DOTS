@@ -30,6 +30,7 @@ systemd/**
 google-chrome/**
 bashtop/**
 neofetch/**
+yay/**
 
 # Auxiliary Files
 **/.netrwhist
