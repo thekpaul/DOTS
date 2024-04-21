@@ -129,47 +129,39 @@ if not vim.g.vscode then
 	-- Default LaTeX Flavor
 	vim.g.tex_flavor = "latex"
 
-	-- Legacy Vimscript Configurations from `init.vim`
+	-- Global mappings
+	-- Jump
+	local map = vim.keymap.set
+	map('n', '<C-j>', '/<++><CR>:let @/ = ""<CR>4"_xi')
+	map('i', '<C-j>', '<Esc>/<++><CR>:let @/ = ""<CR>4"_xi')
 
-	vim.cmd [[
-	autocmd VimEnter,Colorscheme * :hi Comment gui=italic
-	au! BufRead,BufNewFile *.h setfiletype c
+	-- AutoClose, Insert-mode
+	map('i', '(', '()<lt>++><Esc>5ha')
+	map('i', '[', '[]<lt>++><Esc>5ha')
+	map('i', '{', '{}<lt>++><Esc>5ha')
+	map('i', '{<CR>', '{<CR>}<ESC>O')
+	map('i', '{;<CR>', '{<CR>};<ESC>O')
+	if not (vim.bo.filetype == 'tex') then
+		if not (vim.bo.filetype == 'verilog') then
+			map('i', "'", "''<lt>++><Esc>5ha")
+		end
+		map('i', '`', '``<lt>++><Esc>5ha')
+		map('i', '"', '""<lt>++><Esc>5ha')
+	end
 
-	" Jump Mechanism
-	nnoremap <silent> <C-j> /<++><CR>:let @/ = ""<CR>4"_xi
-	inoremap <silent> <C-j> <Esc>/<++><CR>:let @/ = ""<CR>4"_xi
-
-	" AutoClose {
-
-	inoremap ( ()<lt>++><Esc>5ha
-	inoremap [ []<lt>++><Esc>5ha
-	inoremap { {}<lt>++><Esc>5ha
-	inoremap {<CR> {<CR>}<ESC>O
-	inoremap {;<CR> {<CR>};<ESC>O
-	if (&ft != 'tex')
-		if (&ft != 'verilog')
-			inoremap ' ''<lt>++><Esc>5ha
-		endif
-		inoremap ` ``<lt>++><Esc>5ha
-		inoremap " ""<lt>++><Esc>5ha
-	endif
-
-	vmap ( di(<Esc>p
-	vmap [ di[<Esc>p
-	vmap { di{<Esc>p
-	vmap {<CR> di{<CR><Esc>p
-	vmap {;<CR> di{;<CR><Esc>p
-	if (&ft != 'tex')
-		if (&ft != 'verilog')
-			vmap ' di'<Esc>p
-		endif
-		vmap ` di`<Esc>p
-		vmap " di"<Esc>p
-	endif
-
-	" }
-
-	]]
+	-- AutoClose, Visual-mode
+	map('v', '(', 'di(<Esc>p', { remap = true })
+	map('v', '[', 'di[<Esc>p', { remap = true })
+	map('v', '{', 'di{<Esc>p', { remap = true })
+	map('v', '{<CR>', 'di{<CR><Esc>p', { remap = true })
+	map('v', '{;<CR>', 'di{;<CR><Esc>p', { remap = true })
+	if not (vim.bo.filetype == 'tex') then
+		if not (vim.bo.filetype == 'verilog') then
+			map('v', "'", "di'<Esc>p", { remap = true })
+		end
+		map('v', '`', 'di`<Esc>p', { remap = true })
+		map('v', '"', 'di"<Esc>p', { remap = true })
+	end
 
 	-- Bootstrap LAZY.nvim as a native Lua plugin manager
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -192,5 +184,16 @@ if not vim.g.vscode then
 			notify = false, -- Don't notify when plugin configurations change
 		},
 	})
+
+	-- Show comments as ITALIC (works well with cursive fonts)
+	--   -> Apply AFTER Colorscheme!
+	local oldComment = vim.api.nvim_get_hl(0, { name = "Comment" })
+	local newComment = vim.tbl_extend('force',
+		{}, -- Baseline empty table to fill necessary key-value pairs
+		oldComment, -- Get all pairs from original `Comment` group
+		{ italic = true } -- Overwrite as italics
+	)
+
+	vim.api.nvim_set_hl(0, "Comment", newComment)
 
 end
