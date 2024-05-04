@@ -14,6 +14,9 @@ return {
 		vim.api.nvim_set_hl(0, "IndentEven", { -- Even level
 			ctermbg = 235, bg = "#303030"
 		})
+		vim.api.nvim_set_hl(0, "ScopeFG",  { -- Scope Foregrounds
+			ctermfg = 101, fg = "#999872"
+		})
 
 		require("ibl").setup(opts)
 
@@ -45,9 +48,9 @@ return {
 			remove_blankline_trail = false,
 			highlight = { "IndentOdd", "IndentEven" }
 		},
-	 --	scope = {
-	 --		<++>
-	 --	},
+		scope = {
+			highlight = "ScopeFG"
+		},
 	 --	exclude = {
 	 --		<++>
 	 --	},
