@@ -1,5 +1,4 @@
 set -gx GPG_TTY (tty)
-rvm default
 set -gx LC_CTYPE en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 
