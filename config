@@ -21,3 +21,4 @@
 	autocorrect = 10
 [alias]
 	fix-commit = commit --edit --file=.git/COMMIT_EDITMSG
+	rst-commit = commit --reedit-message=HEAD --reset-author
