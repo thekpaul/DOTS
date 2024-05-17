@@ -1,22 +1,20 @@
 # FontConfig Subdirectory
 
 This subdirectory is tracked for `fontconfig` configurations profile.
-All files are to be symlinked to the `$XDG_CONFIG_HOME/fontconfig/conf.d`
-directory, where they are parsed in order of the number consisting of the
-first two digits in the filename.
+All files are to be symlinked to the `$XDG_CONFIG_HOME/fontconfig` directory.
 
 ```sh
-ln -sf <DOTS_INSTALLATION_PATH>/fontconfig $HOME/.config/fontconfig/conf.d
+ln -sf <DOTS_INSTALLATION_PATH>/fontconfig $XDG_CONFIG_HOME/fontconfig
 ```
 
-## Contextual Alternatives and Stylistic Sets (`00-calt.conf`)
+## Contextual Alternatives and Stylistic Sets (`conf.d/00-calt.conf`)
 
 Applied to the "VictorMono Nerd Font" font family only.
 Check out the [Victor Mono][victormono] font repository for information on
 each stylistic set modifications.
 
 <!-- Upcoming Material!
-## Korean Language Fallback Fonts (`10-kokr.conf`)
+## Korean Language Fallback Fonts (`conf.d/10-kokr.conf`)
 
 Applied to the "VictorMono Nerd Font" font family only,
 uses the "D2CodingLigature Nerd Font" font family.
