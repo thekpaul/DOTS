@@ -15,9 +15,9 @@ end
 
 function lsa
   if [ (uname) = "Darwin" ]
-    gls --color=auto -AH --group-directories-first $argv
+    gls --color=auto -vAH --group-directories-first $argv
   else if [ (uname) = "Linux" ]
-    ls --color=auto -AH --group-directories-first $argv
+    ls --color=auto -vAH --group-directories-first $argv
   else
     echo "Unsupported Operating System: Please report to upstream!"
   end
