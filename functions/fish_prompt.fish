@@ -12,9 +12,7 @@ function fish_prompt
 
   # Show GIT BRANCH
   set_color brblack
-  if not test -z (fish_git_prompt)
-    printf '  [  %s ]' (string sub -s 3 -e -1 (fish_git_prompt))
-  end
+  fish_vcs_prompt "  [  %s ]"
   set_color normal
 
   # Line 2
