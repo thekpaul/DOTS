@@ -40,16 +40,20 @@ function lscd
 end
 
 function vim
-  if status --is-login
-    and test $TMUX;
-    set -l PANE_CNT (tmux list-panes | wc -l);
-    if test \( $PANE_CNT -eq 1 \);
-      if test (tmux -V) = "tmux 3.4";
-        command tmux split-window -dv -l 25%;
-      else;
-        command tmux split-window -dv -p 25;
+  if type -q nvim
+    if status --is-login
+      and test $TMUX;
+      set -l PANE_CNT (tmux list-panes | wc -l);
+      if test \( $PANE_CNT -eq 1 \);
+        if test (tmux -V) = "tmux 3.4";
+          command tmux split-window -dv -l 25%;
+        else;
+          command tmux split-window -dv -p 25;
+        end;
       end;
     end;
-  end;
-  command nvim $argv;
+    command nvim $argv;
+  else
+    command vim $argv;
+  end
 end
