@@ -1,12 +1,17 @@
 function fish_prompt
+  # Prerequisite: Check LAST STATUS and set colors
+  set -l last_pipestatus $pipestatus
+  set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
+  set -q fish_color_status
+  or set -g fish_color_status red
+
+  # Line 1: "<USER> at <HOST>   <PWD>"
   set_color cyan
   printf '\n%s' $USER
   set_color normal
   printf ' at '
-
   set_color brred
-  echo -n (prompt_hostname)
-
+  printf '%s' (prompt_hostname)
   set_color $fish_color_cwd
   printf '   %s' (prompt_pwd)
 
@@ -17,9 +22,30 @@ function fish_prompt
   or fish_fossil_prompt "  [ %s ]"
   set_color normal
 
+  # Show LAST STATUS:
+  # If the status was carried over
+  #   (if no command is issued or if `set` leaves the status untouched),
+  # don't bold it.
+  set -l bold_flag --bold
+  set -q __fish_prompt_status_generation
+    or set -g __fish_prompt_status_generation $status_generation
+  if test $__fish_prompt_status_generation = $status_generation
+    set bold_flag
+  end
+  set __fish_prompt_status_generation $status_generation
+  set -l status_color (set_color $fish_color_status)
+  set -l statusb_color (set_color $bold_flag $fish_color_status)
+  set -l print_status (__fish_print_pipestatus "  " "" "|" "$status_color" "$statusb_color" $last_pipestatus)
+  if test -z "$print_status"
+    set_color brgreen
+    printf '  '
+    set_color normal
+  else
+    printf ' %s' $print_status
+  end
+
   # Line 2
-  echo
-  printf '↪ '
+  printf '\n↪ '
 end
 
 
