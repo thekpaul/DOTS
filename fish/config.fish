@@ -33,7 +33,9 @@ end
 # kill the right prompt __conda_add_prompt 😠
 function __conda_add_prompt; end
 
-set -x PATH $HOME/.local/bin $PATH
+if test -d /home/thekpaul/.local/bin
+  set -x PATH $HOME/.local/bin $PATH
+end
 
 if status --is-login
   and test -s $TMUX;
