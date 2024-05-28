@@ -44,8 +44,10 @@ function fish_prompt
     printf ' %s' $print_status
   end
 
-  # Line 2
-  printf '\n↪ '
+  # Line 2: Display nested shells if available
+  printf '\n ↪'
+  string repeat '>' -n (test_nest) -N
+  printf ' '
 end
 
 
@@ -62,4 +64,16 @@ function fish_right_prompt
     echo "Unsupported OS: Report to upstream!"
   end
   set_color normal
+end
+
+function test_nest
+  if not test -z $SHLVL
+    if test -s $TMUX
+      printf '%d' (math $SHLVL - 1)
+    else
+      printf '%d' (math $SHLVL - 2)
+    end
+  else
+    printf '0' # Currently undetectable without hacks, so noop
+  end
 end
