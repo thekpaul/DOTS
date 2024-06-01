@@ -32,6 +32,9 @@ function Get-GitBranch () {
         if ($branch -eq "HEAD") {
             # Print short-form commit SHA if in detached HEAD state
             $branch = git rev-parse --short HEAD
+        } else {
+            # APPEND short-form commit SHA to branch/tag with minor formatting
+            $branch = $branch + " at " + (git rev-parse --short HEAD)
         }
         return "[  $branch ] "
     } else {
