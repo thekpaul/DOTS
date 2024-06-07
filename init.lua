@@ -163,6 +163,8 @@ if not vim.g.vscode then
 		map('v', '"', 'di"<Esc>p', { remap = true })
 	end
 
+	vim.g.mapleader = " "
+
 	-- Bootstrap LAZY.nvim as a native Lua plugin manager
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not (vim.uv or vim.loop).fs_stat(lazypath) then
