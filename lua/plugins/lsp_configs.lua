@@ -24,47 +24,47 @@ return {
 				-- Buffer local mappings: See `:h vim.lsp.*` for docs
 				local opts = { buffer = ev.buf, silent = true }
 
-				-- Telescope Integrations {
-				opts.desc = "Show LSP References with Telescope"
-				map.set("n", "gR", tele_builtin.lsp_references, opts)
+				-- Telescope Integrations (Lower-cases for All Mappings) {
+				opts.desc = "Show LSP [R]eferences with Telescope"
+				map.set("n", "gr", tele_builtin.lsp_references, opts)
 
-				opts.desc = "Show LSP Definitions with Telescope"
+				opts.desc = "Show LSP [D]efinitions with Telescope"
 				map.set("n", "gd", tele_builtin.lsp_definitions, opts)
 
-				opts.desc = "Show LSP Implementations with Telescope"
+				opts.desc = "Show LSP [I]mplementations with Telescope"
 				map.set("n", "gi", tele_builtin.lsp_implementations, opts)
 
-				opts.desc = "Show LSP Type Definitions"
+				opts.desc = "Show LSP [T]ype Definitions"
 				map.set("n", "gt", tele_builtin.lsp_type_definitions, opts)
 
-				opts.desc = "Show Current Buffer Diagnostics"
+				opts.desc = "Show Current Buffer [D]iagnostics"
 				map.set("n", "<leader>D", function()
 					tele_builtin.diagnostics({ bufnr = 0 })
 				end, opts)
 				-- }
 
-				opts.desc = "Go to declaration"
+				opts.desc = "[G]o to [D]eclaration"
 				map.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-				opts.desc = "See Available Code Actions in Normal/Selection Mode"
+				opts.desc = "See Available [C]ode [A]ctions in Normal/Selection Mode"
 				map.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
-				opts.desc = "Smart Rename"
+				opts.desc = "Smart [R]e[n]ame"
 				map.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
-				opts.desc = "Show Line Diagnostics"
+				opts.desc = "Show Line [D]iagnostics"
 				map.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
-				opts.desc = "Go to Previous Diagnostic"
+				opts.desc = "Go to [P]revious [D]iagnostic"
 				map.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
-				opts.desc = "Go to Next Diagnostic"
+				opts.desc = "Go to [N]ext [D]iagnostic"
 				map.set("n", "]d", vim.diagnostic.goto_next, opts)
 
-				opts.desc = "Show Documentation for What is Under Cursor"
+				opts.desc = "Show Documentation for What is Under Cursor [K]"
 				map.set("n", "K", vim.lsp.buf.hover, opts)
 
-				opts.desc = "Explicitly Restart LSP"
+				opts.desc = "Explicitly [R]e[s]tart LSP"
 				map.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)
 			end
 		})
