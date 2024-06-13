@@ -129,9 +129,36 @@ if not vim.g.vscode then
 	-- Default LaTeX Flavor
 	vim.g.tex_flavor = "latex"
 
+	-- LEADER key
+	vim.g.mapleader = " "
+
 	-- Global mappings
-	-- Jump
 	local map = vim.keymap.set
+	-- Move with highlights
+	map("v", "J", ":move '>+1<CR>gv=gv")
+	map("v", "K", ":move '<-2<CR>gv=gv")
+
+	-- Additional line-joining keymap that keeps cursor in place
+	map("n", "<leader>J", "mzJ`z")
+
+	-- Keep cursor during page-jumping and search
+	map("n", "<C-d>", "<C-d>zz")
+	map("n", "<C-f>", "<C-f>zz")
+	map("n", "<C-u>", "<C-u>zz")
+	map("n", "n", "nzzzv")
+	map("n", "N", "Nzzzv")
+
+	-- Paste or delete without overwriting local clipboard
+	map("x", "<leader>p", "\"_dP")
+	map("n", "<leader>d", "\"_d")
+	map("v", "<leader>d", "\"_d")
+
+	-- Easy access to system clipboard
+	map("n", "<leader>y", "\"+y")
+	map("v", "<leader>y", "\"+y")
+	map("n", "<leader>Y", "\"+Y")
+
+	-- Jump
 	map('n', '<C-j>', '/<++><CR>:let @/ = ""<CR>4"_xi')
 	map('i', '<C-j>', '<Esc>/<++><CR>:let @/ = ""<CR>4"_xi')
 
@@ -162,8 +189,6 @@ if not vim.g.vscode then
 		map('v', '`', 'di`<Esc>p', { remap = true })
 		map('v', '"', 'di"<Esc>p', { remap = true })
 	end
-
-	vim.g.mapleader = " "
 
 	-- Bootstrap LAZY.nvim as a native Lua plugin manager
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
