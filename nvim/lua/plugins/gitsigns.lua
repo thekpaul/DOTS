@@ -64,8 +64,8 @@ return {
 				opts.desc = "[R]eset ALL Hunk Lines in Buffer"
 				map('n', '<leader>gR', gitsigns.reset_buffer, opts)
 
-				opts.desc = "[P]review Hunk at Current Cursor Position (Floating)"
-				map('n', '<leader>gp', gitsigns.preview_hunk, opts)
+				opts.desc = "Pre[v]iew Hunk at Current Cursor Position (Floating)"
+				map('n', '<leader>gv', gitsigns.preview_hunk, opts)
 
 				opts.desc = "Show Current Line `git [b]lame` Results (Floating)"
 				map('n', '<leader>gb', function()
@@ -87,7 +87,7 @@ return {
 				map('n', '<leader>gtd', gitsigns.toggle_deleted, opts)
 
 				opts.desc = "Select Hunk at Current Cursor"
-				map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts)
+				map({'o', 'x'}, 'ih', gitsigns.select_hunk, opts)
 			end
 		}
 	end
