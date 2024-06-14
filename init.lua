@@ -158,6 +158,9 @@ if not vim.g.vscode then
 	map("v", "<leader>y", "\"+y")
 	map("n", "<leader>Y", "\"+Y")
 
+	-- Normal Mode for Terminal Buffer in Neovim
+	map("t", "<Esc>", "<C-\\><C-n>")
+
 	-- Jump
 	map('n', '<C-j>', '/<++><CR>:let @/ = ""<CR>4"_xi')
 	map('i', '<C-j>', '<Esc>/<++><CR>:let @/ = ""<CR>4"_xi')
