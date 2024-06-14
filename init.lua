@@ -134,31 +134,76 @@ if not vim.g.vscode then
 
 	-- Global mappings
 	local map = vim.keymap.set
-	-- Move with highlights
-	map("v", "J", ":move '>+1<CR>gv=gv")
-	map("v", "K", ":move '<-2<CR>gv=gv")
+	local mapopts = { remap = false }
+
+	-- Line-wise Move
+	-- {
+	mapopts.desc = "Move Current Line Down 1 Line"
+	map("n", "<M-j>", ":move +1<CR>", mapopts)
+
+	mapopts.desc = "Move Current Line Up 1 Line"
+	map("n", "<M-k>", ":move -2<CR>", mapopts)
+
+	mapopts.desc = "Move Selection Down 1 Line"
+	map("v", "J", ":move '>+1<CR>gv=gv", mapopts)
+
+	mapopts.desc = "Move Selection Up 1 Line"
+	map("v", "K", ":move '<-2<CR>gv=gv", mapopts)
+	-- }
 
 	-- Additional line-joining keymap that keeps cursor in place
+	-- {
+	mapopts.desc = "Keep Cursor in Place While Joining Lines"
 	map("n", "<leader>J", "mzJ`z")
+	-- }
 
-	-- Keep cursor during page-jumping and search
+	-- Keep cursor vertically centered during page-jumping and search
+	-- {
+	mapopts.desc = "[VCC] Half-page Down"
 	map("n", "<C-d>", "<C-d>zz")
+
+	mapopts.desc = "[VCC] Full-page Down"
 	map("n", "<C-f>", "<C-f>zz")
+
+	mapopts.desc = "[VCC] Half-page Up"
 	map("n", "<C-u>", "<C-u>zz")
+
+	mapopts.desc = "[VCC] Full-page Up"
+	map("n", "<C-b>", "<C-b>zz")
+
+	mapopts.desc = "[VCC] Find Next Search"
 	map("n", "n", "nzzzv")
+
+	mapopts.desc = "[VCC] Find Previous Search"
 	map("n", "N", "Nzzzv")
+	-- }
 
 	-- Paste or delete without overwriting local clipboard
+	-- {
+	mapopts.desc = "Paste to Selection without Overwriting Buffer"
 	map("x", "<leader>p", "\"_dP")
+
+	mapopts.desc = "Start Delete without Overwriting Buffer"
 	map("n", "<leader>d", "\"_d")
+
+	mapopts.desc = "Delete Selection without Overwriting Buffer"
 	map("v", "<leader>d", "\"_d")
+	-- }
 
 	-- Easy access to system clipboard
+  -- {
+	mapopts.desc = "Start Yank to System Clipboard"
 	map("n", "<leader>y", "\"+y")
+
+	mapopts.desc = "Yank Selection to System Clipboard"
 	map("v", "<leader>y", "\"+y")
+
+	mapopts.desc = "Yank Current Line to System Clipboard"
 	map("n", "<leader>Y", "\"+Y")
+  -- }
 
 	-- Normal Mode for Terminal Buffer in Neovim
+	mapopts.desc = "Return to Normal Mode in Terminal Buffer"
 	map("t", "<Esc>", "<C-\\><C-n>")
 
 	-- Jump
