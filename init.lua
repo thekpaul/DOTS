@@ -183,20 +183,14 @@ if not vim.g.vscode then
 	mapopts.desc = "Paste to Selection without Overwriting Buffer"
 	map("x", "<leader>p", "\"_dP")
 
-	mapopts.desc = "Start Delete without Overwriting Buffer"
-	map("n", "<leader>d", "\"_d")
-
-	mapopts.desc = "Delete Selection without Overwriting Buffer"
-	map("v", "<leader>d", "\"_d")
+	mapopts.desc = "Delete without Overwriting Buffer"
+	map({ "n", "v" }, "<leader>d", "\"_d")
 	-- }
 
 	-- Easy access to system clipboard
   -- {
-	mapopts.desc = "Start Yank to System Clipboard"
-	map("n", "<leader>y", "\"+y")
-
-	mapopts.desc = "Yank Selection to System Clipboard"
-	map("v", "<leader>y", "\"+y")
+	mapopts.desc = "Yank to System Clipboard"
+	map({ "n", "v" }, "<leader>y", "\"+y")
 
 	mapopts.desc = "Yank Current Line to System Clipboard"
 	map("n", "<leader>Y", "\"+Y")
