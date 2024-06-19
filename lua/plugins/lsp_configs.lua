@@ -130,6 +130,11 @@ return {
 						}
 					}
 				})
+			end,
+			["cmake"] = function()
+				lspconfig["cmake"].setup({
+					capabilities = capabilities
+				})
 			end--[==[,
 			["clangd"] = function()
 				lspconfig["clangd"].setup({
