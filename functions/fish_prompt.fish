@@ -17,7 +17,9 @@ function fish_prompt
 
   # Show GIT BRANCH
   set_color brblack
-  fish_vcs_prompt "  [  %s ]"
+  fish_git_prompt "  [  %s at $(git rev-parse --short HEAD 2> /dev/null) ]"
+  or fish_hg_prompt "  [ %s ]"
+  or fish_fossil_prompt "  [ %s ]"
   set_color normal
 
   # Show LAST STATUS:
