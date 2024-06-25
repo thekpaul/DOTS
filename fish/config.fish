@@ -39,7 +39,11 @@ end
 
 if status --is-login
   if type -q nix-user-chroot; and test -s {$NIX_PROFILES}
-    command nix-user-chroot ~/.nix tmux -2
+    if type -q tmux; and test -s {$TMUX}
+      command nix-user-chroot ~/.nix tmux -2
+    else
+      echo "Nix is available by executing the `nix-user-chroot` command."
+    end
   else if type -q tmux; and test -s {$TMUX}
     command tmux -2
   end
