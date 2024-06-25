@@ -25,7 +25,10 @@ if status --is-interactive; and type -q tmux
   end
 
   if status --is-login
-    and test -s $TMUX;
-    tmux -2;
+    if type -q nix-user-chroot; and test -s {$NIX_PROFILES}
+      command nix-user-chroot ~/.nix tmux -2
+    else if test -s $TMUX;
+      command tmux -2;
+    end
   end
 end
