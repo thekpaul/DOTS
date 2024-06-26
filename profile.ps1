@@ -10,9 +10,19 @@ If (Test-Path "C:\Users\thekp\miniconda3\Scripts\conda.exe") {
 }
 #endregion
 
-# Use MSYS2 commands and binaries if available
-If (Test-Path "C:\msys64") {
-    ## `ls`: Builtin alias for `Get-ChildItem` => C:\msys64\usr\bin\ls.exe
+# Override `ls` builtin alias for `Get-ChildItem` with avaiable tools, if any
+If (Get-Command "eza" -ErrorAction SilentlyContinue) {
+    Set-Alias -Name exa -Value eza
+
+    If (Get-Alias ls -ErrorAction SilentlyContinue) {
+        Remove-Alias -Name ls -Force
+        Set-Alias -Name ls -Value eza -Description "Overridden by 'eza'"
+    }
+
+    function lsa {
+        eza -AX --group-directories-first --color=auto --icons=auto @args
+    }
+} Elseif (Test-Path "C:\msys64") {
     If (Get-Command "ls.exe" -ErrorAction SilentlyContinue) {
         If (Get-Alias ls -ErrorAction SilentlyContinue) {
             Remove-Alias -Name ls -Force
