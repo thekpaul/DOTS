@@ -22,6 +22,10 @@ If (Get-Command "eza" -ErrorAction SilentlyContinue) {
     function lsa {
         eza -AX --group-directories-first --color=auto --icons=auto @args
     }
+
+    function lscd {
+        cd @args; lsa
+    }
 } Elseif (Test-Path "C:\msys64") {
     If (Get-Command "ls.exe" -ErrorAction SilentlyContinue) {
         If (Get-Alias ls -ErrorAction SilentlyContinue) {
@@ -31,6 +35,10 @@ If (Get-Command "eza" -ErrorAction SilentlyContinue) {
         function lsa {
             C:\msys64\usr\bin\ls.exe `
                 -AH --group-directories-first --color=auto @args
+        }
+
+        function lscd {
+            cd @args; lsa
         }
     }
 }
