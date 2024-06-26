@@ -82,6 +82,8 @@ function Pwsh-Greeting () {
 }
 
 function prompt {
+    $laststatus = $global:LASTEXITCODE # Save last command status
+
     $oc = $host.ui.RawUI.ForegroundColor # Save text color
     $culture = [cultureinfo]::CurrentCulture # Save session locale settings
 
@@ -90,7 +92,12 @@ function prompt {
         -NoNewline -ForegroundColor Cyan
     Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") `
         -NoNewline -ForegroundColor Magenta
-    Write-Host ("$(Get-GitBranch)") -ForegroundColor DarkGray
+    Write-Host ("$(Get-GitBranch)") -NoNewline -ForegroundColor DarkGray
+    if ($laststatus -eq 0) {
+        Write-Host (" ") -ForegroundColor DarkGreen
+    } Else {
+        Write-Host ("  $laststatus") -ForegroundColor DarkRed
+    }
 
     # Second Line: Input indicator, (right-flushed) Conda Env. and current time
     Write-Host (" ↪$('>' * ($nestedPromptLevel))") `
