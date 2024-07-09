@@ -37,12 +37,6 @@ if not vim.g.vscode then
 	-- Undo files
 	vim.opt.undofile = false
 
-	-- Set plugin loading according to filetype
-	vim.cmd [[
-		filetype off
-		filetype plugin indent on
-	]]
-
 	-- Line numbers
 	vim.opt.number = true
 
