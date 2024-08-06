@@ -85,8 +85,12 @@ function prompt {
     $oc = $host.ui.RawUI.ForegroundColor # Save text color
     $culture = [cultureinfo]::CurrentCulture # Save session locale settings
 
+    # Current User and Machine Name SECURELY Provided by Windows
+    $me = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $comp, $user = $me.split("\")
+
     # First List: Username, host machine, Git branch name (if applicable)
-    Write-Host ("`n$Env:UserName at $Env:UserDomain ") `
+    Write-Host ("`n$user at $comp ") `
         -NoNewline -ForegroundColor Cyan
     Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") `
         -NoNewline -ForegroundColor Magenta
