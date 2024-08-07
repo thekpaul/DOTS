@@ -20,7 +20,8 @@ If (Get-Command "eza" -ErrorAction SilentlyContinue) {
     }
 
     function lsa {
-        eza -AX --group-directories-first --color=auto --icons=auto @args
+        eza -AX --group-directories-first --color=auto --icons=auto `
+            -I NTUSER* @args
     }
 
     function lscd {
