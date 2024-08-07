@@ -19,6 +19,13 @@ else if [ (uname) = "Linux" ]
   end
 end
 
+if type -q eza
+  function tree
+    lsa --tree -lo --no-permissions --time-style "+%y/%m/%d %H:%M" \
+        $argv
+  end
+end
+
 function lscd
   cd $argv
   lsa
