@@ -24,6 +24,10 @@ If (Get-Command "eza" -ErrorAction SilentlyContinue) {
             -I NTUSER* @args
     }
 
+    function tree {
+        lsa --tree --level=1 -l --time-style "+%y/%m/%d %H:%M" @args
+    }
+
     function lscd {
         cd @args; lsa
     }
