@@ -13,17 +13,17 @@ function mkcd
   end
 end
 
-function lsa
-  if type -q eza
+if type -q eza
+  function lsa --wraps eza
     eza -AX --group-directories-first --color=auto --icons=auto $argv
-  else
-    if [ (uname) = "Darwin" ]
-      gls --color=auto -vAH --group-directories-first $argv
-    else if [ (uname) = "Linux" ]
-      ls --color=auto -vAH --group-directories-first $argv
-    else
-      echo "Unsupported Operating System: Please report to upstream!"
-    end
+  end
+else if [ (uname) = "Darwin" ]
+  function lsa --wraps gls
+    gls --color=auto -vAH --group-directories-first $argv
+  end
+else if [ (uname) = "Linux" ]
+  function lsa --wraps ls
+    ls --color=auto -vAH --group-directories-first $argv
   end
 end
 
