@@ -21,7 +21,7 @@ If (Get-Command "eza" -ErrorAction SilentlyContinue) {
 
     function lsa {
         eza -AX --group-directories-first --color=auto --icons=auto `
-            -I NTUSER* @args
+            -I "NTUSER*|desktop.ini" @args
     }
 
     function tree {
