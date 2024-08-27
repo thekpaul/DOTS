@@ -8,7 +8,14 @@ function ic --description 'IC Scripts Wrapper for Fish'
     return
   else if type -q ic$argv
   # echo (which ic$argv)
-    exec bash -c "source $(which ic$argv); exec fish"
+    set FISH_PATH (which fish)
+    if type -q conda; and set -q CONDA_DEFAULT_ENV
+      set CONDA_ENV $CONDA_DEFAULT_ENV
+      conda deactivate
+      exec bash -c "source $(which ic$argv); exec $FISH_PATH -C 'conda activate $CONDA_ENV'"
+    else
+      exec bash -c "source $(which ic$argv); exec $FISH_PATH"
+    end
   else
     echo "FATAL: `ic$argv` not found."
   end
