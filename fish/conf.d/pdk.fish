@@ -1,3 +1,5 @@
+if string match -qr 'pdk*' (prompt_hostname)
+
 function ic --description 'IC Scripts Wrapper for Fish'
   if not count $argv > /dev/null
     for command in (complete -C ic | grep command)
@@ -19,4 +21,6 @@ function ic --description 'IC Scripts Wrapper for Fish'
   else
     echo "FATAL: `ic$argv` not found."
   end
+end
+
 end
