@@ -2,8 +2,16 @@ if string match -qr 'pdk*' (prompt_hostname)
 
   function ic --description 'IC Scripts Wrapper for Fish'
     if not count $argv > /dev/null
+      set -l IC
       for command in (complete -C ic | grep command)
-        string match -r "ic\d+" $command
+        set -a IC (string match -r "ic\d+" $command)
+      end
+      if count $IC > /dev/null
+        printf "%d possible scripts: " (count $IC)
+        echo $IC
+        return 0
+      else
+        return 1
       end
     else if set -q argv[2]
       echo "Too many arguments: only one is supported at this time."
