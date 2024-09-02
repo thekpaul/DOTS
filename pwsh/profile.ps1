@@ -95,11 +95,10 @@ function prompt {
     $comp, $user = $me.split("\")
 
     # First List: Username, host machine, Git branch name (if applicable)
-    Write-Host ("`n$user at $comp ") `
-        -NoNewline -ForegroundColor Cyan
-    Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") `
-        -NoNewline -ForegroundColor Magenta
-    Write-Host ("$(Get-GitBranch)") -ForegroundColor DarkGray
+    $curr_pwd = $($executionContext.SessionState.Path.CurrentLocation).Path.Replace("$HOME", "~")
+    Write-Host ("`n$user at $comp ") -NoNewline -ForegroundColor Cyan
+    Write-Host ("  $curr_pwd ")     -NoNewline -ForegroundColor Magenta
+    Write-Host ("$(Get-GitBranch)")             -ForegroundColor DarkGray
 
     # Second Line: Input indicator, (right-flushed) Conda Env. and current time
     Write-Host (" ↪$('>' * ($nestedPromptLevel))") `
