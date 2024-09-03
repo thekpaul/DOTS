@@ -39,9 +39,9 @@ function lscd
   lsa
 end
 
-function vim
-  if type -q nvim
-    if status --is-login
+if type -q nvim
+  function vim --wraps nvim
+    if status --is-interactive
       and test $TMUX;
       set -l PANE_CNT (tmux list-panes | wc -l);
       if test \( $PANE_CNT -eq 1 \);
@@ -53,7 +53,5 @@ function vim
       end;
     end;
     command nvim $argv;
-  else
-    command vim $argv;
   end
 end
