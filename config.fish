@@ -44,7 +44,7 @@ if type -q tmux
     set -e CURR_SESSION
   end
   set -l NUM_SESSIONS (count $TMUX_SESSIONS)
-  if set -q CURR_SESSION; and contains $CURR_SESSION $TMUX_SESSIONS
+  if set -q CURR_SESSION; and contains $CURR_SESSION $TMUX_SESSIONS 2> /dev/null
     set NUM_SESSIONS (math $NUM_SESSIONS - 1)
   end
   if test $NUM_SESSIONS -gt 0
