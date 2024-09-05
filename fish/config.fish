@@ -34,7 +34,7 @@ end
 function __conda_add_prompt; end
 
 if test -d /home/thekpaul/.local/bin
-  set -x PATH $HOME/.local/bin $PATH
+  fish_add_path -g $HOME/.local/bin
 end
 
 if type -q tmux
