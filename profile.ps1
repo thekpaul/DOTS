@@ -25,7 +25,7 @@ If (Get-Command "eza" -ErrorAction SilentlyContinue) {
     }
 
     function tree {
-        lsa --tree --level=1 -l --time-style "+%y/%m/%d %H:%M" @args
+        lsa --tree -l --time-style "+%y/%m/%d %H:%M" @args
     }
 
     function lscd {
