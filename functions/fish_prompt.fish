@@ -69,9 +69,9 @@ end
 function test_nest
   if not test -z $SHLVL
     if test -s $TMUX
-      printf '%d' (math $SHLVL - 1)
+      printf '%d' (math max (math $SHLVL - 1), 0)
     else
-      printf '%d' (math $SHLVL - 2)
+      printf '%d' (math max (math $SHLVL - 2), 0)
     end
   else
     printf '0' # Currently undetectable without hacks, so noop
