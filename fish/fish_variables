@@ -2,7 +2,6 @@
 # VERSION: 3.0
 SETUVAR DISPLAY:\x3a0\x1elocalhost\x3a0\x2e0
 SETUVAR --export JAVA_HOME:/usr/lib/jvm/jdk\x2d17/
-SETUVAR --export PYENV_ROOT:/home/thekpaul/\x2epyenv
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
