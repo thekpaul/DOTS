@@ -14,7 +14,7 @@ if string match -qr 'pdk*' (prompt_hostname)
         return 1
       end
     else if set -q argv[2]
-      echo "Too many arguments: only one is supported at this time."
+      echo "Too many arguments: only one is supported at this time." >&2
       return 1
     else if type -q ic$argv
       set FISH_PATH (which fish)
@@ -25,7 +25,8 @@ if string match -qr 'pdk*' (prompt_hostname)
         exec bash -c "source $(which ic$argv); exec $FISH_PATH"
       end
     else
-      echo "FATAL: `ic$argv` not found."
+      echo "FATAL: `ic$argv` not found." >&2
+      return 1
     end
   end
 
