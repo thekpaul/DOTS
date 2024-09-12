@@ -37,7 +37,9 @@ if string match -qr 'pdk*' (prompt_hostname)
       set -l mount_point (echo $i | awk ' { print $3 } ')
       set -l ip_addr (echo $i | awk ' { print $NF } ' | grep -E -o ',addr=(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' | string sub -s 7)
       if test -d $mount_point/$USER; and test -x $mount_point/$USER
-        echo $PDK directory $mount_dir mounted on $mount_point \(IP: $ip_addr\)
+        if status --is-interactive
+          echo $PDK directory $mount_dir mounted on $mount_point \(IP: $ip_addr\)
+        end
         set -g (string join '' $PDK "_HOME") $mount_point/$USER
       end
     end
