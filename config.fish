@@ -2,6 +2,10 @@ set -gx GPG_TTY (tty)
 set -gx LC_CTYPE en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 
+if test -d $HOME/.local/bin
+  fish_add_path -g $HOME/.local/bin
+end
+
 # Experimental: Setting user-specific $VISUAL here may have unintended consequences
 if not set -q VISUAL; and type -q nvim
   set -g VISUAL (realpath (which nvim))
@@ -32,10 +36,6 @@ end
 
 # kill the right prompt __conda_add_prompt 😠
 function __conda_add_prompt; end
-
-if test -d $HOME/.local/bin
-  fish_add_path -g $HOME/.local/bin
-end
 
 if [ (uname) = "Darwin" ]
   test -e {$HOME}/.iterm2_shell_integration.fish ;
