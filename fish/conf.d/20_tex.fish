@@ -1,3 +1,5 @@
+# 20: TeX.fish
+# This snippet is used to recognise single-user TeXLive Distributions.
 # NOTE: Currently only supports `x86_64-linux` in user `$HOME` directory.
 
 if test -d $HOME/texlive

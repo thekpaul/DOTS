@@ -1,3 +1,8 @@
+# 21: TMUX.fish
+# This snippet is used for TMux.
+# It checks for (other) available sessions in the current TMux socket.
+# If login-shell, this snippet opens a new TMux session.
+
 if status --is-interactive; and type -q tmux
   set -l TMUX_SESSIONS (tmux ls 2> /dev/null | awk ' { print $1 } ' | string sub -e -1)
   set -l CURR_SESSION (tmux display-message -p '#S' 2> /dev/null)
