@@ -13,5 +13,6 @@ else if [ (uname) = "Darwin" ]
   end
 end
 
+# NOTE: Moved to `config.fish`
 # kill the right prompt __conda_add_prompt 😠
-function __conda_add_prompt; end
+# function __conda_add_prompt; end
