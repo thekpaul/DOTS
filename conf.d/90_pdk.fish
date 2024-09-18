@@ -1,3 +1,6 @@
+# 90: PDK.fish
+# This snippet targets the PDK server systems.
+
 if string match -qr 'pdk*' (prompt_hostname)
 
   function ic --description 'IC Scripts Wrapper for Fish'
