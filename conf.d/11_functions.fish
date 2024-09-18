@@ -1,4 +1,7 @@
-# FUNCTIONS.fish
+# 11: FUNCTIONS.fish
+# This file defines basic functions used in interactive shell sessions.
+# If applicable, functions here may be moved to their own, separate functions
+# in the `./functions` directory.
 
 function mkcd
   command mkdir $argv
