@@ -24,6 +24,9 @@ vim.opt.keymodel   = { 'startsel', 'stopsel' }
 -- Virtual Edits
 vim.opt.virtualedit = 'onemore' -- For Consistency in Selective AutoClosing
 
+-- Default Filetypes
+vim.g.filetype_v = 'verilog' -- Default filetype for `*.v` is "verilog"
+
 if not vim.g.vscode then
 	-- Mouse usage
 	vim.o.mouse = 'a'
