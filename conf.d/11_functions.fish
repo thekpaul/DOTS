@@ -16,27 +16,6 @@ function mkcd
   end
 end
 
-if type -q eza
-  function lsa --wraps eza
-    eza -AX --group-directories-first --color=auto --icons=auto $argv
-  end
-else if [ (uname) = "Darwin" ]
-  function lsa --wraps gls
-    gls --color=auto -vAH --group-directories-first $argv
-  end
-else if [ (uname) = "Linux" ]
-  function lsa --wraps ls
-    ls --color=auto -vAH --group-directories-first $argv
-  end
-end
-
-if type -q eza
-  function tree
-    lsa --tree -lo --no-permissions --time-style "+%y/%m/%d %H:%M" \
-        $argv
-  end
-end
-
 function lscd
   cd $argv
   lsa
