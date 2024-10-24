@@ -2,42 +2,6 @@
 # This snippet targets the PDK server systems.
 
 if string match -qr 'pdk*' (prompt_hostname)
-
-  function ic --description 'IC Scripts Wrapper for Fish'
-    if not count $argv > /dev/null
-      set -l IC
-      for command in (complete -C ic | grep command)
-        set -a IC (string match -r "ic\d+" $command)
-      end
-      set -l IC_NUM (count $IC)
-      printf "%d possible scripts: " $IC_NUM
-      if test $IC_NUM -gt 0
-        echo $IC
-        return 0
-      else
-        echo "returning to shell..."
-        return 1
-      end
-    else if set -q argv[2]
-      echo "Too many arguments: only one is supported at this time." >&2
-      return 1
-    else if type -q ic$argv
-      set FISH_PATH (status fish-path)
-      if status is-login
-        set FISH_PATH "$FISH_PATH -l"
-      end
-      if type -q conda; and set -q CONDA_DEFAULT_ENV
-        set CONDA_ENV $CONDA_DEFAULT_ENV
-        exec bash -c "source $(which ic$argv); exec $FISH_PATH -C 'conda deactivate; conda activate $CONDA_ENV'"
-      else
-        exec bash -c "source $(which ic$argv); exec $FISH_PATH"
-      end
-    else
-      echo "FATAL: `ic$argv` not found." >&2
-      return 1
-    end
-  end
-
   for i in (mount | grep pdk)
     if string match -qr -- '^pdk[0-9]' $i
       set -l mount_args (echo $i | awk ' { print $1 } ' | string split ":")
@@ -53,5 +17,4 @@ if string match -qr 'pdk*' (prompt_hostname)
       end
     end
   end
-
 end
