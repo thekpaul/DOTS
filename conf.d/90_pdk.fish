@@ -9,18 +9,23 @@ if string match -qr 'pdk*' (prompt_hostname)
       for command in (complete -C ic | grep command)
         set -a IC (string match -r "ic\d+" $command)
       end
-      if count $IC > /dev/null
-        printf "%d possible scripts: " (count $IC)
+      set -l IC_NUM (count $IC)
+      printf "%d possible scripts: " $IC_NUM
+      if test $IC_NUM -gt 0
         echo $IC
         return 0
       else
+        echo "returning to shell..."
         return 1
       end
     else if set -q argv[2]
       echo "Too many arguments: only one is supported at this time." >&2
       return 1
     else if type -q ic$argv
-      set FISH_PATH (which fish)
+      set FISH_PATH (status fish-path)
+      if status is-login
+        set FISH_PATH "$FISH_PATH -l"
+      end
       if type -q conda; and set -q CONDA_DEFAULT_ENV
         set CONDA_ENV $CONDA_DEFAULT_ENV
         exec bash -c "source $(which ic$argv); exec $FISH_PATH -C 'conda deactivate; conda activate $CONDA_ENV'"
