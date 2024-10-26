@@ -17,8 +17,7 @@ function mkcd
 end
 
 function lscd
-  cd $argv
-  lsa
+  cd $argv && lsa
 end
 
 if type -q nvim
