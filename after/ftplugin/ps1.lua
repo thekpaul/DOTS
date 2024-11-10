@@ -1,6 +1,5 @@
 --[=[
-	FTPLUGIN_PS1.lua:
-	Configurations for the `ps1` (PowerShell) filetype.
+	FTPLUGIN_PS1.lua: Configurations for the `ps1` (PowerShell) filetype.
 ]=]
 
 -- Local Tab/Space Settings
