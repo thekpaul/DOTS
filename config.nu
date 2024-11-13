@@ -306,3 +306,6 @@ $env.config = {
 def banner [] {
     print $"(sys host | get uptime)...Something on Your Mind?"
 }
+
+source ./aliases.nu
+source ./functions.nu
