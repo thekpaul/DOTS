@@ -101,3 +101,9 @@ $env.NU_PLUGIN_DIRS = [
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
+
+### Editor Configuration ######################################################
+# If Neovim exists, use the first absolute path available.                    #
+# If not, the field will remain empty.                                        #
+###############################################################################
+$env.EDITOR = (do --ignore-shell-errors { which nvim | get path | get 0 })
