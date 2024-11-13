@@ -299,3 +299,10 @@ $env.config = {
         command_not_found: { null } # return an error message when a command is not found
     }
 }
+
+### Welcome Banner ############################################################
+# Set a custom banner when starting a new session.                            #
+###############################################################################
+def banner [] {
+    print $"(sys host | get uptime)...Something on Your Mind?"
+}
