@@ -16,7 +16,7 @@ function mkcd
   end
 end
 
-function lscd
+function lscd --wraps cd
   cd $argv && lsa
 end
 
