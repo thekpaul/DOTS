@@ -40,6 +40,15 @@ def __is_git_dir [left?: string, right?: string] {
     }
 }
 
+# Status Checking Command
+def __last_status [] {
+    if ($env.LAST_EXIT_CODE != 0) {
+        $"(ansi rb)  ($env.LAST_EXIT_CODE)(ansi reset)"
+    } else {
+        $"(ansi g)  (ansi reset)"
+    }
+}
+
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
@@ -60,7 +69,9 @@ def create_left_prompt [] {
     let path_segment = $"($path_color)  ($dir)(ansi reset)"
     let git_segment = $"($git_color)($git_status)(ansi reset)"
 
-    $"($user_segment) at ($host_segment) ($path_segment) ($git_segment)\n "
+    let last_exit_code = (__last_status)
+
+    $"($user_segment) at ($host_segment) ($path_segment) ($git_segment) (__last_status)\n "
 }
 
 def create_right_prompt [] {
@@ -72,13 +83,7 @@ def create_right_prompt [] {
     ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
         str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
 
-    let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
-        (ansi rb)
-        ($env.LAST_EXIT_CODE)
-    ] | str join)
-    } else { "" }
-
-    ([$last_exit_code, (char space), $time_segment] | str join)
+    $time_segment
 }
 
 # Use nushell functions to define your right and left prompt
