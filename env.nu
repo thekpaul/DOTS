@@ -1,5 +1,45 @@
 # Auto-generated from Nushell Version 0.99.1
 
+### Helper Commands for Environmental Awareness ###############################
+
+# Git Directory Checking Command
+def __is_git_dir [left?: string, right?: string] {
+    # Determine if `git` is available in current session
+    if (which git | length) == 0 {
+        error make --unspanned { msg: "Git is unavailable." }
+    }
+
+    let repo_info = (
+        ^git rev-parse --git-dir
+                       --is-inside-git-dir
+                       --is-bare-repository
+                       --is-inside-work-tree HEAD
+        | complete
+    )
+
+    if $repo_info.exit_code != 0 {
+        return null
+    }
+
+#   let repo_opts = ($repo_info.stdout | split row (char newline) | first 5)
+    # Order of data storage
+    # -> "git_dir", "inside_gitdir", "bare_repo", "inside_worktree", "sha"
+
+    let branch_segment = $"(^git rev-parse --abbrev-ref HEAD)"
+    let commit_segment = $"(^git rev-parse --short HEAD)"
+    let repo_stat = $"($branch_segment) at ($commit_segment)"
+
+    # Formatting output
+
+    if ($left | is-empty) {
+        $repo_stat
+    } else if ($right | is-empty) {
+        $"($left)($repo_stat)($left)"
+    } else {
+        $"($left)($repo_stat)($right)"
+    }
+}
+
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
@@ -8,16 +48,19 @@ def create_left_prompt [] {
     }
     let user = (whoami)
     let host = (uname | get nodename)
+    let git_status = try { __is_git_dir " [  " " ]" } catch { "" }
 
     let user_color = (if (is-admin) { ansi light_red_bold } else { ansi light_blue_bold })
     let host_color = (ansi light_purple_bold)
     let path_color = (ansi green_bold)
+    let git_color = (ansi dark_gray)
 
     let user_segment = $"($user_color)($user)(ansi reset)"
     let host_segment = $"($host_color)($host)(ansi reset)"
     let path_segment = $"($path_color)  ($dir)(ansi reset)"
+    let git_segment = $"($git_color)($git_status)(ansi reset)"
 
-    $"($user_segment) at ($host_segment) ($path_segment)\n "
+    $"($user_segment) at ($host_segment) ($path_segment) ($git_segment)\n "
 }
 
 def create_right_prompt [] {
