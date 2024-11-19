@@ -25,6 +25,10 @@ return {
 							["<C-k>"] = actions.move_selection_previous,
 							["<C-j>"] = actions.move_selection_next,
 							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						},
+						n = {
+							["dd"] = require("telescope.actions").delete_buffer,
+							["q"] = require("telescope.actions").close
 						}
 					}
 				}
@@ -48,6 +52,15 @@ return {
 			)
 			keymap.set("n", "<leader>fc", builtin.grep_string,
 				{ desc = "[F]ind string under [c]ursor in PWD" }
+			)
+			keymap.set("n", "<leader>fb", function()
+					builtin.buffers({
+						sort_mru = true,
+						sort_lastused = true,
+						initial_mode = "normal"
+					})
+				end,
+				{ desc = "[F]ind [b]uffer in current Neovim session" }
 			)
 		end
 	},
