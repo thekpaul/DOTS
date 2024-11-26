@@ -93,11 +93,14 @@ return {
 			["lua_ls"] = function() -- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
-					--[==[ -- Provided by `lua_ls` documentation for primary use in Neovim
+					-- Provided by `lua_ls` documentation for primary use in Neovim
 					on_init = function(client)
-						local path = client.workspace_folders[1].name
-						if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
-							return
+						if client.workspace_folders then
+							local path = client.workspace_folders[1].name
+							if vim.uv.fs_stat(path..'/.luarc.json')
+								or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+								return
+							end
 						end
 
 						client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
@@ -120,7 +123,6 @@ return {
 							}
 						})
 					end,
-					--]==]
 					settings = {
 						Lua = { -- make the language server recognize "vim" global
 							diagnostics = {
