@@ -21,20 +21,12 @@ return {
 			-- Navigation
 			opts.desc = "Move Cursor to [N]ext Git Change"
 			map('n', '<leader>gn', function()
-				if vim.wo.diff then
-					vim.cmd.normal({'<leader>gc', bang = true})
-				else
-					gitsigns.nav_hunk('next')
-				end
+				gitsigns.nav_hunk('next')
 			end, opts)
 
 			opts.desc = "Move Cursor to [P]revious Git Change"
 			map('n', '<leader>gp', function()
-				if vim.wo.diff then
-					vim.cmd.normal({'<leader>gC', bang = true})
-				else
-					gitsigns.nav_hunk('prev')
-				end
+				gitsigns.nav_hunk('prev')
 			end, opts)
 
 			-- Actions
