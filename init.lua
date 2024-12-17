@@ -261,4 +261,11 @@ if not vim.g.vscode then
 		},
 	})
 
+	vim.filetype.add({
+		pattern = {
+			['.*/.*%.cdsinit.*'] = 'skill', -- See `:help lua-patterns`
+			['.*ssh/config'] = 'sshconfig'
+		}
+	})
+
 end
