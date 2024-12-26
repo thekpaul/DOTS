@@ -139,6 +139,24 @@ return {
 				lspconfig["cmake"].setup({
 					capabilities = capabilities
 				})
+			end,
+			["verible"] = function()
+				lspconfig["verible"].setup({
+					capabilities = capabilities,
+					cmd = { 'verible-verilog-ls', '--rules_config_search' },
+					root_dir = function(fname)
+						return
+							vim.fs.dirname(vim.fs.find(
+								'.rules.verible_lint', -- local Verible lint rule
+								{ path = fname, upward = true }
+							)[1]) or
+							vim.fs.dirname(vim.fs.find(
+								'.git', -- local Git repository, second option
+								{ path = fname, upward = true }
+							)[1]) or
+							vim.fn.getcwd() -- current directory (for single-file system), fallback
+					end
+				})
 			end--[==[,
 			["clangd"] = function()
 				lspconfig["clangd"].setup({
