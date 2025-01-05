@@ -31,10 +31,10 @@ if not vim.g.vscode then
 	-- Mouse usage
 	vim.o.mouse = 'a'
 
-	-- Saving without whitespaces | TODO: Fix reset of `/` register
+	-- Saving without trailing whitespaces
 	vim.cmd [[
-		inoremap <C-s> <Esc>:%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>a
-		nnoremap <C-s> :%s/\s\+$//e<CR>:let @/=""<CR>:update<CR>
+		inoremap <silent> <C-s> <Esc>:keeppatterns %s/\s\+$//e<CR>:update<CR>a
+		nnoremap <silent> <C-s> :keeppatterns %s/\s\+$//e<CR>:update<CR>
 	]]
 
 	-- Undo files
