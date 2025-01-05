@@ -31,12 +31,6 @@ if not vim.g.vscode then
 	-- Mouse usage
 	vim.o.mouse = 'a'
 
-	-- Saving without trailing whitespaces
-	vim.cmd [[
-		inoremap <silent> <C-s> <Esc>:keeppatterns %s/\s\+$//e<CR>:update<CR>a
-		nnoremap <silent> <C-s> :keeppatterns %s/\s\+$//e<CR>:update<CR>
-	]]
-
 	-- Undo files
 	vim.opt.undofile = false
 
@@ -132,6 +126,19 @@ if not vim.g.vscode then
 	-- Global mappings
 	local map = vim.keymap.set
 	local mapopts = { remap = false }
+
+	-- Save Without Trailing Whitespaces
+	-- {
+	local function save_without_trailing_whitespaces()
+		local cursor = vim.api.nvim_win_get_cursor(0)
+		vim.cmd('keeppatterns %s/\\s\\+$//e')
+		vim.cmd.update()
+		vim.api.nvim_win_set_cursor(0, cursor)
+	end
+
+	mapopts.desc = "Save Without Trailing Whitespaces"
+	map({ "n", "i" }, "<C-s>", save_without_trailing_whitespaces, mapopts)
+	-- }
 
 	-- Line-wise Move
 	-- {
