@@ -272,6 +272,8 @@ if not vim.g.vscode then
 		pattern = {
 			['.*/.*%.cdsinit.*'] = 'skill', -- See `:help lua-patterns`
 			['.*ssh/config'] = 'sshconfig',
+			['.*/.*%.synopsys_dc.setup.*'] = 'tcl',
+			['.*/innovus.cmd.*'] = 'tcl'
 		},
 		extension = {
 			h = 'c',
