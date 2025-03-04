@@ -166,5 +166,9 @@ return {
 			--]==]
 		})
 
+		-- Setup functions for non-`mason` language servers
+		-- These may depend on external binaries available on the system,
+		-- and may cause issues when such dependencies are not available.
+		lspconfig.nushell.setup{} -- Requires an external Nushell binary
 	end
 }
