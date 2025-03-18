@@ -142,52 +142,87 @@ return {
 			-- But only a static string is accepted here.
 			no_name_title = nil,
 		}
+
+	-- Temporary custom highlight groups
+	local BufferDefaultTabpages = vim.api.nvim_get_hl(0, { name = "BufferDefaultTabpages"})
+	local BufferTabpages = vim.tbl_extend('force', {},
+		BufferDefaultTabpages, { bg = '#565656' }
+	)
+	vim.api.nvim_set_hl(0, "BufferTabpages", BufferTabpages)
+
+	local BufferDefaultTabpageFill = vim.api.nvim_get_hl(0, { name = "BufferDefaultTabpageFill"})
+	local BufferTabpageFill = vim.tbl_extend('force', {},
+		BufferDefaultTabpageFill, { bg = '#565656' }
+	)
+	vim.api.nvim_set_hl(0, "BufferTabpageFill", BufferTabpageFill)
+
+	local BufferDefaultTabpagesSep = vim.api.nvim_get_hl(0, { name = "BufferDefaultTabpagesSep"})
+	local BufferTabpagesSep = vim.tbl_extend('force', {},
+		BufferDefaultTabpagesSep, { bg = '#565656', fg = '#ffffff' }
+	)
+	vim.api.nvim_set_hl(0, "BufferTabpagesSep", BufferTabpagesSep)
+
 	-- Mappings for the `romgrk/barbar.nvim` Plugin.
-	vim.cmd [[ " Temporary custom highlight groups
-		autocmd VimEnter,Colorscheme * :hi BufferTabpageFill guibg=#565656
-		autocmd VimEnter,Colorscheme * :hi BufferTabpages    guibg=#565656 guifg=#ffffff
-		autocmd VimEnter,Colorscheme * :hi BufferTabpagesSep guibg=#565656 guifg=#ffffff
+	local map = vim.keymap.set
+	local mapopts = { remap = false, silent = true }
 
-		" Move to previous/next
-		nnoremap <silent> ,, :BufferPrevious<CR>
-		nnoremap <silent> ,. :BufferNext<CR>
+	mapopts.desc = "Go to previous buffer"
+	map("n", ",,", '<CMD>BufferPrevious<CR>', mapopts)
 
-		" Re-order to previous/next
-		nnoremap <silent> ,< :BufferMovePrevious<CR>
-		nnoremap <silent> ,> :BufferMoveNext<CR>
+	mapopts.desc = "Go to next buffer"
+	map("n", ",.", '<CMD>BufferNext<CR>', mapopts)
 
-		" Goto buffer in position...
-		nnoremap <silent> ,1 :BufferGoto 1<CR>
-		nnoremap <silent> ,2 :BufferGoto 2<CR>
-		nnoremap <silent> ,3 :BufferGoto 3<CR>
-		nnoremap <silent> ,4 :BufferGoto 4<CR>
-		nnoremap <silent> ,5 :BufferGoto 5<CR>
-		nnoremap <silent> ,6 :BufferGoto 6<CR>
-		nnoremap <silent> ,7 :BufferGoto 7<CR>
-		nnoremap <silent> ,8 :BufferGoto 8<CR>
-		nnoremap <silent> ,9 :BufferLast<CR>
+	mapopts.desc = "Move current buffer to previous position"
+	map("n", ",<", '<CMD>BufferMovePrevious<CR>', mapopts)
 
-		" Pin/unpin buffer
-		nnoremap <silent> ,p :BufferPin<CR>
+	mapopts.desc = "Move current buffer to next position"
+	map("n", ",>", '<CMD>BufferMoveNext<CR>', mapopts)
 
-		" Close buffer
-		nnoremap <silent> ,c :BufferClose<CR>
+	mapopts.desc = "Go to buffer 1"
+	map("n", ",1", '<CMD>BufferGoto 1<CR>', mapopts)
 
-		" Wipeout buffer :BufferWipeout<CR>
-		" Magic buffer-picking mode :BufferPick<CR>
-		" Close commands
-		" - :BufferCloseAllButCurrent<CR>
-		" - :BufferCloseAllButPinned<CR>
-		" - :BufferCloseAllButCurrentOrPinned<CR>
-		" - :BufferCloseBuffersLeft<CR>
-		" - :BufferCloseBuffersRight<CR>
+	mapopts.desc = "Go to buffer 2"
+	map("n", ",2", '<CMD>BufferGoto 2<CR>', mapopts)
 
-		" Sort automatically by...
-		nnoremap <silent> ,bb :BufferOrderByBufferNumber<CR>
-		nnoremap <silent> ,bd :BufferOrderByDirectory<CR>
-		nnoremap <silent> ,bl :BufferOrderByLanguage<CR>
-		nnoremap <silent> ,bw :BufferOrderByWindowNumber<CR>
-	]]
+	mapopts.desc = "Go to buffer 3"
+	map("n", ",3", '<CMD>BufferGoto 3<CR>', mapopts)
+
+	mapopts.desc = "Go to buffer 4"
+	map("n", ",4", '<CMD>BufferGoto 4<CR>', mapopts)
+
+	mapopts.desc = "Go to buffer 5"
+	map("n", ",5", '<CMD>BufferGoto 5<CR>', mapopts)
+
+	mapopts.desc = "Go to buffer 6"
+	map("n", ",6", '<CMD>BufferGoto 6<CR>', mapopts)
+
+	mapopts.desc = "Go to buffer 7"
+	map("n", ",7", '<CMD>BufferGoto 7<CR>', mapopts)
+
+	mapopts.desc = "Go to buffer 8"
+	map("n", ",8", '<CMD>BufferGoto 8<CR>', mapopts)
+
+	mapopts.desc = "Go to last buffer"
+	map("n", ",9", '<CMD>BufferLast<CR>', mapopts)
+
+	mapopts.desc = "Pin current buffer"
+	map("n", ",p", '<CMD>BufferPin<CR>', mapopts)
+
+	mapopts.desc = "Close current buffer"
+	map("n", ",c", '<CMD>BufferClose<CR>', mapopts)
+
+	mapopts.desc = "Automatic buffer sort: Buffer number"
+	map("n", ",bb", '<CMD>BufferOrderByBufferNumber<CR>', mapopts)
+
+	mapopts.desc = "Automatic buffer sort: Directory"
+	map("n", ",bd", '<CMD>BufferOrderByDirectory<CR>', mapopts)
+
+	mapopts.desc = "Automatic buffer sort: Language"
+	map("n", ",bl", '<CMD>BufferOrderByLanguage<CR>', mapopts)
+
+	mapopts.desc = "Automatic buffer sort: Window number"
+	map("n", ",bw", '<CMD>BufferOrderByWindowNumber<CR>', mapopts)
+
 	end,
  --	keys = {
  --		{ },
