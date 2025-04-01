@@ -106,3 +106,12 @@ $env.PROMPT_COMMAND_RIGHT = {||
 $env.PROMPT_INDICATOR = "↪ "
 $env.TRANSIENT_PROMPT_COMMAND = " "
 $env.TRANSIENT_PROMPT_INDICATOR = "> "
+
+# `$env.HOME` Variable for Windows Systems
+# Windows systems do not have the `$env.HOME` environmental variable by default.
+# As such, to replicate the `$env.HOME` found in many Unix-based systems,
+# a Nushell internal variable `$nu.home-path` is used instead.
+if ((uname | get kernel-name | str contains --ignore-case "windows")
+    and not ('HOME' in $env)) {
+    load-env { HOME: $nu.home-path }
+}
