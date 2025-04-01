@@ -3,6 +3,13 @@
 #   `~\Documents\WindowsPowerShell\` directory, where this script may be
 #   incompatible - use at your own risk!
 
+#region conda initialize
+# !! Contents within this block are managed by 'conda init' !!
+If (Test-Path "$env:USERPROFILE\miniconda3\Scripts\conda.exe") {
+    (& "$env:USERPROFILE\miniconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
+}
+#endregion
+
 function Get-GitBranch () {
     $branch = git rev-parse --abbrev-ref HEAD
 
@@ -26,6 +33,9 @@ function prompt {
     Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") `
         -NoNewline -ForegroundColor Magenta
     Write-Host ("$(Get-GitBranch)") -NoNewline -ForegroundColor DarkGray
+    if ($Env:CONDA_PROMPT_MODIFIER) {
+        $Env:CONDA_PROMPT_MODIFIER | Write-Host -ForegroundColor Green
+    }
     Write-Host (" ↪$('>' * ($nestedPromptLevel))") `
         -NoNewline -ForegroundColor Yellow
     return " "
