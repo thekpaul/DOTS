@@ -10,6 +10,44 @@ If (Test-Path "$env:USERPROFILE\miniconda3\Scripts\conda.exe") {
 }
 #endregion
 
+# Override `ls` builtin alias for `Get-ChildItem` with avaiable tools, if any
+If (Get-Command "eza" -ErrorAction SilentlyContinue) {
+    Set-Alias -Name exa -Value eza
+
+    If (Get-Alias ls -ErrorAction SilentlyContinue) {
+        Remove-Alias -Name ls -Force
+        Set-Alias -Name ls -Value eza -Description "Overridden by 'eza'"
+    }
+
+    function lsa {
+        eza -AX --group-directories-first --color=auto --icons=auto `
+            -I "ntuser*|NTUSER*|desktop.ini" @args
+    }
+
+    function tree {
+        lsa --tree -l --time-style "+%y/%m/%d %H:%M" @args
+    }
+
+    function lscd {
+        cd @args; lsa
+    }
+} Elseif (Test-Path "C:\msys64") {
+    If (Get-Command "ls.exe" -ErrorAction SilentlyContinue) {
+        If (Get-Alias ls -ErrorAction SilentlyContinue) {
+            Remove-Alias -Name ls -Force
+        }
+
+        function lsa {
+            C:\msys64\usr\bin\ls.exe `
+                -AH --group-directories-first --color=auto @args
+        }
+
+        function lscd {
+            cd @args; lsa
+        }
+    }
+}
+
 function Get-GitBranch () {
     $branch = git rev-parse --abbrev-ref HEAD
 
