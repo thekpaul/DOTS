@@ -21,3 +21,10 @@ $env.config.rm.always_trash = true
 $env.config.recursion_limit = 10
 $env.config.buffer_editor = (which nvim | get path | str join '')
 $env.config.render_right_prompt_on_last_line = true
+
+## Imported Modules and Scripts ###############################################
+
+use std/dirs
+
+use ./aliases.nu *
+use ./functions *
