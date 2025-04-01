@@ -49,16 +49,43 @@ function Pwsh-Greeting () {
 }
 
 function prompt {
+    $oc = $host.ui.RawUI.ForegroundColor # Save text color
+    $culture = [cultureinfo]::CurrentCulture # Save session locale settings
+
+    # First List: Username, host machine, Git branch name (if applicable)
     Write-Host ("`n$Env:UserName at $Env:UserDomain ") `
         -NoNewline -ForegroundColor Cyan
     Write-Host ("  $($executionContext.SessionState.Path.CurrentLocation) ") `
         -NoNewline -ForegroundColor Magenta
-    Write-Host ("$(Get-GitBranch)") -NoNewline -ForegroundColor DarkGray
-    if ($Env:CONDA_PROMPT_MODIFIER) {
-        $Env:CONDA_PROMPT_MODIFIER | Write-Host -ForegroundColor Green
-    }
+    Write-Host ("$(Get-GitBranch)") -ForegroundColor DarkGray
+
+    # Second Line: Input indicator, (right-flushed) Conda Env. and current time
     Write-Host (" ↪$('>' * ($nestedPromptLevel))") `
         -NoNewline -ForegroundColor Yellow
+
+    # Right-flushed prompt cursor setup
+    $curr_time = "$([cultureinfo]::CurrentCulture = 'en-US'; Get-Date -UFormat '+%H:%M [%d %h (%a)]')"
+    $startposx = $Host.UI.RawUI.windowsize.width - $curr_time.length
+    $startposy = $Host.UI.RawUI.CursorPosition.Y
+    if ($Env:CONDA_PROMPT_MODIFIER) {
+        $startposx = $startposx - $Env:CONDA_PROMPT_MODIFIER.length
+    }
+    $Host.UI.RawUI.CursorPosition = New-Object System.Management.Automation.Host.Coordinates $startposx,$startposy
+
+    # Print right-flushed prompt
+    if ($Env:CONDA_PROMPT_MODIFIER) {
+        $Host.UI.RawUI.ForegroundColor = "Green"
+        $Host.UI.Write($Env:CONDA_PROMPT_MODIFIER)
+    }
+    $Host.UI.RawUI.ForegroundColor = "DarkGray"
+    $Host.UI.Write($curr_time)
+
+    # Reset prompt conditions for commandline entry
+    $host.UI.RawUI.ForegroundColor = $oc # Restore text color
+    [cultureinfo]::CurrentCulture = $culture # Restore sesstion locale settings
+    $startposx = " ↪$('>' * ($nestedPromptLevel))".length # Compute correct coordinates for commandline entry
+    $Host.UI.RawUI.CursorPosition = New-Object System.Management.Automation.Host.Coordinates $startposx,$startposy
+
     return " "
 }
 
