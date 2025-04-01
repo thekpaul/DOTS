@@ -27,6 +27,27 @@ function Get-GitBranch () {
     }
 }
 
+function Pwsh-Greeting () {
+    $uptime = New-Object -TypeName System.Text.StringBuilder
+
+    if ((Get-Uptime).Days) {
+        $null = $uptime.Append("$((Get-Uptime).Days) days, ")
+    }
+    if((Get-Uptime).Hours) {
+        $null = $uptime.Append("$((Get-Uptime).Hours) hours, ")
+    }
+    if ((Get-Uptime).Minutes) {
+        $null = $uptime.Append("$((Get-Uptime).Minutes) minutes")
+    }
+
+    if ($uptime.Length) {
+        return $uptime.ToString() + "...Something on Your Mind?"
+    } else {
+        return "Less than a minute...Something on Your Mind?"
+    }
+
+}
+
 function prompt {
     Write-Host ("`n$Env:UserName at $Env:UserDomain ") `
         -NoNewline -ForegroundColor Cyan
@@ -40,6 +61,9 @@ function prompt {
         -NoNewline -ForegroundColor Yellow
     return " "
 }
+
+# Print greeting message first
+Write-Host ($(Pwsh-Greeting))
 
 # PSReadLine module import & Prefixed history search
 if ($host.Name -eq 'ConsoleHost')
