@@ -22,3 +22,6 @@
 [alias]
 	fix-commit = commit --edit --file=.git/COMMIT_EDITMSG
 	rst-commit = commit --reedit-message=HEAD --reset-author
+[pretty]
+	simple = %C(auto)%h%d%Creset %s%n  %C(cyan)>> Committed on %cd <<%Creset
+	expand = %C(auto)%h%d%Creset %s%n  %C(cyan)>> Committed on %cd <<%Creset%n  %C(magenta)>> Authored  on %ad <<%Creset
