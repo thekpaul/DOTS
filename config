@@ -1,0 +1,27 @@
+[user]
+	email = 44695374+thekpaul@users.noreply.github.com
+	name = Paul Kim
+	signingkey = 179139D9423FB3B9!
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[commit]
+	gpgsign = true
+	verbose = true
+[pull]
+	rebase = true
+[merge]
+	autostash = true
+[rebase]
+	autostash = true
+[push]
+	default = simple
+[help]
+	autocorrect = 10
+[alias]
+	fix-commit = commit --edit --file=.git/COMMIT_EDITMSG
+	rst-commit = commit --reedit-message=HEAD --reset-author
+[pretty]
+	simple = %C(auto)%h%d%Creset %s%n  %C(cyan)>> Committed on %cd <<%Creset
+	expand = %C(auto)%h%d%Creset %s%n  %C(cyan)>> Committed on %cd <<%Creset%n  %C(magenta)>> Authored  on %ad <<%Creset
