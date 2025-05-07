@@ -6,6 +6,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		version = "2.*",
 		opts = {
 			ui = {
 				border = "rounded",
@@ -19,6 +20,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		version = "2.*",
 		dependencies = {
 			"williamboman/mason.nvim" -- Loaded before!
 		},
