@@ -3,6 +3,13 @@ Neovim Subtree
 
 This subtree tracks configurations for the `nvim` Neovim executable.
 
+## Branch README
+
+This branch updates various aspects of this Neovim configuration for use in the
+most recent versions of Neovim (post-v0.11), with an emphasis on refactoring
+deprecated and outdated configurations, particularly for LSP integration.
+Plugins may be added, removed and/or replaced for alternative solutions.
+
 ## Installation
 
 Install this subtree at `$XDG_CONFIG_HOME/nvim`:
