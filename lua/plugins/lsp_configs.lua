@@ -58,10 +58,14 @@ return {
 				map.set("n", "<leader>ll", vim.diagnostic.open_float, opts)
 
 				opts.desc = "Go to [P]revious Diagnostic"
-				map.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
+				map.set("n", "<leader>lp", function ()
+					vim.diagnostic.jump({ count = -1, float = true })
+				end, opts)
 
 				opts.desc = "Go to [N]ext Diagnostic"
-				map.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
+				map.set("n", "<leader>ln", function ()
+					vim.diagnostic.jump({ count = 1, float = true })
+				end, opts)
 
 				opts.desc = "Explicitly [R]e[s]tart LSP"
 				map.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)
