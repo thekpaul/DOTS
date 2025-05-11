@@ -3,17 +3,22 @@
 	Configurations for various LSP Plugins such as `neovim/nvim-lspconfig`.
 ]=]
 
+local function version()
+	if vim.version.lt(vim.version(), '0.11.0') then
+		return "2.0.*"
+	else
+		return "*"
+	end
+end
+
 return {
 	"neovim/nvim-lspconfig",
-	version = "2.0.*",
-	event = { "BufReadPre", "BufNewFile" },
+	version = version(),
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"nvim-telescope/telescope.nvim"
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local tele_builtin = require("telescope.builtin")
@@ -61,111 +66,204 @@ return {
 				opts.desc = "Show [L]ine Diagnostics"
 				map.set("n", "<leader>ll", vim.diagnostic.open_float, opts)
 
-				opts.desc = "Go to [P]revious Diagnostic"
-				map.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
+				if vim.version.lt(vim.version(), '0.11.0') then
+					opts.desc = "Go to [P]revious Diagnostic"
+					map.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
 
-				opts.desc = "Go to [N]ext Diagnostic"
-				map.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
+					opts.desc = "Go to [N]ext Diagnostic"
+					map.set("n", "<leader>lp", vim.diagnostic.goto_next, opts)
+				else
+					opts.desc = "Go to [P]revious Diagnostic"
+					map.set("n", "<leader>lp", function ()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, opts)
+
+					opts.desc = "Go to [N]ext Diagnostic"
+					map.set("n", "<leader>ln", function ()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, opts)
+				end
 
 				opts.desc = "Explicitly [R]e[s]tart LSP"
 				map.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)
 			end
 		})
 
-		-- Enable Autocompletion (Assign to EVERY LSP Server Configuration)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- Diagnostic symbols in sign column (gutter)
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		if vim.version.lt(vim.version(), '0.11.0') then
+			-- Enable Autocompletion (Assign to EVERY LSP Server Configuration)
+			local lspconfig = require("lspconfig")
 
-		-- Handlers used in `mason-lspconfig.nvim` to set up LSP servers
-		-- See `:h mason-lspconfig.setup_handlers()` for docs
-		mason_lspconfig.setup_handlers({
-			-- First entry as the default, fallback handler
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities
-				})
-			end,
-			["lua_ls"] = function() -- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					-- Provided by `lua_ls` documentation for primary use in Neovim
-					on_init = function(client)
-						if client.workspace_folders then
-							local path = client.workspace_folders[1].name
-							if vim.uv.fs_stat(path..'/.luarc.json')
-								or vim.uv.fs_stat(path..'/.luarc.jsonc') then
-								return
+			-- Diagnostic symbols in sign column (gutter)
+			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+
+			-- Handlers used in `mason-lspconfig.nvim` to set up LSP servers
+			-- See `:h mason-lspconfig.setup_handlers()` for docs
+			require("mason-lspconfig").setup_handlers({
+				-- First entry as the default, fallback handler
+				function(server_name)
+					lspconfig[server_name].setup({
+						capabilities = capabilities
+					})
+				end,
+				["lua_ls"] = function() -- configure lua server (with special settings)
+					lspconfig["lua_ls"].setup({
+						capabilities = capabilities,
+						-- Provided by `lua_ls` documentation for primary use in Neovim
+						on_init = function(client)
+							if client.workspace_folders then
+								local path = client.workspace_folders[1].name
+								if vim.uv.fs_stat(path..'/.luarc.json')
+									or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+									return
+								end
 							end
-						end
 
-						client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-							runtime = {
-								-- Tell the language server which version of Lua you're using
-								-- (most likely LuaJIT in the case of Neovim)
-								version = 'LuaJIT'
-							},
-							-- Make the server aware of Neovim runtime files
-							workspace = {
-								checkThirdParty = false,
-								library = {
-									vim.env.VIMRUNTIME,
-									"${3rd}/luv/library" -- `luv` lib for Neovim
+							client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+								runtime = {
+									-- Tell the language server which version of Lua you're using
+									-- (most likely LuaJIT in the case of Neovim)
+									version = 'LuaJIT'
+								},
+								-- Make the server aware of Neovim runtime files
+								workspace = {
+									checkThirdParty = false,
+									library = {
+										vim.env.VIMRUNTIME,
+										"${3rd}/luv/library" -- `luv` lib for Neovim
+									}
+								}
+							})
+						end,
+						settings = {
+							Lua = { -- make the language server recognize "vim" global
+								diagnostics = {
+									globals = { "vim" }
+								},
+								completion = {
+									callSnippet = "Replace"
 								}
 							}
-						})
-					end,
-					settings = {
-						Lua = { -- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" }
+						}
+					})
+				end,
+				["cmake"] = function()
+					lspconfig["cmake"].setup({
+						capabilities = capabilities
+					})
+				end,
+				["verible"] = function()
+					lspconfig["verible"].setup({
+						capabilities = capabilities,
+						cmd = { 'verible-verilog-ls', '--rules_config_search' },
+						root_dir = function(fname)
+							return
+								vim.fs.dirname(vim.fs.find(
+									'.rules.verible_lint', -- local Verible lint rule
+									{ path = fname, upward = true }
+								)[1]) or
+								vim.fs.dirname(vim.fs.find(
+									'.git', -- local Git repository, second option
+									{ path = fname, upward = true }
+								)[1]) or
+								vim.fn.getcwd() -- current directory (for single-file system), fallback
+						end
+					})
+				end--[==[,
+				["clangd"] = function()
+					lspconfig["clangd"].setup({
+						capabilities = capabilities
+					})
+				end
+				--]==]
+			})
+
+			-- Setup functions for non-`mason` language servers
+			-- These may depend on external binaries available on the system,
+			-- and may cause issues when such dependencies are not available.
+			lspconfig.nushell.setup{} -- Requires an external Nushell binary
+
+		else
+
+			-- Enable Autocompletion (Assign to EVERY LSP Server Configuration)
+			vim.lsp.config('*', { capabilities = capabilities })
+
+			-- Diagnostic symbols in sign column (gutter)
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN]  = " ",
+						[vim.diagnostic.severity.HINT]  = "󰠠 ",
+						[vim.diagnostic.severity.INFO]  = " "
+					},
+					texthl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+						[vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
+						[vim.diagnostic.severity.HINT]  = "DiagnosticSignHint",
+						[vim.diagnostic.severity.INFO]  = "DiagnosticSignInfo"
+					}
+				}
+			})
+
+			-- Lua LSP `lua_ls`: Managed via Mason.nvim
+			vim.lsp.config('lua_ls', {
+				on_init = function(client)
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if path ~= vim.fn.stdpath('config') and (
+							vim.uv.fs_stat(path .. '/.luarc.json') or
+							vim.uv.fs_stat(path .. '/.luarc.jsonc')
+						) then
+							return
+						end
+					end
+
+					client.config.settings.Lua = vim.tbl_deep_extend(
+						'force', client.config.settings.Lua, {
+							runtime = {
+								version = 'LuaJIT',
+								path = { 'lua/?.lua', 'lua/?/init.lua', },
 							},
-							completion = {
-								callSnippet = "Replace"
+							workspace = {
+								checkThirdParty = false,
+								library = { vim.env.VIMRUNTIME, '${3rd}/luv/library' }
 							}
 						}
-					}
-				})
-			end,
-			["cmake"] = function()
-				lspconfig["cmake"].setup({
-					capabilities = capabilities
-				})
-			end,
-			["verible"] = function()
-				lspconfig["verible"].setup({
-					capabilities = capabilities,
-					cmd = { 'verible-verilog-ls', '--rules_config_search' },
-					root_dir = function(fname)
-						return
-							vim.fs.dirname(vim.fs.find(
-								'.rules.verible_lint', -- local Verible lint rule
-								{ path = fname, upward = true }
-							)[1]) or
-							vim.fs.dirname(vim.fs.find(
-								'.git', -- local Git repository, second option
-								{ path = fname, upward = true }
-							)[1]) or
-							vim.fn.getcwd() -- current directory (for single-file system), fallback
-					end
-				})
-			end--[==[,
-			["clangd"] = function()
-				lspconfig["clangd"].setup({
-					capabilities = capabilities
-				})
-			end
-			--]==]
-		})
+					)
+				end,
+				settings = {
+					Lua = {}
+				}
+			})
 
-		-- Setup functions for non-`mason` language servers
-		-- These may depend on external binaries available on the system,
-		-- and may cause issues when such dependencies are not available.
-		lspconfig.nushell.setup{} -- Requires an external Nushell binary
+			-- (System)Verilog LSP `verible`: Managed via Mason.nvim
+			vim.lsp.config('verible', {
+				cmd = { 'verible-verilog-ls', '--rules_config_search' },
+				root_dir = function(fname)
+					return
+						vim.fs.dirname(vim.fs.find(
+							'.rules.verible_lint', -- local Verible lint rule
+							{ path = fname, upward = true }
+						)[1]) or
+						vim.fs.dirname(vim.fs.find(
+							'.git', -- local Git repository, second option
+							{ path = fname, upward = true }
+						)[1]) or
+						vim.fn.getcwd() -- current directory (for single-file system), fallback
+				end
+			})
+
+			-- Nushell LSP: binary built-in
+			-- Note that the Nushell binary must be installed on system and
+			-- able to be found by Neovim for the Nushell LSP to function correctly.
+			vim.lsp.enable('nushell')
+
+		end
 	end
 }

@@ -3,6 +3,14 @@ Neovim Subtree
 
 This subtree tracks configurations for the `nvim` Neovim executable.
 
+## Branch README
+
+This branch merges configurations for pre-v0.11 and post-v0.11 Neovim from the
+[`subtree-nvim`][subtree-nvim] and [`nvim-0.11`][nvim-0.11] branches.
+This branch will serve as the _de-facto_ configuration subtree for Neovim
+configuration until Neovim v0.11 and its API are stabilised across all
+currently used environments.
+
 ## Installation
 
 Install this subtree at `$XDG_CONFIG_HOME/nvim`:
@@ -39,3 +47,5 @@ Authored and maintained by [Paul Kim](https://thekpaul.dev).
 Distributed under the [MIT License][license].
 
 [license]: ./LICENSE.md
+[subtree-nvim]: https://github.com/thekpaul/DOTS/tree/subtree-nvim
+[nvim-0.11]: https://github.com/thekpaul/DOTS-dev-branches/tree/nvim-0.11

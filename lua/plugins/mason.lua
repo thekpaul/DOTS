@@ -3,10 +3,18 @@
 	Configurations for the `williamboman/mason.nvim` Plugin, with dependencies.
 ]=]
 
+local function version()
+	if vim.version.lt(vim.version(), '0.11.0') then
+		return "1.*"
+	else
+		return "2.*"
+	end
+end
+
 return {
 	{
 		"williamboman/mason.nvim",
-		version = "1.*",
+		version = version(),
 		opts = {
 			ui = {
 				border = "rounded",
@@ -20,7 +28,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		version = "1.*",
+		version = version(),
 		dependencies = {
 			"williamboman/mason.nvim" -- Loaded before!
 		},
