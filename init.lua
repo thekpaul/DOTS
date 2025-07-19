@@ -197,6 +197,21 @@ if not vim.g.vscode then
 
 	mapopts.desc = "Delete without Overwriting Buffer"
 	map({ "n", "v" }, "<leader>d", "\"_d")
+
+	mapopts.desc = "Delete until EOL without Overwriting Buffer"
+	map("n", "<leader>D", "\"_D")
+
+	mapopts.desc = "Delete Selected Lines without Overwriting Buffer"
+	map("v", "<leader>D", "\"_D")
+
+	mapopts.desc = "Change without Overwriting Buffer"
+	map({"n", "v"}, "<leader>c", "\"_c")
+
+	mapopts.desc = "Change until EOL without Overwriting Buffer"
+	map("n", "<leader>C", "\"_C")
+
+	mapopts.desc = "Change Selected Lines without Overwriting Buffer"
+	map("v", "<leader>C", "\"_C")
 	-- }
 
 	-- Easy access to system clipboard
