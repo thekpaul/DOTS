@@ -108,6 +108,14 @@ if not vim.g.vscode then
 	 --	eol   = "↲",
 	}
 
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function()
+			if not vim.bo.modifiable then
+				vim.opt_local.list = false
+			end
+		end
+	})
+
 	-- Fill Characters: Set `eob` to empty character to remove EOB tildes
 	vim.opt.fillchars = { eob = " " }
 
