@@ -1,5 +1,5 @@
 function rm
-  if status --is-interactive
+  if status --is-interactive; and test (status current-command) = (status function)
     set -l RM_ALT (which gio)
     printf "Use the full path i.e. `%s`, consider using trash (`%s`)\n" \
       (command -s rm) (string join ' ' $RM_ALT 'trash')
