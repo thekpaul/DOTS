@@ -22,7 +22,7 @@ export def --env main [
     string -> table
 ] {
     if ($path != null) {
-        let span = (metadata $path | get span)
+        let span = (ignore; metadata $path | get span)
         try {
             cd --physical=$physical $path
         } catch {
