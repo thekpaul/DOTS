@@ -106,6 +106,7 @@ $env.PROMPT_COMMAND_RIGHT = {||
 $env.PROMPT_INDICATOR = "↪ "
 $env.TRANSIENT_PROMPT_COMMAND = " "
 $env.TRANSIENT_PROMPT_INDICATOR = "> "
+$env.TRANSIENT_PROMPT_MULTILINE_INDICATOR = "   "
 
 # `$env.HOME` Variable for Windows Systems
 # Windows systems do not have the `$env.HOME` environmental variable by default.
