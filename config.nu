@@ -8,6 +8,10 @@
 $env.config.history.file_format = "sqlite"
 $env.config.history.isolation = false
 
+### Hooks: `$env.config.hooks.*` ##############################################
+
+$env.config.hooks.pre_prompt = [ "print ''" ]
+
 ### Completions: `$env.config.completions.*` ##################################
 
 $env.config.completions.algorithm = "fuzzy"
