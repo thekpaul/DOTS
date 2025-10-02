@@ -39,19 +39,23 @@ function pdk --description 'Environmental Scripts Wrapper for Fish'
     echo "Too many arguments: only one is supported at this time." >&2
     return 1
   else if type -q $argv
-    if test (string split ' ' (type $argv) | tail -n1 | path dirname) = '/opt/mi-env/bin'
-      set FISH_PATH (status fish-path)
-      if status is-login
-        set FISH_PATH "$FISH_PATH -l"
+    set -l FULL_PATH (string split ' ' (type $argv) | tail -n1 | path dirname)
+    if not test $FULL_PATH = '/opt/mi-env/bin'
+      read -f REPLY -P "WARNING: Sourcing from abnormal path $(prompt_pwd -d 0 $FULL_PATH), proceed? [y/N] > "
+      if not test $REPLY = 'y'
+        echo "Operation cancelled." >&2
+        return 1
       end
-      if type -q conda; and set -q CONDA_DEFAULT_ENV
-        set CONDA_ENV $CONDA_DEFAULT_ENV
-        exec bash -c "source $(which $argv); exec $FISH_PATH -C 'conda deactivate; conda activate $CONDA_ENV'"
-      else
-        exec bash -c "source $(which $argv); exec $FISH_PATH"
-      end
+    end
+    set FISH_PATH (status fish-path)
+    if status is-login
+      set FISH_PATH "$FISH_PATH -l"
+    end
+    if type -q conda; and set -q CONDA_DEFAULT_ENV
+      set CONDA_ENV $CONDA_DEFAULT_ENV
+      exec bash -c "source $(which $argv); exec $FISH_PATH -C 'conda deactivate; conda activate $CONDA_ENV'"
     else
-      echo "FATAL: `$argv` not available as a PDK resource." >&2
+      exec bash -c "source $(which $argv); exec $FISH_PATH"
     end
   else
     echo "FATAL: `$argv` not executable." >&2
