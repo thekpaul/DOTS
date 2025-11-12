@@ -68,7 +68,7 @@ end
 
 function test_nest
   if not test -z $SHLVL
-    if tmux showenv > /dev/null 2>&1 ## Inside TMUX env.
+    if command -q tmux; and tmux showenv > /dev/null 2>&1 ## Inside TMUX env.
       printf '%d' (math max (math $SHLVL - 2), 0)
     else
       printf '%d' (math max (math $SHLVL - 1), 0)
