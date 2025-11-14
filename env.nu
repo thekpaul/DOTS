@@ -48,17 +48,26 @@ def __last_status [] {
 
 # Welcome Banner: Set a custom banner when starting a new session.
 def banner [] {
-    let up_str: string = (
+    # List of strings parsed from `(sys host).uptime`
+    let up_lst: list<string> = (
         sys host | get uptime # Get current uptime
         | into record | transpose type num # Format into table of `type`:`num`
-        | drop # Remove last entry "sign" (always +, btw)
-        | each {
-            if ($in.num == 1) {
-                $"($in.num) ($in.type)"
-            } else if ($in.num != 0) {
-                $"($in.num) ($in.type)s"
-            }
-        } | str join ", "
+        | drop # Remove last entry "sign"
+        | each {|| $"($in.num) ($in.type)(
+            if $in.num > 1 {'s'} # Always positive int, check for plurality
+        )" }
+    )
+
+    # Output string formatted based on amount of string elements in parsed list
+    let up_str: string = (
+        if ($up_lst | length) > 1 {
+            [
+                ($up_lst | drop | str join ", ") # Connect with commas
+                ($up_lst | last) # Prepare last element for different connector
+            ] | str join ' and ' # Only the last element connects with "and"
+        } else {
+            $up_lst | get 0 # Only one string to print -> print by itself
+        }
     )
 
     print $"($up_str)...Something on Your Mind?"
