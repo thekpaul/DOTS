@@ -118,15 +118,26 @@ function prompt {
     $oc = $host.ui.RawUI.ForegroundColor # Save text color
     $culture = [cultureinfo]::CurrentCulture # Save session locale settings
 
-    # Current User and Machine Name SECURELY Provided by Windows
-    $me = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    # Current Windows Identity, check for Admin privilege
+    $id = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+    $isAdmin = ([Security.Principal.WindowsPrincipal] $id).IsInRole(
+        [Security.Principal.WindowsBuiltInRole]::Administrator
+    )
+
+    # Current User and Machine Name
+    $me = $id.Name
     $comp, $user = $me.split("\")
 
     # First List: Username, host machine, Git branch name (if applicable)
     $curr_pwd = $($executionContext.SessionState.Path.CurrentLocation).Path.Replace("$HOME", "~")
-    Write-Host ("`n$user at $comp ") -NoNewline -ForegroundColor Cyan
-    Write-Host ("  $curr_pwd ")     -NoNewline -ForegroundColor Magenta
-    Write-Host ("$(Get-GitBranch)")             -ForegroundColor DarkGray
+    if ($isAdmin) {
+        Write-Host ("`n[ADMIN]: $user") -NoNewline -ForegroundColor DarkYellow
+    } else {
+        Write-Host ("`n$user")          -NoNewline -ForegroundColor Cyan
+    }
+    Write-Host (" at $comp ")           -NoNewline -ForegroundColor Cyan
+    Write-Host ("  $curr_pwd ")        -NoNewline -ForegroundColor Magenta
+    Write-Host ("$(Get-GitBranch)")                -ForegroundColor DarkGray
 
     # Second Line: Input indicator, (right-flushed) Conda Env. and current time
     Write-Host (" ↪$('>' * ($nestedPromptLevel))") `
