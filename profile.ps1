@@ -3,10 +3,38 @@
 #   `~\Documents\WindowsPowerShell\` directory, where this script may be
 #   incompatible - use at your own risk!
 
+$env:MAMBA_ROOT_PREFIX = If (Test-Path "$Env:USERPROFILE\miniconda3") {
+    "$Env:USERPROFILE\miniconda3"
+} else {
+    If (Get-Command "fd" -ErrorAction SilentlyContinue) {
+        fd -t x -a "conda.exe" "$Env:USERPROFILE" |
+        Where-Object { $_ -match "Scripts\\conda\.exe$" } |
+        ForEach-Object {
+            $root = Split-Path (Split-Path $_)
+            if (Test-Path "$root\Library\bin\mamba.exe") { return $root }
+        }
+    } else {
+        Get-ChildItem $Env:USERPROFILE -Recurse -Filter "conda.exe" -File -ErrorAction SilentlyContinue | Where-Object { $_.FullName -like "*\Scripts\conda.exe" } |
+        ForEach-Object {
+            $installRoot = Split-Path $_.Directory -Parent
+            if (Test-Path "$installRoot\Library\bin\mamba.exe") { return $installRoot }
+        }
+    }
+}
+
 #region conda initialize
 # !! Contents within this block are managed by 'conda init' !!
-If (Test-Path "$env:USERPROFILE\miniconda3\Scripts\conda.exe") {
-    (& "$env:USERPROFILE\miniconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
+If (Test-Path "$Env:MAMBA_ROOT_PREFIX\Scripts\conda.exe") {
+    $Env:CONDA_EXE = "$Env:MAMBA_ROOT_PREFIX\Scripts\conda.exe"
+    (& $Env:CONDA_EXE "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
+}
+#endregion
+
+#region mamba initialize
+# !! Contents within this block are managed by 'mamba shell init' !!
+If (Test-Path "$Env:MAMBA_ROOT_PREFIX\Library\bin\mamba.exe") {
+    $Env:MAMBA_EXE = "$Env:MAMBA_ROOT_PREFIX\Library\bin\mamba.exe"
+    (& $Env:MAMBA_EXE 'shell' 'hook' -s 'powershell' -r $Env:MAMBA_ROOT_PREFIX) | Out-String | ?{$_} | Invoke-Expression
 }
 #endregion
 
