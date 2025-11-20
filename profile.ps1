@@ -3,8 +3,8 @@
 #   `~\Documents\WindowsPowerShell\` directory, where this script may be
 #   incompatible - use at your own risk!
 
-$env:MAMBA_ROOT_PREFIX = If (Test-Path "$Env:USERPROFILE\miniconda3") {
-    "$Env:USERPROFILE\miniconda3"
+$env:MAMBA_ROOT_PREFIX = If (Test-Path "$Env:USERPROFILE\AppData\Local\conda") {
+    "$Env:USERPROFILE\AppData\Local\conda"
 } else {
     If (Get-Command "fd" -ErrorAction SilentlyContinue) {
         fd -t x -a "conda.exe" "$Env:USERPROFILE" |
