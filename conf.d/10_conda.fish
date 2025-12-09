@@ -34,13 +34,16 @@ else
   end
 end
 
-# Suppress function change from conda
-function __conda_add_prompt; end
-
 set -gx MAMBA_EXE "$MAMBA_ROOT_PREFIX/bin/mamba"
 if test -f $MAMBA_EXE; and test -x $MAMBA_EXE
   $MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
 end
 
-# Suppress function change from mamba
-function __mamba_add_prompt; end
+# Revert function change from comda/mamba initialisation
+functions -e fish_prompt
+functions -c __fish_prompt_orig fish_prompt
+functions -e __fish_prompt_orig
+
+functions -e fish_right_prompt
+functions -c __fish_right_prompt_orig fish_right_prompt
+functions -e __fish_right_prompt_orig
